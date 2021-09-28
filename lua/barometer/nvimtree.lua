@@ -1,0 +1,13 @@
+--vim.g.nvim_tree_width = 35
+--vim.g.nvim_tree_git_hl = 1
+--vim.g.nvim_tree_hide_dotfiles = 0
+--vim.g.nvim_tree_ignore = { ".git", "node_modules" }
+--vim.g.nvim_tree_quit_on_open = 1
+--vim.g.nvim_tree_ignore = { ".git", "node_modules" }
+--vim.g.nvim_tree_gitignore = 1
+--vim.g.nvim_tree_indent_markers = 0
+--vim.g.nvim_tree_git_hl = 1
+
+--require("nvim-tree.events").on_nvim_tree_ready(function()
+  --vim.cmd "NvimTreeRefresh"
+--end)
