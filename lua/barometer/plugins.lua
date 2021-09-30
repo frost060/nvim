@@ -48,7 +48,7 @@ require("packer").startup(function()
   use { "tjdevries/gruvbuddy.nvim", disable = false }
 
   use { "sainnhe/gruvbox-material", disable = false }
-  use { "tjdevries/cyclist.vim", disable = false }
+  use { "tjdevries/cyclist.vim", disable = true }
 
   use "folke/tokyonight.nvim"
   use "Th3Whit3Wolf/onebuddy"

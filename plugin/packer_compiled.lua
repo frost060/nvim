@@ -137,10 +137,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/barometer/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
   },
-  oak = {
-    loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/oak"
-  },
   ["one-nvim"] = {
     loaded = true,
     path = "/home/barometer/.local/share/nvim/site/pack/packer/start/one-nvim"
@@ -164,10 +160,6 @@ _G.packer_plugins = {
   ["popup.nvim"] = {
     loaded = true,
     path = "/home/barometer/.local/share/nvim/site/pack/packer/start/popup.nvim"
-  },
-  ["symbols-outline.nvim"] = {
-    loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
