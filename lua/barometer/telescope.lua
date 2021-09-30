@@ -130,4 +130,8 @@ M.lsp_implementations = function()
   require("telescope.builtin").lsp_implementations(opts)
 end
 
+M.git_status = function()
+  require("telescope.builtin").git_status {}
+end
+
 return M

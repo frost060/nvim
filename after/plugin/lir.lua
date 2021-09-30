@@ -43,6 +43,10 @@ lir.setup {
 
 vim.api.nvim_set_keymap("n", "-", ":edit %:h<CR>", { noremap = true })
 
+require("lir.git_status").setup {
+  show_ignored = false,
+}
+
 -- Can do this if we want to get particular settings
 -- vim.cmd [[
 --   augroup LirSettings

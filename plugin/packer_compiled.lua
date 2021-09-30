@@ -93,6 +93,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/barometer/.local/share/nvim/site/pack/packer/start/gruvbuddy.nvim"
   },
+  ["lir-git-status.nvim"] = {
+    loaded = true,
+    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/lir-git-status.nvim"
+  },
   ["lir.nvim"] = {
     loaded = true,
     path = "/home/barometer/.local/share/nvim/site/pack/packer/start/lir.nvim"

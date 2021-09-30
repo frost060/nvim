@@ -61,4 +61,5 @@ require("packer").startup(function()
   use "fatih/vim-go"
 
   use "tamago324/lir.nvim"
+  use "tamago324/lir-git-status.nvim"
 end)

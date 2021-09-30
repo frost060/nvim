@@ -90,6 +90,13 @@ api.nvim_set_keymap(
   { noremap = false, silent = true }
 )
 
+api.nvim_set_keymap(
+  "n",
+  "<Leader>gg",
+  [[<cmd>lua require("barometer.telescope").git_status()<CR>]],
+  { noremap = false, silent = true }
+)
+
 api.nvim_set_keymap("n", "<Leader>h", [[<cmd>Telescope help_tags<CR>]], { noremap = true, silent = true })
 api.nvim_set_keymap("n", "<Leader>t", [[<cmd>Telescope<CR>]], { noremap = true, silent = true })
 
