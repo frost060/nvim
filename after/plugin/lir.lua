@@ -3,25 +3,25 @@ if not has_lir then
   return
 end
 
-local has_devicons, devicons = pcall(require, "nvim-web-devicons")
-if has_devicons then
-  devicons.setup {
-    override = {
-      lir_folder_icon = {
-        icon = "",
-        color = "#7ebae4",
-        name = "LirFolderNode",
-      },
-    },
-  }
-end
+--local has_devicons, devicons = pcall(require, "nvim-web-devicons")
+--if has_devicons then
+--devicons.setup {
+--override = {
+--lir_folder_icon = {
+--icon = "",
+--color = "#7ebae4",
+--name = "LirFolderNode",
+--},
+--},
+--}
+--end
 
 local actions = require "lir.actions"
 local has_mmv, mmv_actions = pcall(require, "lir.mmv.actions")
 
 lir.setup {
   show_hidden_files = true,
-  devicons_enable = true,
+  devicons_enable = false,
 
   float = { winblend = 15 },
 

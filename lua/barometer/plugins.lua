@@ -53,12 +53,12 @@ require("packer").startup(function()
   use "folke/tokyonight.nvim"
   use "Th3Whit3Wolf/onebuddy"
 
-  use "kyazdani42/nvim-web-devicons"
-
   use "mfussenegger/nvim-jdtls"
 
   use "norcalli/nvim-colorizer.lua"
   use "fatih/vim-go"
 
   use "tamago324/lir.nvim"
+
+  use "vv9k/vim-github-dark"
 end)

@@ -27,4 +27,3 @@ cmd [[
     autocmd BufWritePre *.lua :lua require("barometer.stylua").format()
   augroup END
 ]]
-

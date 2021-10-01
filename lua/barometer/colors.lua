@@ -37,7 +37,8 @@ vim.g.tokyonight_colors = {}
 
 --require("tokyonight").colorscheme()
 
-require("colorbuddy").colorscheme "gruvbuddy"
+--require("colorbuddy").colorscheme "gruvbuddy"
 require("colorizer").setup()
 
---cmd "colorscheme onedark"
+vim.g.gh_color = "soft"
+cmd "colorscheme onedark"

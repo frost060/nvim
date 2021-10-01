@@ -44,8 +44,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/barometer/.cache/nvim/packer_hererocks/2.0.5/share/lua/5.1/?.lua;/home/barometer/.cache/nvim/packer_hererocks/2.0.5/share/lua/5.1/?/init.lua;/home/barometer/.cache/nvim/packer_hererocks/2.0.5/lib/luarocks/rocks-5.1/?.lua;/home/barometer/.cache/nvim/packer_hererocks/2.0.5/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/barometer/.cache/nvim/packer_hererocks/2.0.5/lib/lua/5.1/?.so"
+local package_path_str = "/Users/barometer/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/Users/barometer/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/Users/barometer/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/Users/barometer/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/Users/barometer/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -71,127 +71,127 @@ time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   ["auto-pairs"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/auto-pairs"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/auto-pairs"
   },
   ["colorbuddy.nvim"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/colorbuddy.nvim"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/colorbuddy.nvim"
   },
   ["express_line.nvim"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/express_line.nvim"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/express_line.nvim"
   },
   ["gitsigns.nvim"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
   ["gruvbox-material"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/gruvbox-material"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/gruvbox-material"
   },
   ["gruvbuddy.nvim"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/gruvbuddy.nvim"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/gruvbuddy.nvim"
   },
   ["lir.nvim"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/lir.nvim"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/lir.nvim"
   },
   ["lspsaga.nvim"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
   },
   nerdcommenter = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/nerdcommenter"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/nerdcommenter"
   },
   ["nvim-colorizer.lua"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
   },
   ["nvim-compe"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/nvim-compe"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/nvim-compe"
   },
   ["nvim-jdtls"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/nvim-jdtls"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/nvim-jdtls"
   },
   ["nvim-lint"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/nvim-lint"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/nvim-lint"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
   ["nvim-treesitter"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
   ["nvim-treesitter-textobjects"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects"
-  },
-  ["nvim-web-devicons"] = {
-    loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects"
   },
   ["one-nvim"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/one-nvim"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/one-nvim"
   },
   onebuddy = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/onebuddy"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/onebuddy"
   },
   ["onedark.nvim"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/onedark.nvim"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/onedark.nvim"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/packer.nvim"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/plenary.nvim"
   },
   ["popup.nvim"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/popup.nvim"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
   ["tokyonight.nvim"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/tokyonight.nvim"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/tokyonight.nvim"
   },
   ["vim-fugitive"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/vim-fugitive"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/vim-fugitive"
+  },
+  ["vim-github-dark"] = {
+    loaded = true,
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/vim-github-dark"
   },
   ["vim-go"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/vim-go"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/vim-go"
   },
   ["vim-horizon"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/vim-horizon"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/vim-horizon"
   },
   ["vim-surround"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/vim-surround"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/vim-surround"
   },
   ["which-key.nvim"] = {
     loaded = true,
-    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/which-key.nvim"
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/which-key.nvim"
   }
 }
 
