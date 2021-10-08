@@ -181,6 +181,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/barometer/.local/share/nvim/site/pack/packer/start/vim-fugitive"
   },
+  ["vim-github-dark"] = {
+    loaded = true,
+    path = "/home/barometer/.local/share/nvim/site/pack/packer/start/vim-github-dark"
+  },
   ["vim-go"] = {
     loaded = true,
     path = "/home/barometer/.local/share/nvim/site/pack/packer/start/vim-go"
