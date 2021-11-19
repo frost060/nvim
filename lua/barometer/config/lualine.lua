@@ -21,10 +21,10 @@ vim.cmd [[autocmd User LspProgressUpdate let &ro = &ro]]
 
 local config = {
   options = {
-    theme = "tokyonight",
+    theme = "gruvbox",
     section_separators = { "", "" },
     component_separators = { "", "" },
-    -- section_separators = { "", "" },
+    -- ection_separators = { "", "" },
     -- component_separators = { "", "" },
     icons_enabled = true,
   },

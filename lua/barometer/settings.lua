@@ -12,7 +12,8 @@ o.hlsearch = false
 
 --Make line numbers default
 wo.number = true
-wo.relativenumber = true
+--wo.relativenumber = true
+cmd [[ set signcolumn=no ]]
 
 --Do not save when switching buffers
 o.hidden = true
@@ -34,7 +35,7 @@ o.smartcase = true
 
 --Decrease update time
 o.updatetime = 250
-wo.signcolumn = "yes"
+-- wo.signcolumn = "yes"
 
 bo.swapfile = false
 o.backup = false
@@ -49,9 +50,9 @@ bo.smartindent = true
 
 wo.wrap = true
 
-o.tabstop = 4
-o.softtabstop = 4
-o.shiftwidth = 4
+o.tabstop = 2
+o.softtabstop = 2
+o.shiftwidth = 2
 o.expandtab = true
 
 o.diffopt = o.diffopt .. ",vertical"

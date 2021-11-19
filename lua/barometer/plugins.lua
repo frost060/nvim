@@ -26,13 +26,12 @@ require("packer").startup(function()
   use { "nvim-telescope/telescope.nvim", requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } } }
   use "nvim-telescope/telescope-fzf-native.nvim"
 
-  use "ntk148v/vim-horizon"
-
   use "navarasu/onedark.nvim"
   use "Th3Whit3Wolf/one-nvim"
 
   -- Add git related info in the signs columns and popups
-  use { "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" }, disable = false }
+  use { "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" }, disable = true }
+  --use "airblade/vim-gitgutter"
   -- Highlight, edit, and navigate code using a fast incremental parsing library
   use "nvim-treesitter/nvim-treesitter"
   use "nvim-treesitter/nvim-treesitter-textobjects"
@@ -60,7 +59,67 @@ require("packer").startup(function()
 
   use "tamago324/lir.nvim"
   use "tamago324/lir-git-status.nvim"
+
+  use "arzg/vim-colors-xcode"
+
+  use "sainnhe/everforest"
+
+  use "NLKNguyen/papercolor-theme"
+
+  use "github/copilot.vim"
+  use "morhetz/gruvbox"
+
+  use "nvim-lua/lsp_extensions.nvim"
+
+  -- Base16 themes
+  use "chriskempson/base16-vim"
+
+  --use "vim-airline/vim-airline"
+  --use "vim-airline/vim-airline-themes"
+
   use "kyazdani42/nvim-web-devicons"
 
-  use "vv9k/vim-github-dark"
+  use {
+    "nvim-lualine/lualine.nvim",
+    wants = "nvim-web-devicons",
+    disable = true,
+  }
+
+  use {
+    "kdheepak/tabline.nvim",
+    config = function()
+      require("tabline").setup {
+        enable = true,
+        options = {
+          -- If lualine is installed tabline will use separators configured in lualine by default.
+          -- These options can be used to override those settings.
+          section_separators = { "", "" },
+          component_separators = { "", "" },
+          max_bufferline_percent = 66, -- set to nil by default, and it uses vim.o.columns * 2/3
+          show_tabs_always = true, -- this shows tabs only when there are more than one tab or if the first tab is named
+          show_devicons = true, -- this shows devicons in buffer section
+          show_bufnr = false, -- this appends [bufnr] to buffer section,
+          show_filename_only = true, -- shows base filename only instead of relative path in filename
+        },
+      }
+      vim.cmd [[
+  set guioptions-=e " Use showtabline in gui vim
+  set sessionoptions+=tabpages,globals " store tabpages and globals in session
+  ]]
+    end,
+    disable = true,
+  }
+
+  use "sbdchd/neoformat"
+  use "Yggdroot/indentLine"
+
+  use "vim-airline/vim-airline"
+  use "vim-airline/vim-airline-themes"
+
+  use "jacoborus/tender.vim"
+
+  use "sainnhe/edge"
+  use "sainnhe/sonokai"
+
+  use "edkolev/tmuxline.vim"
 end)

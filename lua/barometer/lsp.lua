@@ -192,3 +192,29 @@ augroup BAROMETER_JDTLS
     autocmd FileType java lua require('jdtls').start_or_attach({cmd = {'java-lsp.sh'}})
 augroup END
 ]]
+
+function _G.workspace_diagnostics_status()
+  if #vim.lsp.buf_get_clients() == 0 then
+    return ""
+  end
+
+  local ws_diag = require "lsp_extensions.workspace.diagnostic"
+
+  local status = {}
+  local errors = ws_diag.get_count(0, "Error")
+  if errors > 0 then
+    table.insert(status, "E: " .. errors)
+  end
+
+  local warnings = ws_diag.get_count(0, "Warning")
+  if warnings > 0 then
+    table.insert(status, "W: " .. warnings)
+  end
+
+  local hints = ws_diag.get_count(0, "Hint")
+  if hints > 0 then
+    table.insert(status, "H: " .. hints)
+  end
+
+  return table.concat(status, " | ")
+end
