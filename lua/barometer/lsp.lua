@@ -22,7 +22,7 @@ require("lspconfig").yamlls.setup {}
 
 require("lspconfig").ocamlls.setup {}
 
-require("lspconfig").graphql.setup {}
+--require("lspconfig").graphql.setup {}
 
 require("lspconfig").elixirls.setup {
   cmd = { "elixir-lsp.sh" },

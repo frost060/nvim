@@ -72,14 +72,7 @@ api.nvim_set_keymap(
 api.nvim_set_keymap(
   "n",
   "<Leader>dd",
-  [[<cmd>lua require("barometer.telescope").document_diagnostics()<CR>]],
-  { noremap = false, silent = true }
-)
-
-api.nvim_set_keymap(
-  "n",
-  "<Leader>wd",
-  [[<cmd>lua require("barometer.telescope").workspace_diagnostics()<CR>]],
+  [[<cmd>lua require("barometer.telescope").diagnostics()<CR>]],
   { noremap = false, silent = true }
 )
 
@@ -119,7 +112,7 @@ api.nvim_set_keymap("n", "<Leader>rn", [[:lua vim.lsp.buf.rename()<CR>]], { nore
 --api.nvim_set_keymap("n", "<Leader>gh", [[:lua vim.lsp.buf.hover()<CR>]], { noremap = true })
 
 api.nvim_set_keymap("n", "<Leader>ac", [[:lua vim.lsp.buf.code_action()<CR>]], { noremap = true })
-api.nvim_set_keymap("n", "<Leader>ac", [[<cmd>lua require('jdtls').code_action()<CR>]], { noremap = true })
+--api.nvim_set_keymap("n", "<Leader>ac", [[<cmd>lua require('jdtls').code_action()<CR>]], { noremap = true })
 
 -- TODO: Convert this to pure lua
 cmd [[

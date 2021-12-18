@@ -12,7 +12,7 @@ o.hlsearch = false
 
 --Make line numbers default
 wo.number = true
---wo.relativenumber = true
+wo.relativenumber = false
 cmd [[ set signcolumn=no ]]
 
 --Do not save when switching buffers
@@ -24,7 +24,9 @@ o.mouse = "a"
 --Enable break indent
 o.breakindent = true
 
-o.cursorline = false
+o.cursorline = true
+
+o.wildmenu = true
 
 --Save undo history
 cmd [[set undofile]]
@@ -35,7 +37,6 @@ o.smartcase = true
 
 --Decrease update time
 o.updatetime = 250
--- wo.signcolumn = "yes"
 
 bo.swapfile = false
 o.backup = false

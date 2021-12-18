@@ -84,22 +84,13 @@ M.document_symbols = function()
   require("telescope.builtin").lsp_document_symbols(opts)
 end
 
-M.document_diagnostics = function()
+M.diagnostics = function()
   local opts = require("telescope.themes").get_ivy {
     layout_config = {
       height = 20,
     },
   }
-  require("telescope.builtin").lsp_document_diagnostics(opts)
-end
-
-M.workspace_diagnostics = function()
-  local opts = require("telescope.themes").get_ivy {
-    layout_config = {
-      height = 20,
-    },
-  }
-  require("telescope.builtin").lsp_workspace_diagnostics(opts)
+  require("telescope.builtin").diagnostics(opts)
 end
 
 M.list_colorschemes = function()

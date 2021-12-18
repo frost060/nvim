@@ -14,12 +14,12 @@
 "set statusline+=\ %l/%L
 "set statusline+=\ [%c]
 
-"set statusline=%<\ %{mode()}\ \|\ %f%m\ \|\ %{fugitive#statusline()\ }
-"set statusline+=\ \|\ %{v:lua.workspace_diagnostics_status()}
-"set statusline+=%{&paste?'\ \ \|\ PASTE\ ':'\ '}
-"set statusline+=%=\ %{&fileformat}\ \|\ %{&fileencoding}\ \|\ %{&filetype}
-"set statusline+=\ %l/%L
-"set statusline+=\ [%c]
-"set statusline+=\ %p%%
-"set statusline+=\ %{strftime('[%d/%m/%y\ %T]',getftime(expand('%:p')))}
+set statusline=%<\ %{mode()}\ \|\ %f%m\ \|\ %{fugitive#statusline()\ }
+set statusline+=\ \|\ %{v:lua.workspace_diagnostics_status()}
+set statusline+=%{&paste?'\ \ \|\ PASTE\ ':'\ '}
+set statusline+=%=\ %{&fileformat}\ \|\ %{&fileencoding}\ \|\ %{&filetype}
+set statusline+=\ %l/%L
+set statusline+=\ [%c]
+set statusline+=\ %p%%
+set statusline+=\ %{strftime('[%d/%m/%y\ %T]',getftime(expand('%:p')))}
 
