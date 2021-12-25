@@ -1,5 +1,4 @@
 require "barometer.plugins"
-require "barometer.settings"
 
 require "barometer.treesitter"
 require "barometer.telescope"
@@ -9,8 +8,6 @@ require "barometer.stylua"
 require("which-key").setup {}
 
 require "barometer.keybindings"
-
-require("gitsigns").setup()
 
 local cmd = vim.cmd
 local fn = vim.fn

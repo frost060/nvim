@@ -27,12 +27,13 @@ require("packer").startup(function()
   use "nvim-telescope/telescope-fzf-native.nvim"
 
   -- Add git related info in the signs columns and popups
-  use { "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" }, disable = false }
+  use { "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" }, disable = true }
   --use "airblade/vim-gitgutter"
   -- Highlight, edit, and navigate code using a fast incremental parsing library
   use "nvim-treesitter/nvim-treesitter"
   use "nvim-treesitter/nvim-treesitter-textobjects"
   use "mfussenegger/nvim-lint"
+  use "nvim-lua/completion-nvim"
   use "neovim/nvim-lspconfig" -- Collection of configurations for built-in LSP client
 
   use { "hrsh7th/nvim-compe", disable = false }
@@ -49,12 +50,35 @@ require("packer").startup(function()
   use "tamago324/lir.nvim"
   use "tamago324/lir-git-status.nvim"
 
-  use "sainnhe/everforest"
-
   use "github/copilot.vim"
-  use "morhetz/gruvbox"
+  use "gruvbox-community/gruvbox"
 
   use "nvim-lua/lsp_extensions.nvim"
 
   use "sbdchd/neoformat"
+
+  use "jonathanfilip/vim-lucius"
+
+  use "dracula/vim"
+
+  use "arcticicestudio/nord-vim"
+  use "navarasu/onedark.nvim"
+
+  use "chriskempson/base16-vim"
+
+  use "rebelot/kanagawa.nvim"
+
+  use "tomasr/molokai"
+
+  use "jacoborus/tender.vim"
+
+  use "catppuccin/nvim"
+
+  use "rmehri01/onenord.nvim"
+
+  use "cocopon/iceberg.vim"
+
+  use "nvim-lualine/lualine.nvim"
+
+  use "ziglang/zig.vim"
 end)
