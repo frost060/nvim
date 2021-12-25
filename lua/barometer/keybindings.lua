@@ -1,15 +1,23 @@
-local o = vim.o
 local api = vim.api
-local g = vim.g
 local cmd = vim.cmd
 
-api.nvim_set_keymap("i", "jk", "<Esc>", { noremap = true })
+api.nvim_set_keymap("i", "jk", "<Esc>", {
+  noremap = true,
+})
+
 api.nvim_set_keymap("n", "<C-Z>", ":update<CR>", { noremap = true })
 
-api.nvim_set_keymap("n", "<Leader>e", ":quit<CR>", { noremap = true })
-api.nvim_set_keymap("n", "<Leader>w", ":bw<CR>", { noremap = true })
+api.nvim_set_keymap("n", "<Leader>e", ":quit<CR>", {
+  noremap = true,
+})
 
-api.nvim_set_keymap("n", "<C-j>", ":cnext<CR>", { noremap = true })
+api.nvim_set_keymap("n", "<Leader>w", ":bw<CR>", {
+  noremap = true,
+})
+
+api.nvim_set_keymap("n", "<C-j>", ":cnext<CR>", {
+  noremap = true,
+})
 api.nvim_set_keymap("n", "<C-k>", ":cprevious<CR>", { noremap = true })
 
 api.nvim_set_keymap("", "<C-c>", '"+y', {})
@@ -90,10 +98,19 @@ api.nvim_set_keymap(
   { noremap = false, silent = true }
 )
 
-api.nvim_set_keymap("n", "<Leader>h", [[<cmd>Telescope help_tags<CR>]], { noremap = true, silent = true })
-api.nvim_set_keymap("n", "<Leader>t", [[<cmd>Telescope<CR>]], { noremap = true, silent = true })
+api.nvim_set_keymap("n", "<Leader>h", [[<cmd>Telescope help_tags<CR>]], {
+  noremap = true,
+  silent = true,
+})
 
-api.nvim_set_keymap("n", "gd", [[:lua vim.lsp.buf.definition()<CR>]], { noremap = true })
+api.nvim_set_keymap("n", "<Leader>t", [[<cmd>Telescope<CR>]], {
+  noremap = true,
+  silent = true,
+})
+
+api.nvim_set_keymap("n", "gd", [[:lua vim.lsp.buf.definition()<CR>]], {
+  noremap = true,
+})
 
 api.nvim_set_keymap(
   "n",
@@ -103,15 +120,23 @@ api.nvim_set_keymap(
 )
 --api.nvim_set_keymap("n", "gi", [[:lua vim.lsp.buf.implementation()<CR>]], { noremap = true })
 
-api.nvim_set_keymap("n", "gh", [[:lua vim.lsp.buf.signature_help()<CR>]], { noremap = true })
+api.nvim_set_keymap("n", "gh", [[:lua vim.lsp.buf.signature_help()<CR>]], {
+  noremap = true,
+})
 
 --api.nvim_set_keymap("n", "gr", [[:lua vim.lsp.buf.references()<CR>]], { noremap = true })
-api.nvim_set_keymap("n", "gr", [[<cmd> lua require("barometer.telescope").lsp_references()<CR>]], { noremap = true })
+api.nvim_set_keymap("n", "gr", [[<cmd> lua require("barometer.telescope").lsp_references()<CR>]], {
+  noremap = true,
+})
 
-api.nvim_set_keymap("n", "<Leader>rn", [[:lua vim.lsp.buf.rename()<CR>]], { noremap = true })
+api.nvim_set_keymap("n", "<Leader>rn", [[:lua vim.lsp.buf.rename()<CR>]], {
+  noremap = true,
+})
 --api.nvim_set_keymap("n", "<Leader>gh", [[:lua vim.lsp.buf.hover()<CR>]], { noremap = true })
 
-api.nvim_set_keymap("n", "<Leader>ac", [[:lua vim.lsp.buf.code_action()<CR>]], { noremap = true })
+api.nvim_set_keymap("n", "<Leader>ac", [[:lua vim.lsp.buf.code_action()<CR>]], {
+  noremap = true,
+})
 --api.nvim_set_keymap("n", "<Leader>ac", [[<cmd>lua require('jdtls').code_action()<CR>]], { noremap = true })
 
 -- TODO: Convert this to pure lua
@@ -135,3 +160,9 @@ api.nvim_set_keymap("n", "<Leader>rr", [[<cmd>lua require'lir.float'.toggle()<CR
   noremap = false,
   silent = true,
 })
+
+api.nvim_set_keymap("n", "<Leader>sp", ":SplitjoinSplit<CR>", {
+  noremap = false,
+})
+
+api.nvim_set_keymap("n", "<Leader>sj", ":SplitjoinJoin<CR>", { noremap = false })

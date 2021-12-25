@@ -26,9 +26,6 @@ require("packer").startup(function()
   use { "nvim-telescope/telescope.nvim", requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } } }
   use "nvim-telescope/telescope-fzf-native.nvim"
 
-  -- Add git related info in the signs columns and popups
-  use { "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" }, disable = true }
-  --use "airblade/vim-gitgutter"
   -- Highlight, edit, and navigate code using a fast incremental parsing library
   use "nvim-treesitter/nvim-treesitter"
   use "nvim-treesitter/nvim-treesitter-textobjects"
@@ -40,45 +37,26 @@ require("packer").startup(function()
   use "glepnir/lspsaga.nvim"
   use "folke/which-key.nvim"
 
-  use { "sainnhe/gruvbox-material", disable = false }
-
   use "mfussenegger/nvim-jdtls"
 
   use "norcalli/nvim-colorizer.lua"
+
   use "fatih/vim-go"
+  use "ziglang/zig.vim"
 
   use "tamago324/lir.nvim"
   use "tamago324/lir-git-status.nvim"
 
   use "github/copilot.vim"
-  use "gruvbox-community/gruvbox"
 
   use "nvim-lua/lsp_extensions.nvim"
 
   use "sbdchd/neoformat"
 
+  -- Themes
   use "jonathanfilip/vim-lucius"
-
+  use "gruvbox-community/gruvbox"
   use "dracula/vim"
 
-  use "arcticicestudio/nord-vim"
-  use "navarasu/onedark.nvim"
-
-  use "chriskempson/base16-vim"
-
-  use "rebelot/kanagawa.nvim"
-
-  use "tomasr/molokai"
-
-  use "jacoborus/tender.vim"
-
-  use "catppuccin/nvim"
-
-  use "rmehri01/onenord.nvim"
-
-  use "cocopon/iceberg.vim"
-
-  use "nvim-lualine/lualine.nvim"
-
-  use "ziglang/zig.vim"
+  use "AndrewRadev/splitjoin.vim"
 end)
