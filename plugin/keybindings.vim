@@ -35,9 +35,13 @@ nmap <silent> <Leader>h <cmd>Telescope help_tags<CR>
 nmap <silent> <Leader>t <cmd>Telescope<CR>
 
 " LSP
-nnoremap <Leader>gh :lua vim.lsp.buf.signature_help()<CR>
+nnoremap <Leader>wd :lua vim.lsp.buf.signature_help()<CR>
 nnoremap <Leader>rn :lua vim.lsp.buf.rename()<CR>
 nnoremap <Leader>ac :lua vim.lsp.buf.code_action()<CR>
+nnoremap <Leader>ww :lua vim.lsp.buf.hover()<CR>
+nnoremap <Leader>wo :lua vim.diagnostic.open_float()<CR>
+nnoremap <Leader>wn :lua vim.diagnostic.goto_next()<CR>
+nnoremap <Leader>wp :lua vim.diagnostic.goto_prev()<CR>
 
 " Split Join
 nnoremap <Leader>sp :SplitjoinSplit<CR>
