@@ -23,8 +23,7 @@ set wildmenu
 set scrolloff=5
 set number
 set cursorline
-set colorcolumn=80
-set nowrap
+set wrap
 set showmatch
 set backspace=2
 " Make J not insert whitespace
@@ -32,21 +31,6 @@ set nojoinspaces
 " Allow project-specific vimrc files
 set exrc
 
-" Time out on key codes, not mappings.
-set notimeout
-set ttimeout
-set ttimeoutlen=10
-
-" Some tuning for macvim
-set ttyfast
-if !has('nvim')
-  set lazyredraw
-end
-
-" Show incremental search/replace
-if has('nvim')
-  set inccommand=nosplit
-end
 
 " Backup
 set undofile
@@ -87,10 +71,10 @@ if executable('rg')
   set grepprg=rg\ --vimgrep
 endif
 
-set signcolumn=yes
-
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
 
 " Enable completions as you type
 let g:completion_enable_auto_popup = 1
+
+set updatetime=250

@@ -60,6 +60,7 @@ local on_attach = function(client, bufnr)
   -- have a fixed column for the diagnostics to appear in
   -- this removes the jitter when warnings/errors flow in
   vim.cmd [[set signcolumn=yes]]
+  vim.cmd [[set colorcolumn=80]]
 end
 
 require("lspconfig").tsserver.setup {}
@@ -258,11 +259,6 @@ local check_back_space = function()
     return false
   end
 end
-
-require("trouble").setup {
-  auto_preview = false,
-  auto_close = true,
-}
 
 -- Use (s-)tab to:
 --- move to prev/next item in completion menuone

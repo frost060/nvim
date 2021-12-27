@@ -20,7 +20,6 @@ require("packer").startup(function()
   use "wbthomason/packer.nvim" -- Package manager
   use "scrooloose/nerdcommenter"
   use "tpope/vim-fugitive" -- Git commands in nvim
-  use "airblade/vim-gitgutter"
   use "tpope/vim-surround"
   use "jiangmiao/auto-pairs"
   -- UI to select things (files, grep results, open buffers...)
@@ -75,8 +74,4 @@ require("packer").startup(function()
   use "hrsh7th/vim-vsnip"
   use "onsails/lspkind-nvim"
   use "hrsh7th/vim-vsnip-integ"
-
-  use "folke/trouble.nvim"
-
-  use "nvim-lualine/lualine.nvim"
 end)

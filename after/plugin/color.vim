@@ -8,7 +8,7 @@ set t_Co=256
 set t_ut=
 
 let g:gruvbox_contrast_dark = "hard"
-colorscheme dracula
+colorscheme gruvbox
 
 highlight DiagnosticUnderlineError cterm=undercurl gui=undercurl
 highlight DiagnosticUnderlineWarn cterm=undercurl gui=undercurl
