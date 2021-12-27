@@ -20,6 +20,7 @@ require("packer").startup(function()
   use "wbthomason/packer.nvim" -- Package manager
   use "scrooloose/nerdcommenter"
   use "tpope/vim-fugitive" -- Git commands in nvim
+  use "airblade/vim-gitgutter"
   use "tpope/vim-surround"
   use "jiangmiao/auto-pairs"
   -- UI to select things (files, grep results, open buffers...)
@@ -44,6 +45,9 @@ require("packer").startup(function()
   use "fatih/vim-go"
   use "ziglang/zig.vim"
 
+  use "simrat39/rust-tools.nvim"
+  use "rust-lang/rust.vim"
+
   use "tamago324/lir.nvim"
   use "tamago324/lir-git-status.nvim"
 
@@ -59,4 +63,20 @@ require("packer").startup(function()
   use "dracula/vim"
 
   use "AndrewRadev/splitjoin.vim"
+
+  use "vim-test/vim-test"
+
+  use "hrsh7th/cmp-nvim-lsp"
+  use "hrsh7th/cmp-buffer"
+  use "hrsh7th/cmp-path"
+  use "hrsh7th/cmp-vsnip"
+  use "hrsh7th/nvim-cmp"
+
+  use "hrsh7th/vim-vsnip"
+  use "onsails/lspkind-nvim"
+  use "hrsh7th/vim-vsnip-integ"
+
+  use "folke/trouble.nvim"
+
+  use "nvim-lualine/lualine.nvim"
 end)

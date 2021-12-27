@@ -22,7 +22,7 @@ set hidden
 set wildmenu
 set scrolloff=5
 set number
-" set cursorline
+set cursorline
 set colorcolumn=80
 set nowrap
 set showmatch
@@ -60,7 +60,7 @@ au VimResized * :wincmd =
 
 " Searching
 set incsearch
-set hlsearch
+set nohlsearch
 set ignorecase
 set smartcase  "Do not ignore case, if uppercase is in search term
 

@@ -2,6 +2,66 @@ local cmd = vim.cmd
 
 local lspconfig_util = require "lspconfig.util"
 
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...)
+    vim.api.nvim_buf_set_keymap(bufnr, ...)
+  end
+  local opts = { noremap = true, silent = true }
+
+  local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+
+  if filetype == "rust" then
+    vim.cmd [[autocmd BufWritePre <buffer> :lua require('barometer.lsp.helpers').format_rust()]]
+    -- Disable this, since we have rust-tools
+    -- vim.cmd [[autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost <buffer> :lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Whitespace", enabled = {"ChainingHint", "TypeHint", "ParameterHint"} } ]]
+
+    vim.cmd [[autocmd BufEnter,BufNewFile,BufRead <buffer> nmap <buffer> gle <cmd>lua vim.lsp.codelens.refresh()<CR>]]
+    vim.cmd [[autocmd BufEnter,BufNewFile,BufRead <buffer> nmap <buffer> glr <cmd>lua vim.lsp.codelens.run()<CR>]]
+  end
+  if filetype == "go" then
+    vim.cmd [[autocmd BufWritePre <buffer> :lua require('lsp.helpers').goimports(2000)]]
+
+    -- gopls requires a require to list workspace arguments.
+    vim.cmd [[autocmd BufEnter,BufNewFile,BufRead <buffer> map <buffer> <leader>fs <cmd>lua require('telescope.builtin').lsp_workspace_symbols { query = vim.fn.input("Query: ") }<cr>]]
+  end
+
+  if filetype == "typescriptreact" or filetype == "typescript" then
+    -- TypeScript/ESLint/Prettier
+    -- Requirements:
+    --   npm install -g typescript-language-server prettier eslint_d
+    --   asdf reshim nodejs
+
+    -- disable tsserver formatting because we use prettier/eslint for that
+    client.resolved_capabilities.document_formatting = false
+
+    buf_set_keymap("n", "gs", ":TSLspOrganize<CR>", opts)
+    buf_set_keymap("n", "gi", ":TSLspImportAll<CR>", opts)
+
+    vim.cmd "autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()"
+
+    local ts_utils = require "nvim-lsp-ts-utils"
+    ts_utils.setup {
+      eslint_enable_code_actions = true,
+      eslint_enable_disable_comments = true,
+      eslint_bin = "eslint_d",
+      eslint_enable_diagnostics = true,
+      eslint_show_rule_id = true,
+
+      enable_formatting = true,
+      formatter = "prettier",
+    }
+
+    ts_utils.setup_client(client)
+  end
+
+  vim.cmd [[autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics({ focusable = false })]]
+  -- 300ms of no cursor movement to trigger CursorHold
+  vim.cmd [[set updatetime=300]]
+  -- have a fixed column for the diagnostics to appear in
+  -- this removes the jitter when warnings/errors flow in
+  vim.cmd [[set signcolumn=yes]]
+end
+
 require("lspconfig").tsserver.setup {}
 
 require("lspconfig").dockerls.setup {}
@@ -23,6 +83,46 @@ require("lspconfig").yamlls.setup {}
 require("lspconfig").ocamlls.setup {}
 
 --require("lspconfig").graphql.setup {}
+
+local utils = require "rust-tools.utils.utils"
+local rust_execute_command = function(command, args, cwd)
+  vim.cmd("T " .. utils.make_command_from_args(command, args))
+end
+
+local tools = {
+  autoSetHints = false,
+  runnables = { use_telescope = true },
+  inlay_hints = {
+    show_parameter_hints = false,
+    highlight = "Whitespace",
+  },
+  hover_actions = { auto_focus = true },
+  executor = {
+    execute_command = rust_execute_command,
+  },
+}
+
+require("rust-tools").setup {
+  tools = tools,
+  server = {
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 200,
+    },
+    settings = {
+      ["rust-analyzer"] = {
+        checkOnSave = {
+          command = "clippy",
+        },
+        completion = {
+          autoimport = {
+            enable = true,
+          },
+        },
+      },
+    },
+  },
+}
 
 require("lspconfig").elixirls.setup {
   cmd = { "elixir-lsp.sh" },
@@ -57,7 +157,6 @@ require("lspconfig").html.setup {
 
 require("lspconfig").gopls.setup {
   on_attach = on_attach_vim,
-  capabilities = capabilities,
   cmd = { "gopls", "serve" },
   root_dir = function(fname)
     local Path = require "plenary.path"
@@ -73,6 +172,8 @@ require("lspconfig").gopls.setup {
   end,
 
   settings = {
+    on_attach = on_attach,
+    capabilities = capabilities,
     gopls = {
       analyses = {
         unusedparams = true,
@@ -89,6 +190,9 @@ require("lspconfig").gopls.setup {
         test = true,
       },
       usePlaceholders = true,
+      completeUnimported = true,
+      buildFlags = { "-tags=debug" },
+      experimentalPostfixCompletions = true,
     },
   },
 
@@ -154,6 +258,11 @@ local check_back_space = function()
     return false
   end
 end
+
+require("trouble").setup {
+  auto_preview = false,
+  auto_close = true,
+}
 
 -- Use (s-)tab to:
 --- move to prev/next item in completion menuone
