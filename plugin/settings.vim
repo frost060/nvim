@@ -22,7 +22,8 @@ set hidden
 set wildmenu
 set scrolloff=5
 set number
-set cursorline
+set relativenumber
+set nocursorline
 set wrap
 set showmatch
 set backspace=2
@@ -63,6 +64,9 @@ set laststatus=2
 
 " ctags tags file
 set tags=./tags;
+
+"set colorcolumn=80
+set signcolumn=yes
 
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/vendor/bundle/*,*/node_modules/*
 

@@ -7,7 +7,9 @@ set termguicolors
 set t_Co=256
 set t_ut=
 
+let g:gruvbox_baby_background_color = 'dark'
 let g:gruvbox_contrast_dark = "hard"
+
 colorscheme gruvbox
 
 highlight DiagnosticUnderlineError cterm=undercurl gui=undercurl

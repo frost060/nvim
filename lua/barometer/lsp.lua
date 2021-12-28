@@ -1,13 +1,10 @@
 local cmd = vim.cmd
 
 local lspconfig_util = require "lspconfig.util"
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
-  end
-  local opts = { noremap = true, silent = true }
-
   local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 
   if filetype == "rust" then
@@ -19,13 +16,13 @@ local on_attach = function(client, bufnr)
     vim.cmd [[autocmd BufEnter,BufNewFile,BufRead <buffer> nmap <buffer> glr <cmd>lua vim.lsp.codelens.run()<CR>]]
   end
   if filetype == "go" then
-    vim.cmd [[autocmd BufWritePre <buffer> :lua require('lsp.helpers').goimports(2000)]]
+    vim.cmd [[autocmd BufWritePre <buffer> :lua require('barometer.lsp.helpers').goimports(2000)]]
 
     -- gopls requires a require to list workspace arguments.
     vim.cmd [[autocmd BufEnter,BufNewFile,BufRead <buffer> map <buffer> <leader>fs <cmd>lua require('telescope.builtin').lsp_workspace_symbols { query = vim.fn.input("Query: ") }<cr>]]
   end
 
-  if filetype == "typescriptreact" or filetype == "typescript" then
+  if filetype == "typescriptreact" or filetype == "typescript" or filetype == "javascript" then
     -- TypeScript/ESLint/Prettier
     -- Requirements:
     --   npm install -g typescript-language-server prettier eslint_d
@@ -33,9 +30,6 @@ local on_attach = function(client, bufnr)
 
     -- disable tsserver formatting because we use prettier/eslint for that
     client.resolved_capabilities.document_formatting = false
-
-    buf_set_keymap("n", "gs", ":TSLspOrganize<CR>", opts)
-    buf_set_keymap("n", "gi", ":TSLspImportAll<CR>", opts)
 
     vim.cmd "autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()"
 
@@ -63,8 +57,6 @@ local on_attach = function(client, bufnr)
   vim.cmd [[set colorcolumn=80]]
 end
 
-require("lspconfig").tsserver.setup {}
-
 require("lspconfig").dockerls.setup {}
 
 require("lspconfig").jsonls.setup {
@@ -82,48 +74,6 @@ require("lspconfig").vimls.setup {}
 require("lspconfig").yamlls.setup {}
 
 require("lspconfig").ocamlls.setup {}
-
---require("lspconfig").graphql.setup {}
-
-local utils = require "rust-tools.utils.utils"
-local rust_execute_command = function(command, args, cwd)
-  vim.cmd("T " .. utils.make_command_from_args(command, args))
-end
-
-local tools = {
-  autoSetHints = false,
-  runnables = { use_telescope = true },
-  inlay_hints = {
-    show_parameter_hints = false,
-    highlight = "Whitespace",
-  },
-  hover_actions = { auto_focus = true },
-  executor = {
-    execute_command = rust_execute_command,
-  },
-}
-
-require("rust-tools").setup {
-  tools = tools,
-  server = {
-    on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 200,
-    },
-    settings = {
-      ["rust-analyzer"] = {
-        checkOnSave = {
-          command = "clippy",
-        },
-        completion = {
-          autoimport = {
-            enable = true,
-          },
-        },
-      },
-    },
-  },
-}
 
 require("lspconfig").elixirls.setup {
   cmd = { "elixir-lsp.sh" },
@@ -149,15 +99,14 @@ require("lspconfig").groovyls.setup {
 }
 
 --Enable (broadcasting) snippet capability for completion
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 require("lspconfig").html.setup {
   capabilities = capabilities,
 }
 
 require("lspconfig").gopls.setup {
-  on_attach = on_attach_vim,
+  on_attach = on_attach,
+  capabilities = capabilities,
   cmd = { "gopls", "serve" },
   root_dir = function(fname)
     local Path = require "plenary.path"
@@ -227,31 +176,6 @@ require("lspconfig").sumneko_lua.setup {
   },
 }
 
-require("compe").setup {
-  enabled = true,
-  autocomplete = true,
-  debug = false,
-  min_length = 1,
-  preselect = "enable",
-  throttle_time = 80,
-  source_timeout = 200,
-  incomplete_delay = 400,
-  max_abbr_width = 100,
-  max_kind_width = 100,
-  max_menu_width = 100,
-  documentation = true,
-
-  source = {
-    path = true,
-    buffer = true,
-    nvim_lsp = true,
-    nvim_lua = true,
-    vsnip = true,
-    ultisnip = true,
-    luasnip = true,
-  },
-}
-
 local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
@@ -274,7 +198,7 @@ _G.tab_complete = function()
   elseif check_back_space() then
     return t "<Tab>"
   else
-    return vim.fn["compe#complete"]()
+    --return vim.fn["compe#complete"]()
   end
 end
 _G.s_tab_complete = function()
@@ -289,10 +213,6 @@ vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", { expr = true })
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", { expr = true })
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
-
---This line is important for auto-import
-vim.api.nvim_set_keymap("i", "<cr>", 'compe#confirm("<cr>")', { expr = true })
-vim.api.nvim_set_keymap("i", "<c-space>", "compe#complete()", { expr = true })
 
 cmd [[
 augroup BAROMETER_JENKINSFILE
@@ -333,3 +253,85 @@ function _G.workspace_diagnostics_status()
 
   return table.concat(status, " | ")
 end
+
+local cmp = require "cmp"
+local source_mapping = {
+  buffer = "[Buffer]",
+  nvim_lsp = "[LSP]",
+  nvim_lua = "[Lua]",
+  cmp_tabnine = "[TN]",
+  path = "[Path]",
+}
+local lspkind = require "lspkind"
+require("lspkind").init {
+  with_text = true,
+}
+
+cmp.setup {
+  completion = {
+    autocomplete = true,
+  },
+  snippet = {
+    expand = function(args)
+      -- For `vsnip` user.
+      -- vim.fn["vsnip#anonymous"](args.body)
+
+      -- For `luasnip` user.
+      require("luasnip").lsp_expand(args.body)
+
+      -- For `ultisnips` user.
+      -- vim.fn["UltiSnips#Anon"](args.body)
+    end,
+  },
+  mapping = {
+    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-d>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<CR>"] = cmp.mapping.confirm { select = true },
+  },
+
+  formatting = {
+    format = function(entry, vim_item)
+      vim_item.kind = lspkind.presets.default[vim_item.kind]
+      local menu = source_mapping[entry.source.name]
+      vim_item.menu = menu
+      return vim_item
+    end,
+  },
+
+  sources = {
+    { name = "nvim_lsp" },
+
+    -- For vsnip user.
+    { name = "vsnip" },
+
+    -- For luasnip user.
+    { name = "luasnip" },
+
+    -- For ultisnips user.
+    -- { name = 'ultisnips' },
+
+    { name = "buffer" },
+  },
+}
+
+local function config(_config)
+  return vim.tbl_deep_extend("force", {
+    capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  }, _config or {})
+end
+
+require("lspconfig").tsserver.setup(config())
+
+require("lspconfig").rust_analyzer.setup(config {
+  cmd = { "rustup", "run", "nightly", "rust-analyzer" },
+  --[[
+    settings = {
+        rust = {
+            unstable_features = true,
+            build_on_save = false,
+            all_features = true,
+        },
+    }
+    --]]
+})
