@@ -1,7 +1,8 @@
 local cmd = vim.cmd
 
 local lspconfig_util = require "lspconfig.util"
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local on_attach = function(client, bufnr)
@@ -22,7 +23,12 @@ local on_attach = function(client, bufnr)
     vim.cmd [[autocmd BufEnter,BufNewFile,BufRead <buffer> map <buffer> <leader>fs <cmd>lua require('telescope.builtin').lsp_workspace_symbols { query = vim.fn.input("Query: ") }<cr>]]
   end
 
-  if filetype == "typescriptreact" or filetype == "typescript" or filetype == "javascript" then
+  if
+    filetype == "typescriptreact"
+    or filetype == "typescript"
+    or filetype == "javascript"
+    or filetype == "javascriptreact"
+  then
     -- TypeScript/ESLint/Prettier
     -- Requirements:
     --   npm install -g typescript-language-server prettier eslint_d
@@ -48,12 +54,14 @@ local on_attach = function(client, bufnr)
     ts_utils.setup_client(client)
   end
 
-  vim.cmd [[autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics({ focusable = false })]]
+  -- https://github.com/neovim/nvim-lspconfig/wiki/UI-customization#show-source-in-diagnostics
+  vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+  -- [DEPRECATED] vim.cmd [[autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics({ focusable = false })]]
   -- 300ms of no cursor movement to trigger CursorHold
   vim.cmd [[set updatetime=300]]
   -- have a fixed column for the diagnostics to appear in
   -- this removes the jitter when warnings/errors flow in
-  vim.cmd [[set signcolumn=yes]]
+  --vim.cmd [[set signcolumn=yes]]
   vim.cmd [[set colorcolumn=80]]
 end
 
@@ -268,19 +276,13 @@ require("lspkind").init {
 }
 
 cmp.setup {
-  completion = {
-    autocomplete = true,
+  documentation = {
+    maxwidth = 60,
+    maxheight = 20,
   },
   snippet = {
     expand = function(args)
-      -- For `vsnip` user.
-      -- vim.fn["vsnip#anonymous"](args.body)
-
-      -- For `luasnip` user.
       require("luasnip").lsp_expand(args.body)
-
-      -- For `ultisnips` user.
-      -- vim.fn["UltiSnips#Anon"](args.body)
     end,
   },
   mapping = {
@@ -300,38 +302,20 @@ cmp.setup {
   },
 
   sources = {
+    { name = "luasnip", max_item_count = 3 },
     { name = "nvim_lsp" },
-
-    -- For vsnip user.
-    { name = "vsnip" },
-
-    -- For luasnip user.
-    { name = "luasnip" },
-
-    -- For ultisnips user.
-    -- { name = 'ultisnips' },
-
-    { name = "buffer" },
+    { name = "signature_help" },
+    { name = "buffer", max_item_count = 2 },
+    { name = "path" },
   },
 }
 
-local function config(_config)
-  return vim.tbl_deep_extend("force", {
-    capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-  }, _config or {})
-end
+require("lspconfig").tsserver.setup {
+  capabilities = capabilities,
+}
 
-require("lspconfig").tsserver.setup(config())
-
-require("lspconfig").rust_analyzer.setup(config {
+require("lspconfig").rust_analyzer.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
   cmd = { "rustup", "run", "nightly", "rust-analyzer" },
-  --[[
-    settings = {
-        rust = {
-            unstable_features = true,
-            build_on_save = false,
-            all_features = true,
-        },
-    }
-    --]]
-})
+}

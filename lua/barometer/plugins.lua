@@ -50,7 +50,7 @@ require("packer").startup(function()
   use "tamago324/lir.nvim"
   use "tamago324/lir-git-status.nvim"
 
-  use "github/copilot.vim"
+  --use "github/copilot.vim"
 
   use "nvim-lua/lsp_extensions.nvim"
 
@@ -61,6 +61,7 @@ require("packer").startup(function()
   use "gruvbox-community/gruvbox"
   use "luisiacc/gruvbox-baby"
   use "dracula/vim"
+  use "eemed/sitruuna.vim"
 
   use "AndrewRadev/splitjoin.vim"
 

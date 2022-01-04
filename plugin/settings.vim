@@ -22,7 +22,7 @@ set hidden
 set wildmenu
 set scrolloff=5
 set number
-set relativenumber
+" set relativenumber
 set nocursorline
 set wrap
 set showmatch
@@ -31,6 +31,8 @@ set backspace=2
 set nojoinspaces
 " Allow project-specific vimrc files
 set exrc
+set shiftround
+set modeline
 
 
 " Backup

@@ -9,18 +9,19 @@ nnoremap <Leader>e :quit<CR>
 nnoremap <Leader>w :bw<CR>
 
 nnoremap <C-j> :cnext<CR>
-nnoremap <C-p> :cprevious<CR>
+nnoremap <C-k> :cprevious<CR>
 
 map <C-c> "+y
 
-nnoremap <Leader>gs :G<CR>
-noremap <Leader>gf :diffget //2<CR>
-noremap <Leader>gh :diffget //3<CR>
+"nnoremap <Leader>gs :G<CR>
+"noremap <Leader>gf :diffget //2<CR>
+"noremap <Leader>gh :diffget //3<CR>
 
 nnoremap <Leader>nh :nohlsearch<CR>
 
 " Telescope
 nmap <silent> <Leader>l <cmd>lua require('barometer.telescope').find_files()<CR>
+nmap <silent> <Leader>gg <cmd>lua require('barometer.telescope').git_files()<CR>
 nmap <silent> <Leader>ff <cmd>lua require('barometer.telescope').live_grep()<CR>
 nmap <silent> <Leader>ss <cmd>lua require('barometer.telescope').curr_buffer()<CR>
 nmap <silent> <Leader>b <cmd>lua require('barometer.telescope').buffers()<CR>
@@ -28,7 +29,7 @@ nmap <silent> <Leader>tr <cmd>lua require('barometer.telescope').find_current_fi
 nmap <silent> <Leader>ds <cmd>lua require('barometer.telescope').document_symbols()<CR>
 nmap <silent> <Leader>dd <cmd>lua require('barometer.telescope').diagnostics()<CR>
 nmap <silent> <Leader>c <cmd>lua require('barometer.telescope').list_colorschemes()<CR>
-nmap <silent> <Leader>gg <cmd>lua require('barometer.telescope').git_status()<CR>
+nmap <silent> <Leader>gs <cmd>lua require('barometer.telescope').git_status()<CR>
 nmap <silent> <Leader>gi <cmd>lua require('barometer.telescope').lsp_implementations()<CR>
 nmap <silent> <Leader>gr <cmd>lua require('barometer.telescope').lsp_references()<CR>
 nmap <silent> <Leader>h <cmd>Telescope help_tags<CR>

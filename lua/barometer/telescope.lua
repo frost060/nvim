@@ -16,29 +16,25 @@ require("telescope").setup {
 local M = {}
 
 M.curr_buffer = function()
-  local opts = require("telescope.themes").get_ivy {
-    layout_config = {
-      height = 20,
-    },
-  }
+  local opts = {}
   require("telescope.builtin").current_buffer_fuzzy_find(opts)
 end
 
 M.live_grep = function()
-  local opts = require("telescope.themes").get_ivy {
-    layout_config = {
-      height = 20,
-    },
-  }
+  local opts = {}
   require("telescope.builtin").live_grep(opts)
 end
 
+M.git_files = function()
+  local opts = {
+    prompt_prefix = "🔍",
+    find_command = { "rg", "--hidden", "--files" },
+  }
+  require("telescope.builtin").git_files(opts)
+end
+
 M.find_files = function()
-  local opts = require("telescope.themes").get_ivy {
-    layout_config = {
-      height = 20,
-    },
-    previewer = false,
+  local opts = {
     prompt_prefix = "🔍",
     find_command = { "rg", "--hidden", "--files" },
   }
@@ -46,26 +42,22 @@ M.find_files = function()
 end
 
 M.file_browser = function()
-  local opts = require("telescope.themes").get_ivy {
-    layout_config = {
-      height = 20,
-    },
+  local opts = {
+    prompt_prefix = "🔍",
+    find_command = { "rg", "--hidden", "--files" },
   }
   require("telescope.builtin").file_browser(opts)
 end
 
 M.find_current_file = function()
-  local opts = require("telescope.themes").get_ivy {
-    layout_config = {
-      height = 20,
-    },
+  local opts = {
     cwd = vim.fn.expand "%:p:h",
   }
   require("telescope.builtin").file_browser(opts)
 end
 
 M.buffers = function()
-  local opts = require("telescope.themes").get_ivy {
+  local opts = require("telescope.themes").get_dropdown {
     layout_config = {
       height = 20,
     },
@@ -75,12 +67,7 @@ M.buffers = function()
 end
 
 M.document_symbols = function()
-  local opts = require("telescope.themes").get_ivy {
-    layout_config = {
-      height = 20,
-    },
-    previewer = false,
-  }
+  local opts = {}
   require("telescope.builtin").lsp_document_symbols(opts)
 end
 
@@ -104,20 +91,12 @@ M.list_colorschemes = function()
 end
 
 M.lsp_references = function()
-  local opts = require("telescope.themes").get_ivy {
-    layout_config = {
-      height = 20,
-    },
-  }
+  local opts = {}
   require("telescope.builtin").lsp_references(opts)
 end
 
 M.lsp_implementations = function()
-  local opts = require("telescope.themes").get_ivy {
-    layout_config = {
-      height = 20,
-    },
-  }
+  local opts = {}
   require("telescope.builtin").lsp_implementations(opts)
 end
 
