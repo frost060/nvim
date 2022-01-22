@@ -13,9 +13,10 @@ if kitty_profile == "dark"
   set background=dark
 
   let g:gruvbox_baby_background_color = 'dark'
-  let g:gruvbox_contrast_dark = "hard"
+  let g:gruvbox_contrast_dark = "medium"
 
-  colorscheme gruvbox
+  colorscheme sitruuna
+  "colorscheme lena
 
   highlight DiagnosticUnderlineError cterm=undercurl gui=undercurl
   highlight DiagnosticUnderlineWarn cterm=undercurl gui=undercurl

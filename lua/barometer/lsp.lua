@@ -23,6 +23,10 @@ local on_attach = function(client, bufnr)
     vim.cmd [[autocmd BufEnter,BufNewFile,BufRead <buffer> map <buffer> <leader>fs <cmd>lua require('telescope.builtin').lsp_workspace_symbols { query = vim.fn.input("Query: ") }<cr>]]
   end
 
+  --if filetype == "sql" then
+  --vim.cmd "autocmd BufWritePre *.sql lua vim.lsp.buf.formatting()"
+  --end
+
   if
     filetype == "typescriptreact"
     or filetype == "typescript"
@@ -37,10 +41,13 @@ local on_attach = function(client, bufnr)
     -- disable tsserver formatting because we use prettier/eslint for that
     client.resolved_capabilities.document_formatting = false
 
-    vim.cmd "autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()"
+    vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting()"
 
     local ts_utils = require "nvim-lsp-ts-utils"
     ts_utils.setup {
+      debug = true,
+      enable_import_on_completion = true,
+
       eslint_enable_code_actions = true,
       eslint_enable_disable_comments = true,
       eslint_bin = "eslint_d",
@@ -49,6 +56,8 @@ local on_attach = function(client, bufnr)
 
       enable_formatting = true,
       formatter = "prettier",
+
+      update_imports_on_move = true,
     }
 
     ts_utils.setup_client(client)
@@ -94,8 +103,13 @@ require("lspconfig").zls.setup {
   end,
 }
 
-require("lspconfig").sqlls.setup {
-  cmd = { "sql-language-server", "up", "--method", "stdio" },
+require("lspconfig").sqls.setup {
+  on_attach = function(client)
+    client.resolved_capabilities.execute_command = true
+    client.commands = require("sqls").commands -- Neovim 0.6+ only
+
+    require("sqls").setup {}
+  end,
 }
 
 require("lspconfig").terraformls.setup {}
@@ -311,7 +325,9 @@ cmp.setup {
 }
 
 require("lspconfig").tsserver.setup {
+  init_options = require("nvim-lsp-ts-utils").init_options,
   capabilities = capabilities,
+  on_attach = on_attach,
 }
 
 require("lspconfig").rust_analyzer.setup {

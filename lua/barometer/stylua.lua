@@ -44,7 +44,6 @@ stylua.format = function(bufnr)
     return
   end
 
-  print("Stylua path: " .. stylua_toml)
   -- stylua: ignore
   local j = Job:new {
     "stylua",

@@ -31,7 +31,7 @@ nmap <silent> <Leader>dd <cmd>lua require('barometer.telescope').diagnostics()<C
 nmap <silent> <Leader>c <cmd>lua require('barometer.telescope').list_colorschemes()<CR>
 nmap <silent> <Leader>gs <cmd>lua require('barometer.telescope').git_status()<CR>
 nmap <silent> <Leader>gi <cmd>lua require('barometer.telescope').lsp_implementations()<CR>
-nmap <silent> <Leader>gr <cmd>lua require('barometer.telescope').lsp_references()<CR>
+nnoremap gr <cmd>lua require('barometer.telescope').lsp_references()<CR>
 nmap <silent> <Leader>h <cmd>Telescope help_tags<CR>
 nmap <silent> <Leader>t <cmd>Telescope<CR>
 
@@ -43,6 +43,7 @@ nnoremap <Leader>ww :lua vim.lsp.buf.hover()<CR>
 nnoremap <Leader>wo :lua vim.diagnostic.open_float()<CR>
 nnoremap <Leader>wn :lua vim.diagnostic.goto_next()<CR>
 nnoremap <Leader>wp :lua vim.diagnostic.goto_prev()<CR>
+nnoremap gd <cmd>lua vim.lsp.buf.definition()<CR>
 
 " Split Join
 nnoremap <Leader>sp :SplitjoinSplit<CR>

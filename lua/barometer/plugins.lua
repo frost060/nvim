@@ -41,11 +41,16 @@ require("packer").startup(function()
 
   use "norcalli/nvim-colorizer.lua"
 
-  use "fatih/vim-go"
+  --use "fatih/vim-go"
   use "ziglang/zig.vim"
 
   use "simrat39/rust-tools.nvim"
   use "rust-lang/rust.vim"
+
+  use "nanotee/sqls.nvim"
+
+  use "jose-elias-alvarez/nvim-lsp-ts-utils"
+  use "windwp/nvim-ts-autotag"
 
   use "tamago324/lir.nvim"
   use "tamago324/lir-git-status.nvim"
@@ -78,4 +83,6 @@ require("packer").startup(function()
   use "hrsh7th/vim-vsnip-integ"
   use "L3MON4D3/LuaSnip"
   use "saadparwaiz1/cmp_luasnip"
+
+  use "sainnhe/everforest"
 end)
