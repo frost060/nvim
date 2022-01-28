@@ -32,7 +32,8 @@ augroup ft_golang
   au!
 
   au BufEnter,BufNewFile,BufRead *.go setlocal formatoptions+=roq
-  au BufEnter,BufNewFile,BufRead *.go setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4 nolist
+  au BufEnter,BufNewFile,BufRead *.go
+        \ setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4 nolist
   au BufEnter,BufNewFile,BufRead *.tmpl setlocal filetype=html
 augroup END
 
@@ -90,7 +91,7 @@ augroup END
 " Java
 augroup ft_java
   au!
-  au BufEnter,BufNewFile,BufRead *.java setlocal colorcolumn=100
+  au BufEnter,BufNewFile,BufRead *.java setlocal colorcolumn=0
 augroup END
 
 " Quickfix List

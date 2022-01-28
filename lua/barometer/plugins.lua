@@ -58,14 +58,13 @@ require("packer").startup(function()
   --use "github/copilot.vim"
 
   use "nvim-lua/lsp_extensions.nvim"
+  use "jose-elias-alvarez/null-ls.nvim"
 
   use "sbdchd/neoformat"
 
   -- Themes
   use "jonathanfilip/vim-lucius"
   use "gruvbox-community/gruvbox"
-  use "luisiacc/gruvbox-baby"
-  use "dracula/vim"
   use "eemed/sitruuna.vim"
 
   use "AndrewRadev/splitjoin.vim"
@@ -78,11 +77,22 @@ require("packer").startup(function()
   use "hrsh7th/cmp-vsnip"
   use "hrsh7th/nvim-cmp"
 
-  use "hrsh7th/vim-vsnip"
   use "onsails/lspkind-nvim"
+  use "hrsh7th/vim-vsnip"
   use "hrsh7th/vim-vsnip-integ"
   use "L3MON4D3/LuaSnip"
   use "saadparwaiz1/cmp_luasnip"
 
+  use "tjdevries/colorbuddy.vim"
+  use "tjdevries/gruvbuddy.nvim"
+
+  use "tjdevries/express_line.nvim"
+  use "j-hui/fidget.nvim"
+
+  use "tjdevries/cyclist.vim"
+
+  use "folke/trouble.nvim"
+
   use "sainnhe/everforest"
+  use "kyazdani42/nvim-web-devicons"
 end)

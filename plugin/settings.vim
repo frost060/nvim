@@ -22,8 +22,8 @@ set hidden
 set wildmenu
 set scrolloff=5
 set number
-"se relativenumber
-set nocursorline
+set relativenumber
+set cursorline
 set wrap
 set showmatch
 set backspace=2
@@ -68,7 +68,7 @@ set laststatus=2
 set tags=./tags;
 
 "set colorcolumn=80
-"set signcolumn=yes
+set signcolumn=yes
 
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/vendor/bundle/*,*/node_modules/*
 
@@ -78,9 +78,11 @@ if executable('rg')
 endif
 
 " Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
+set completeopt=menu,menuone,noselect
 
 " Enable completions as you type
 let g:completion_enable_auto_popup = 1
 
 set updatetime=250
+
+let g:vsnip_snippet_dir = "~/.vim/snippets"

@@ -10,8 +10,6 @@ local on_attach = function(client, bufnr)
 
   if filetype == "rust" then
     vim.cmd [[autocmd BufWritePre <buffer> :lua require('barometer.lsp.helpers').format_rust()]]
-    -- Disable this, since we have rust-tools
-    -- vim.cmd [[autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost <buffer> :lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Whitespace", enabled = {"ChainingHint", "TypeHint", "ParameterHint"} } ]]
 
     vim.cmd [[autocmd BufEnter,BufNewFile,BufRead <buffer> nmap <buffer> gle <cmd>lua vim.lsp.codelens.refresh()<CR>]]
     vim.cmd [[autocmd BufEnter,BufNewFile,BufRead <buffer> nmap <buffer> glr <cmd>lua vim.lsp.codelens.run()<CR>]]
@@ -27,12 +25,7 @@ local on_attach = function(client, bufnr)
   --vim.cmd "autocmd BufWritePre *.sql lua vim.lsp.buf.formatting()"
   --end
 
-  if
-    filetype == "typescriptreact"
-    or filetype == "typescript"
-    or filetype == "javascript"
-    or filetype == "javascriptreact"
-  then
+  if filetype == "typescriptreact" or filetype == "typescript" then
     -- TypeScript/ESLint/Prettier
     -- Requirements:
     --   npm install -g typescript-language-server prettier eslint_d
@@ -47,12 +40,12 @@ local on_attach = function(client, bufnr)
     ts_utils.setup {
       debug = true,
       enable_import_on_completion = true,
-
       eslint_enable_code_actions = true,
       eslint_enable_disable_comments = true,
       eslint_bin = "eslint_d",
       eslint_enable_diagnostics = true,
       eslint_show_rule_id = true,
+      auto_inlay_hints = false,
 
       enable_formatting = true,
       formatter = "prettier",
@@ -70,7 +63,7 @@ local on_attach = function(client, bufnr)
   vim.cmd [[set updatetime=300]]
   -- have a fixed column for the diagnostics to appear in
   -- this removes the jitter when warnings/errors flow in
-  --vim.cmd [[set signcolumn=yes]]
+  vim.cmd [[set signcolumn=yes]]
   vim.cmd [[set colorcolumn=80]]
 end
 
@@ -171,6 +164,22 @@ require("lspconfig").gopls.setup {
   flags = {
     debounce_text_changes = 200,
   },
+}
+
+require("null-ls").setup {
+  sources = {
+    require("null-ls").builtins.diagnostics.golangci_lint,
+  },
+}
+
+local util = require "lspconfig/util"
+require("lspconfig").tsserver.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 200,
+  },
+  root_dir = util.root_pattern ".git",
 }
 
 require("lspconfig").sumneko_lua.setup {
@@ -294,11 +303,6 @@ cmp.setup {
     maxwidth = 60,
     maxheight = 20,
   },
-  snippet = {
-    expand = function(args)
-      require("luasnip").lsp_expand(args.body)
-    end,
-  },
   mapping = {
     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
     ["<C-d>"] = cmp.mapping.scroll_docs(4),
@@ -307,14 +311,21 @@ cmp.setup {
   },
 
   formatting = {
-    format = function(entry, vim_item)
-      vim_item.kind = lspkind.presets.default[vim_item.kind]
-      local menu = source_mapping[entry.source.name]
-      vim_item.menu = menu
-      return vim_item
+    format = lspkind.cmp_format {
+      with_text = true,
+      menu = {
+        buffer = "[Buffer]",
+        nvim_lsp = "[LSP]",
+        vsnip = "[vsnip]",
+        nvim_lua = "[Lua]",
+      },
+    },
+  },
+  snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body)
     end,
   },
-
   sources = {
     { name = "luasnip", max_item_count = 3 },
     { name = "nvim_lsp" },
@@ -324,14 +335,68 @@ cmp.setup {
   },
 }
 
-require("lspconfig").tsserver.setup {
-  init_options = require("nvim-lsp-ts-utils").init_options,
-  capabilities = capabilities,
-  on_attach = on_attach,
-}
+--require("lspconfig").tsserver.setup {
+--init_options = require("nvim-lsp-ts-utils").init_options,
+--capabilities = capabilities,
+--on_attach = on_attach,
+--}
 
 require("lspconfig").rust_analyzer.setup {
   capabilities = capabilities,
   on_attach = on_attach,
   cmd = { "rustup", "run", "nightly", "rust-analyzer" },
 }
+
+function _G.workspace_diagnostics_status()
+  if #vim.lsp.buf_get_clients() == 0 then
+    return ""
+  end
+
+  local status = {}
+  local errors = #vim.diagnostic.get(
+    0,
+    { severity = { min = vim.diagnostic.severity.ERROR, max = vim.diagnostic.severity.ERROR } }
+  )
+  if errors > 0 then
+    table.insert(status, "E: " .. errors)
+  end
+
+  local warnings = #vim.diagnostic.get(
+    0,
+    { severity = { min = vim.diagnostic.severity.WARNING, max = vim.diagnostic.severity.WARNING } }
+  )
+  if warnings > 0 then
+    table.insert(status, "W: " .. warnings)
+  end
+
+  local hints = #vim.diagnostic.get(
+    0,
+    { severity = { min = vim.diagnostic.severity.HINT, max = vim.diagnostic.severity.HINT } }
+  )
+  if hints > 0 then
+    table.insert(status, "H: " .. hints)
+  end
+
+  local infos = #vim.diagnostic.get(
+    0,
+    { severity = { min = vim.diagnostic.severity.INFO, max = vim.diagnostic.severity.INFO } }
+  )
+  if infos > 0 then
+    table.insert(status, "I: " .. infos)
+  end
+
+  return table.concat(status, " | ")
+end
+
+-- lsp-trouble.nvim
+require("trouble").setup {
+  auto_preview = false,
+  auto_close = true,
+}
+
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>xx",
+  "<cmd>TroubleToggle workspace_diagnostics<cr>",
+  { silent = true, noremap = true }
+)
