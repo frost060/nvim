@@ -24,7 +24,7 @@ require("packer").startup(function()
   use "jiangmiao/auto-pairs"
   -- UI to select things (files, grep results, open buffers...)
   use { "nvim-telescope/telescope.nvim", requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } } }
-  use "nvim-telescope/telescope-fzf-native.nvim"
+  use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
 
   -- Highlight, edit, and navigate code using a fast incremental parsing library
   use "nvim-treesitter/nvim-treesitter"

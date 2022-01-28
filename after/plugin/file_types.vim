@@ -41,7 +41,7 @@ augroup END
 augroup ft_rust
   au!
   au BufEnter,BufNewFile,BufRead *.rs :compiler cargo
-  au FileType rust set nolist
+  "au FileType rust set nolist
 augroup END
 
 " Racket
