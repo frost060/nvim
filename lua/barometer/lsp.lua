@@ -1,3 +1,5 @@
+-- Reference LSP Config (Thorston Ball)
+-- https://github.com/mrnugget/vimconfig/blob/master/lua/lsp.lua
 local cmd = vim.cmd
 
 local lspconfig_util = require "lspconfig.util"
@@ -335,16 +337,57 @@ cmp.setup {
   },
 }
 
---require("lspconfig").tsserver.setup {
---init_options = require("nvim-lsp-ts-utils").init_options,
---capabilities = capabilities,
---on_attach = on_attach,
---}
+-- require("lspconfig").tsserver.setup {
+-- init_options = require("nvim-lsp-ts-utils").init_options,
+-- capabilities = capabilities,
+-- on_attach = on_attach,
+-- }
 
-require("lspconfig").rust_analyzer.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-  cmd = { "rustup", "run", "nightly", "rust-analyzer" },
+-- require("lspconfig").rust_analyzer.setup {
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+--   cmd = { "rustup", "run", "nightly", "rust-analyzer" },
+-- }
+
+local utils = require "rust-tools.utils.utils"
+local rust_execute_command = function(command, args, cwd)
+  vim.cmd("T " .. utils.make_command_from_args(command, args))
+end
+
+local tools = {
+  autoSetHints = true,
+  runnables = { use_telescope = true },
+  inlay_hints = {
+    show_parameter_hints = true,
+    highlight = "Whitespace",
+  },
+  hover_actions = { auto_focus = true },
+  executor = {
+    execute_command = rust_execute_command,
+  },
+}
+
+require("rust-tools").setup {
+  tools = tools,
+  server = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 200,
+    },
+    settings = {
+      ["rust-analyzer"] = {
+        checkOnSave = {
+          command = "clippy",
+        },
+        completion = {
+          autoimport = {
+            enable = true,
+          },
+        },
+      },
+    },
+  },
 }
 
 function _G.workspace_diagnostics_status()
