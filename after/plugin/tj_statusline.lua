@@ -1,6 +1,6 @@
 -- TODO: Need to add those sweet sweet lsp workspace diagnostic counts
 
-local disable = false
+local disable = true
 if disable then
   return
 end

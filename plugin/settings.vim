@@ -22,8 +22,8 @@ set hidden
 set wildmenu
 set scrolloff=5
 set number
-set relativenumber
-set cursorline
+"set relativenumber
+set nocursorline
 set wrap
 set showmatch
 set backspace=2
@@ -68,7 +68,7 @@ set laststatus=2
 set tags=./tags;
 
 "set colorcolumn=80
-set signcolumn=yes
+"set signcolumn=yes
 
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/vendor/bundle/*,*/node_modules/*
 

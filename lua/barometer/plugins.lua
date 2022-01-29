@@ -18,8 +18,9 @@ local use = require("packer").use
 
 require("packer").startup(function()
   use "wbthomason/packer.nvim" -- Package manager
-  use "scrooloose/nerdcommenter"
+  -- use "scrooloose/nerdcommenter"
   use "tpope/vim-fugitive" -- Git commands in nvim
+  use "tpope/vim-commentary"
   use "tpope/vim-surround"
   use "jiangmiao/auto-pairs"
   -- UI to select things (files, grep results, open buffers...)
@@ -41,7 +42,7 @@ require("packer").startup(function()
 
   use "norcalli/nvim-colorizer.lua"
 
-  --use "fatih/vim-go"
+  -- use "fatih/vim-go"
   use "ziglang/zig.vim"
 
   use "simrat39/rust-tools.nvim"
@@ -55,7 +56,7 @@ require("packer").startup(function()
   use "tamago324/lir.nvim"
   use "tamago324/lir-git-status.nvim"
 
-  --use "github/copilot.vim"
+  -- use "github/copilot.vim"
 
   use "nvim-lua/lsp_extensions.nvim"
   use "jose-elias-alvarez/null-ls.nvim"
@@ -85,14 +86,19 @@ require("packer").startup(function()
 
   use "tjdevries/colorbuddy.vim"
   use "tjdevries/gruvbuddy.nvim"
+  use "catppuccin/nvim"
 
   use "tjdevries/express_line.nvim"
   use "j-hui/fidget.nvim"
 
-  use "tjdevries/cyclist.vim"
+  -- use "tjdevries/cyclist.vim"
 
   use "folke/trouble.nvim"
 
   use "sainnhe/everforest"
   use "kyazdani42/nvim-web-devicons"
+  use "Yagua/nebulous.nvim"
+  use "EdenEast/nightfox.nvim"
+
+  use "folke/tokyonight.nvim"
 end)

@@ -28,7 +28,7 @@ nmap <silent> <Leader>b <cmd>lua require('barometer.telescope').buffers()<CR>
 nmap <silent> <Leader>tr <cmd>lua require('barometer.telescope').find_current_file()<CR>
 nmap <silent> <Leader>ds <cmd>lua require('barometer.telescope').document_symbols()<CR>
 nmap <silent> <Leader>dd <cmd>lua require('barometer.telescope').diagnostics()<CR>
-nmap <silent> <Leader>c <cmd>lua require('barometer.telescope').list_colorschemes()<CR>
+nmap <silent> <Leader>sc <cmd>lua require('barometer.telescope').list_colorschemes()<CR>
 nmap <silent> <Leader>gs <cmd>lua require('barometer.telescope').git_status()<CR>
 nnoremap gr <cmd>lua require('barometer.telescope').lsp_references()<CR>
 nmap <silent> <Leader>h <cmd>Telescope help_tags<CR>
@@ -63,5 +63,9 @@ function! ToggleQuickFix()
     endif
 endfunction
 
-nnoremap <Leader>qq :call ToggleQuickFix()<cr>
+nnoremap <Leader>qq :call ToggleQuickFix()<CR>
 
+xmap <leader>c  <Plug>Commentary
+nmap <leader>c  <Plug>Commentary
+omap <leader>c  <Plug>Commentary
+nmap <leader>cc <Plug>CommentaryLine
