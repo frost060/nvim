@@ -33,7 +33,7 @@ augroup ft_golang
 
   au BufEnter,BufNewFile,BufRead *.go setlocal formatoptions+=roq
   au BufEnter,BufNewFile,BufRead *.go
-        \ setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4 nolist
+        \ setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
   au BufEnter,BufNewFile,BufRead *.tmpl setlocal filetype=html
 augroup END
 

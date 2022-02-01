@@ -91,7 +91,7 @@ require("packer").startup(function()
   use "tjdevries/express_line.nvim"
   use "j-hui/fidget.nvim"
 
-  -- use "tjdevries/cyclist.vim"
+  use "tjdevries/cyclist.vim"
 
   use "folke/trouble.nvim"
 

@@ -25,9 +25,10 @@ if nebulous then
   }
 end
 
-local gruvbuddy = false
+local gruvbuddy = true
 if gruvbuddy then
   require("colorbuddy").colorscheme "gruvbuddy"
+  vim.cmd [[ highlight ColorColumn guibg=#2E3440 ]]
 end
 
 local catppuccin = false

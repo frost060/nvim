@@ -114,6 +114,11 @@ _G.packer_plugins = {
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/completion-nvim",
     url = "https://github.com/nvim-lua/completion-nvim"
   },
+  ["cyclist.vim"] = {
+    loaded = true,
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/cyclist.vim",
+    url = "https://github.com/tjdevries/cyclist.vim"
+  },
   everforest = {
     loaded = true,
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/everforest",
