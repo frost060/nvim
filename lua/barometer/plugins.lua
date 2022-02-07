@@ -86,7 +86,6 @@ require("packer").startup(function()
 
   use "tjdevries/colorbuddy.vim"
   use "tjdevries/gruvbuddy.nvim"
-  use "catppuccin/nvim"
 
   use "tjdevries/express_line.nvim"
   use "j-hui/fidget.nvim"

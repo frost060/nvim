@@ -189,11 +189,6 @@ _G.packer_plugins = {
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
     url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
   },
-  nvim = {
-    loaded = true,
-    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/nvim",
-    url = "https://github.com/catppuccin/nvim"
-  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/nvim-cmp",

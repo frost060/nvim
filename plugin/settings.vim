@@ -47,7 +47,7 @@ au VimResized * :wincmd =
 
 " Searching
 set incsearch
-set nohlsearch
+set hlsearch
 set ignorecase
 set smartcase  "Do not ignore case, if uppercase is in search term
 
@@ -59,7 +59,6 @@ set shiftround
 set expandtab
 
 set list
-"set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set listchars=tab:▸\ ,extends:❯,precedes:❮
 set ruler
 set laststatus=2
@@ -67,8 +66,8 @@ set laststatus=2
 " ctags tags file
 set tags=./tags;
 
-"set colorcolumn=80
-"set signcolumn=yes
+set colorcolumn=80
+set signcolumn=yes
 
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/vendor/bundle/*,*/node_modules/*
 

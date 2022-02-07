@@ -65,7 +65,9 @@ endfunction
 
 nnoremap <Leader>qq :call ToggleQuickFix()<CR>
 
-xmap <leader>c  <Plug>Commentary
-nmap <leader>c  <Plug>Commentary
-omap <leader>c  <Plug>Commentary
-nmap <leader>cc <Plug>CommentaryLine
+xmap <Leader>c  <Plug>Commentary
+nmap <Leader>c  <Plug>Commentary
+omap <Leader>c  <Plug>Commentary
+nmap <Leader>cc <Plug>CommentaryLine
+
+nmap mm :nohl<CR>

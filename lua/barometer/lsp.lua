@@ -295,9 +295,11 @@ local source_mapping = {
   cmp_tabnine = "[TN]",
   path = "[Path]",
 }
+
 local lspkind = require "lspkind"
 require("lspkind").init {
-  with_text = true,
+  mode = "symbol_text",
+  preset = "codicons",
 }
 
 cmp.setup {
