@@ -1,7 +1,11 @@
 -- TELESCOPE
 require("telescope").setup {
   defaults = {
-    prompt_prefix = "$ ",
+    prompt_prefix = "❯ ",
+    selection_caret = "❯ ",
+
+    winblend = 0,
+
     file_ignore_patterns = {
       "node_modules",
       ".work/.*",
@@ -10,6 +14,41 @@ require("telescope").setup {
       "dist/.*",
       ".git/.*",
     },
+
+    layout_strategy = "horizontal",
+    layout_config = {
+      width = 0.95,
+      height = 0.85,
+      -- preview_cutoff = 120,
+      prompt_position = "top",
+
+      horizontal = {
+        preview_width = function(_, cols, _)
+          if cols > 200 then
+            return math.floor(cols * 0.4)
+          else
+            return math.floor(cols * 0.6)
+          end
+        end,
+      },
+
+      vertical = {
+        width = 0.9,
+        height = 0.95,
+        preview_height = 0.5,
+      },
+
+      flex = {
+        horizontal = {
+          preview_width = 0.9,
+        },
+      },
+    },
+
+    selection_strategy = "reset",
+    sorting_strategy = "descending",
+    scroll_strategy = "cycle",
+    color_devicons = true,
   },
   extensions = {
     fzf = {
@@ -20,12 +59,21 @@ require("telescope").setup {
       -- the default case_mode is "smart_case"
     },
   },
+
+  file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+  grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+  qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
 }
 
 --To get fzf loaded and working with telescope
-require("telescope").load_extension "fzf"
+_ = require("telescope").load_extension "notify"
+_ = require("telescope").load_extension "file_browser"
+_ = require("telescope").load_extension "ui-select"
+_ = require("telescope").load_extension "fzf"
+_ = require("telescope").load_extension "neoclip"
 
 local M = {}
+local themes = require "telescope.themes"
 
 M.curr_buffer = function()
   local opts = {}
@@ -46,10 +94,7 @@ M.git_files = function()
 end
 
 M.find_files = function()
-  local opts = {
-    prompt_prefix = "🔍",
-    find_command = { "rg", "--hidden", "--files" },
-  }
+  local opts = themes.get_ivy { hidden = false, sorting_strategy = "ascending" }
   require("telescope.builtin").find_files(opts)
 end
 

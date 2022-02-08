@@ -71,3 +71,6 @@ omap <Leader>c  <Plug>Commentary
 nmap <Leader>cc <Plug>CommentaryLine
 
 nmap mm :nohl<CR>
+
+nmap <Leader>vv :DiffviewOpen<CR>
+nmap <Leader>vc :DiffviewClose<CR>

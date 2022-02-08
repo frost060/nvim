@@ -18,14 +18,26 @@ local use = require("packer").use
 
 require("packer").startup(function()
   use "wbthomason/packer.nvim" -- Package manager
-  -- use "scrooloose/nerdcommenter"
   use "tpope/vim-fugitive" -- Git commands in nvim
   use "tpope/vim-commentary"
   use "tpope/vim-surround"
   use "jiangmiao/auto-pairs"
+
   -- UI to select things (files, grep results, open buffers...)
   use { "nvim-telescope/telescope.nvim", requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } } }
   use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
+  use { "nvim-telescope/telescope-file-browser.nvim" }
+  use { "nvim-telescope/telescope-ui-select.nvim" }
+  use { "nvim-telescope/telescope-smart-history.nvim" }
+
+  use "rcarriga/nvim-notify"
+
+  use {
+    "AckslD/nvim-neoclip.lua",
+    config = function()
+      require("neoclip").setup()
+    end,
+  }
 
   -- Highlight, edit, and navigate code using a fast incremental parsing library
   use "nvim-treesitter/nvim-treesitter"
@@ -64,9 +76,7 @@ require("packer").startup(function()
   use "sbdchd/neoformat"
 
   -- Themes
-  use "jonathanfilip/vim-lucius"
   use "gruvbox-community/gruvbox"
-  use "eemed/sitruuna.vim"
 
   use "AndrewRadev/splitjoin.vim"
 
@@ -93,11 +103,23 @@ require("packer").startup(function()
   use "tjdevries/cyclist.vim"
 
   use "folke/trouble.nvim"
+  use {
+    "folke/twilight.nvim",
+    config = function()
+      require("twilight").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end,
+  }
 
-  use "sainnhe/everforest"
-  use "kyazdani42/nvim-web-devicons"
-  use "Yagua/nebulous.nvim"
-  use "EdenEast/nightfox.nvim"
+  use {
+    "yamatsum/nvim-nonicons",
+    requires = { "kyazdani42/nvim-web-devicons" },
+  }
 
-  use "folke/tokyonight.nvim"
+  use "godlygeek/tabular"
+  use "rhysd/committia.vim"
+  use { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" }
 end)

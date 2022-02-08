@@ -1,49 +1,33 @@
-local nebulous = false
-if nebulous then
-  require("nebulous").setup {
-    variant = "fullmoon",
-    disable = {
-      background = false,
-      endOfBuffer = false,
-      terminal_colors = true,
-    },
-    italic = {
-      comments = true,
-      keywords = true,
-      functions = true,
-      variables = true,
-    },
-    custom_colors = { -- this table can hold any group of colors with their respective values
-      --LineNr = { fg = "#5BBBDA", bg = "NONE", style = "NONE" },
-      CursorLineNr = { fg = "#E1CD6C", bg = "NONE", style = "NONE" },
+local colors = require("colorbuddy.color").colors
 
-      -- it is possible to specify only the element to be changed
-      TelescopePreviewBorder = { fg = "#A13413" },
-      LspDiagnosticsDefaultError = { bg = "#E11313" },
-      TSTagDelimiter = { style = "bold,italic" },
-    },
-  }
-end
+vim.opt.termguicolors = true
 
-local gruvbuddy = true
-if gruvbuddy then
-  require("colorbuddy").colorscheme "gruvbuddy"
-  vim.cmd [[ highlight ColorColumn guibg=#2E3440 ]]
-end
+local ns_barometer = vim.api.nvim_create_namespace "barometer_colors"
+local ns_barometer_2 = vim.api.nvim_create_namespace "barometer_colors_2"
 
-local catppuccin = false
-if catppuccin then
-  require("catppuccin").setup {}
-  vim.cmd [[colorscheme catppuccin]]
-end
+vim.api.nvim_set_decoration_provider(ns_barometer, {
+  on_start = function(_, tick) end,
 
-local tokyonight = false
-if tokyonight then
-  vim.g.tokyonight_style = "storm"
-  vim.g.tokyonight_italic_functions = true
-  vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+  on_buf = function(_, bufnr, tick) end,
 
-  -- Change the "hint" color to the "orange" color, and make the "error" color bright red
-  vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
-  vim.cmd [[ colorscheme tokyonight ]]
-end
+  on_win = function(_, winid, bufnr, topline, botline) end,
+
+  on_line = function(_, winid, bufnr, row)
+    if row == 10 then
+      vim.api.nvim__set_hl_ns(ns_barometer_2)
+    else
+      vim.api.nvim__set_hl_ns(ns_barometer)
+    end
+  end,
+
+  on_end = function(_, tick) end,
+})
+
+vim.api.nvim_set_hl(ns_barometer, "LuaFunctionCall", {
+  foreground = colors.green:to_rgb(),
+  background = nil,
+  reverse = false,
+  underline = false,
+})
+
+vim.api.nvim__set_hl_ns(ns_barometer)
