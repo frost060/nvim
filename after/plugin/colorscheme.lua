@@ -1,3 +1,8 @@
+local disable = false
+if disable then
+  return
+end
+
 require("colorbuddy").colorscheme "gruvbuddy"
 require("colorizer").setup()
 

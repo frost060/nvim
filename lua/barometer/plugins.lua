@@ -76,7 +76,7 @@ require("packer").startup(function()
   use "sbdchd/neoformat"
 
   -- Themes
-  use "gruvbox-community/gruvbox"
+  -- use "gruvbox-community/gruvbox"
 
   use "AndrewRadev/splitjoin.vim"
 
@@ -122,4 +122,6 @@ require("packer").startup(function()
   use "godlygeek/tabular"
   use "rhysd/committia.vim"
   use { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" }
+
+  use "ellisonleao/gruvbox.nvim"
 end)

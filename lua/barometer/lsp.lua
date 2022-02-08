@@ -124,45 +124,18 @@ require("lspconfig").html.setup {
 require("lspconfig").gopls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = { "gopls", "serve" },
-  root_dir = function(fname)
-    local Path = require "plenary.path"
-
-    local absolute_cwd = Path:new(vim.loop.cwd()):absolute()
-    local absolute_fname = Path:new(fname):absolute()
-
-    if string.find(absolute_cwd, "/cmd/", 1, true) and string.find(absolute_fname, absolute_cwd, 1, true) then
-      return absolute_cwd
-    end
-
-    return lspconfig_util.root_pattern("go.mod", ".git")(fname)
-  end,
-
   settings = {
-    on_attach = on_attach,
-    capabilities = capabilities,
     gopls = {
+      completeUnimported = true,
+      buildFlags = { "-tags=debug" },
+      ["local"] = "github.com/sourcegraph/sourcegraph",
       analyses = {
         unusedparams = true,
       },
       staticcheck = true,
-      linksInHover = false,
-      codelenses = {
-        generate = true,
-        gc_details = true,
-        regenerate_cgo = true,
-        tidy = true,
-        upgrade_depdendency = true,
-        vendor = true,
-        test = true,
-      },
-      usePlaceholders = true,
-      completeUnimported = true,
-      buildFlags = { "-tags=debug" },
       experimentalPostfixCompletions = true,
     },
   },
-
   flags = {
     debounce_text_changes = 200,
   },

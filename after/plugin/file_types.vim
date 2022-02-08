@@ -91,7 +91,7 @@ augroup END
 " Java
 augroup ft_java
   au!
-  au BufEnter,BufNewFile,BufRead *.java setlocal colorcolumn=0 nolist
+  au BufEnter,BufNewFile,BufRead *.java setlocal colorcolumn=100
 augroup END
 
 " Quickfix List

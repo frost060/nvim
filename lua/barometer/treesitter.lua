@@ -1,15 +1,24 @@
 require("nvim-treesitter.configs").setup {
-  ensure_installed = { "java", "javascript", "typescript", "elixir" },
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
     enable = true, -- false will disable the whole extension
   },
-}
-
-require("nvim-treesitter.configs").setup {
-  playground = {
+  -- indent = {
+  --   enable = true
+  -- },
+  incremental_selection = {
     enable = true,
-    disable = {},
-    updateTime = 25,
-    persist_queries = false,
+    keymaps = {
+      init_selection = "vin",
+      node_incremental = "vni",
+      scope_incremental = "vsi",
+      node_decremental = "vnd",
+    },
+  },
+
+  textobjects = {
+    move = {
+      enable = true,
+    },
   },
 }
