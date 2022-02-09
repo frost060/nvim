@@ -8,7 +8,6 @@ if has_devicons then
   devicons.setup {
     override = {
       lir_folder_icon = {
-        icon = "",
         color = "#7ebae4",
         name = "LirFolderNode",
       },
@@ -20,6 +19,7 @@ local actions = require "lir.actions"
 local has_mmv, mmv_actions = pcall(require, "lir.mmv.actions")
 
 lir.setup {
+  hide_cursor = true,
   show_hidden_files = true,
   devicons_enable = true,
 

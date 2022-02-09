@@ -52,11 +52,7 @@ require("packer").startup(function()
 
   use "mfussenegger/nvim-jdtls"
 
-  use "norcalli/nvim-colorizer.lua"
-
-  -- use "fatih/vim-go"
   use "ziglang/zig.vim"
-
   use "simrat39/rust-tools.nvim"
   use "rust-lang/rust.vim"
 
@@ -76,7 +72,10 @@ require("packer").startup(function()
   use "sbdchd/neoformat"
 
   -- Themes
-  -- use "gruvbox-community/gruvbox"
+  use "ellisonleao/gruvbox.nvim"
+  use "tjdevries/colorbuddy.vim"
+  use "tjdevries/gruvbuddy.nvim"
+  use "norcalli/nvim-colorizer.lua"
 
   use "AndrewRadev/splitjoin.vim"
 
@@ -91,11 +90,6 @@ require("packer").startup(function()
   use "onsails/lspkind-nvim"
   use "hrsh7th/vim-vsnip"
   use "hrsh7th/vim-vsnip-integ"
-  use "L3MON4D3/LuaSnip"
-  use "saadparwaiz1/cmp_luasnip"
-
-  use "tjdevries/colorbuddy.vim"
-  use "tjdevries/gruvbuddy.nvim"
 
   use "tjdevries/express_line.nvim"
   use "j-hui/fidget.nvim"
@@ -103,25 +97,6 @@ require("packer").startup(function()
   use "tjdevries/cyclist.vim"
 
   use "folke/trouble.nvim"
-  use {
-    "folke/twilight.nvim",
-    config = function()
-      require("twilight").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end,
-  }
 
-  use {
-    "yamatsum/nvim-nonicons",
-    requires = { "kyazdani42/nvim-web-devicons" },
-  }
-
-  use "godlygeek/tabular"
-  use "rhysd/committia.vim"
-  use { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" }
-
-  use "ellisonleao/gruvbox.nvim"
+  use "kyazdani42/nvim-web-devicons"
 end)
