@@ -14,6 +14,7 @@ if kitty_profile == "dark"
 
   let g:gruvbox_baby_background_color = 'dark'
   let g:gruvbox_contrast_dark = "hard"
+  let g:gruvbox_italicize_comments = 0
 
   " colorscheme gruvbox
 

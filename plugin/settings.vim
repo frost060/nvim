@@ -83,5 +83,7 @@ set completeopt=menu,menuone,noselect
 let g:completion_enable_auto_popup = 1
 
 set updatetime=250
+set formatoptions-=c formatoptions-=r formatoptions-=o
+au BufEnter * set fo-=c fo-=r fo-=o
 
 let g:vsnip_snippet_dir = "~/.vim/snippets"

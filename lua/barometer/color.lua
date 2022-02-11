@@ -1,3 +1,8 @@
+local disable = true
+if disable then
+  return
+end
+
 local colors = require("colorbuddy.color").colors
 
 vim.opt.termguicolors = true
