@@ -3,7 +3,7 @@ augroup TransparentBg
     "autocmd vimenter * hi TelescopeBorder guifg=#5eacd
     """"""" transparent bg
     "autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
-     """""""For Vim<8, replace EndOfBuffer by NonText
+    " """"""For Vim<8, replace EndOfBuffer by NonText
     "autocmd vimenter * hi EndOfBuffer guibg=NONE ctermbg=NONE
 
     "autocmd vimenter * hi ColorColumn ctermbg=0 guibg=grey
@@ -17,8 +17,8 @@ augroup TransparentBg
 
     ""autocmd vimenter * hi clear SignColumn                " SignColumn should match background
 
-    "autocmd vimenter * hi clear LineNr
-    "autocmd vimenter * hi LineNr guifg=#5eacd3
+    "" autocmd vimenter * hi clear LineNr
+    "" autocmd vimenter * hi LineNr guifg=#5eacd3
 
     "autocmd vimenter * hi MatchParen cterm=bold ctermbg=NONE ctermfg=15 term=standout
 

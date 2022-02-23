@@ -17,6 +17,7 @@ if kitty_profile == "dark"
   let g:gruvbox_italicize_comments = 0
 
   " colorscheme gruvbox
+  " colorscheme tokyonight
 
   highlight DiagnosticUnderlineError cterm=undercurl gui=undercurl
   highlight DiagnosticUnderlineWarn cterm=undercurl gui=undercurl

@@ -94,9 +94,28 @@ require("packer").startup(function()
   use "tjdevries/express_line.nvim"
   use "j-hui/fidget.nvim"
 
-  use "tjdevries/cyclist.vim"
+  -- use "tjdevries/cyclist.vim"
 
   use "folke/trouble.nvim"
 
   use "kyazdani42/nvim-web-devicons"
+  use "folke/tokyonight.nvim"
+
+  use {
+    "SmiteshP/nvim-gps",
+    requires = "nvim-treesitter/nvim-treesitter",
+    wants = "nvim-treesitter",
+    module = "nvim-gps",
+    config = function()
+      require("nvim-gps").setup { separator = " " }
+    end,
+  }
+
+  use {
+    "nvim-lualine/lualine.nvim",
+    requires = { "rlch/github-notifications.nvim" },
+    event = "VimEnter",
+    config = [[require('barometer.config.lualine')]],
+    wants = "nvim-web-devicons",
+  }
 end)

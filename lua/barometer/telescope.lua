@@ -9,7 +9,6 @@ require("telescope").setup {
     file_ignore_patterns = {
       "node_modules",
       ".work/.*",
-      ".cache/.*",
       ".idea/.*",
       "dist/.*",
       ".git/.*",
@@ -94,7 +93,7 @@ M.git_files = function()
 end
 
 M.find_files = function()
-  local opts = { hidden = false, sorting_strategy = "ascending" }
+  local opts = { hidden = true, sorting_strategy = "ascending" }
   require("telescope.builtin").find_files(opts)
 end
 

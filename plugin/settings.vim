@@ -66,7 +66,7 @@ set laststatus=2
 " ctags tags file
 set tags=./tags;
 
-set colorcolumn=80
+" set colorcolumn=80
 set signcolumn=yes
 
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/vendor/bundle/*,*/node_modules/*
