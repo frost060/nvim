@@ -86,7 +86,6 @@ set updatetime=250
 set formatoptions-=c formatoptions-=r formatoptions-=o
 au BufEnter * set fo-=c fo-=r fo-=o
 
-set nolist
 let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
 
