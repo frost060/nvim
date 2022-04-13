@@ -1,4 +1,4 @@
-local disable = true
+local disable = false
 if disable then
   return
 end

@@ -72,7 +72,7 @@ require("packer").startup(function()
   use "sbdchd/neoformat"
 
   -- Themes
-  use "ellisonleao/gruvbox.nvim"
+  use "morhetz/gruvbox"
   use "tjdevries/colorbuddy.vim"
   use "tjdevries/gruvbuddy.nvim"
   use "norcalli/nvim-colorizer.lua"
@@ -99,7 +99,43 @@ require("packer").startup(function()
   use "folke/trouble.nvim"
 
   use "kyazdani42/nvim-web-devicons"
-  use "folke/tokyonight.nvim"
+  --   use "ryanoasis/vim-devicons"
+
+  use {
+    "nvim-lualine/lualine.nvim",
+    requires = { "rlch/github-notifications.nvim" },
+    event = "VimEnter",
+    config = [[require('barometer.config.lualine')]],
+    wants = "nvim-web-devicons",
+    disable = true,
+  }
+
+  use {
+    "kdheepak/tabline.nvim",
+    config = function()
+      require("tabline").setup {
+        enable = true,
+        options = {
+          -- If lualine is installed tabline will use separators configured in lualine by default.
+          -- These options can be used to override those settings.
+          section_separators = { "", "" },
+          component_separators = { "", "" },
+          max_bufferline_percent = 66, -- set to nil by default, and it uses vim.o.columns * 2/3
+          show_tabs_always = true, -- this shows tabs only when there are more than one tab or if the first tab is named
+          show_devicons = true, -- this shows devicons in buffer section
+          show_bufnr = true, -- this appends [bufnr] to buffer section,
+          show_filename_only = false, -- shows base filename only instead of relative path in filename
+          modified_icon = "+ ", -- change the default modified icon
+          modified_italic = false,
+        },
+      }
+      vim.cmd [[
+   set guioptions-=e " Use showtabline in gui vim
+   set sessionoptions+=tabpages,globals " store tabpages and globals in session
+   ]]
+    end,
+    disable = true,
+  }
 
   use {
     "SmiteshP/nvim-gps",
@@ -111,11 +147,25 @@ require("packer").startup(function()
     end,
   }
 
+  use "jnurmine/Zenburn"
+  use "lfv89/vim-interestingwords"
+
   use {
-    "nvim-lualine/lualine.nvim",
-    requires = { "rlch/github-notifications.nvim" },
-    event = "VimEnter",
-    config = [[require('barometer.config.lualine')]],
-    wants = "nvim-web-devicons",
+    "lewis6991/gitsigns.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+    -- tag = 'release' -- To use the latest release
   }
+
+  use "doums/darcula"
+  use "tomasiser/vim-code-dark"
+
+  use "folke/tokyonight.nvim"
+
+  use "juanpabloaj/vim-pixelmuerto"
+  use "ron-rs/ron.vim"
+  use "drewtempelmeyer/palenight.vim"
+
+  use "navarasu/onedark.nvim"
 end)

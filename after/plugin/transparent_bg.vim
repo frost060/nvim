@@ -15,7 +15,8 @@ augroup TransparentBg
     """autocmd vimenter * hi StatusLine ctermbg=none cterm=bold
     """autocmd vimenter * hi clear StatusLine
 
-    ""autocmd vimenter * hi clear SignColumn                " SignColumn should match background
+    "autocmd vimenter * hi clear SignColumn
+    "" autocmd vimenter * hi clear StatusLine
 
     "" autocmd vimenter * hi clear LineNr
     "" autocmd vimenter * hi LineNr guifg=#5eacd3

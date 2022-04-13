@@ -75,7 +75,11 @@ local M = {}
 local themes = require "telescope.themes"
 
 M.curr_buffer = function()
-  local opts = {}
+  local opts = {
+    layout_config = {
+      height = 30,
+    },
+  }
   require("telescope.builtin").current_buffer_fuzzy_find(opts)
 end
 
@@ -93,7 +97,7 @@ M.git_files = function()
 end
 
 M.find_files = function()
-  local opts = { hidden = true, sorting_strategy = "ascending" }
+  local opts = themes.get_ivy { hidden = true, sorting_strategy = "ascending" }
   require("telescope.builtin").find_files(opts)
 end
 
@@ -113,7 +117,7 @@ M.find_current_file = function()
 end
 
 M.buffers = function()
-  local opts = require("telescope.themes").get_dropdown {
+  local opts = themes.get_ivy {
     layout_config = {
       height = 20,
     },
@@ -128,7 +132,7 @@ M.document_symbols = function()
 end
 
 M.diagnostics = function()
-  local opts = require("telescope.themes").get_ivy {
+  local opts = themes.get_ivy {
     layout_config = {
       height = 20,
     },
@@ -137,7 +141,7 @@ M.diagnostics = function()
 end
 
 M.list_colorschemes = function()
-  local opts = require("telescope.themes").get_dropdown {
+  local opts = themes.get_dropdown {
     layout_config = {
       height = 20,
     },

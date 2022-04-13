@@ -66,7 +66,7 @@ local on_attach = function(client, bufnr)
   -- have a fixed column for the diagnostics to appear in
   -- this removes the jitter when warnings/errors flow in
   vim.cmd [[set signcolumn=yes]]
-  vim.cmd [[set colorcolumn=0]]
+  -- vim.cmd [[set colorcolumn=100]]
 end
 
 require("lspconfig").dockerls.setup {}
@@ -261,24 +261,18 @@ function _G.workspace_diagnostics_status()
 end
 
 local cmp = require "cmp"
-local source_mapping = {
-  buffer = "[Buffer]",
-  nvim_lsp = "[LSP]",
-  nvim_lua = "[Lua]",
-  cmp_tabnine = "[TN]",
-  path = "[Path]",
-}
 
 local lspkind = require "lspkind"
 require("lspkind").init {
   mode = "symbol_text",
-  preset = "codicons",
+  -- preset = "codicons",
 }
 
 cmp.setup {
-  documentation = {
-    maxwidth = 60,
-    maxheight = 20,
+  window = {
+    documentation = "native",
+    -- completion = cmp.config.window.bordered(),
+    -- documentation = cmp.config.window.bordered(),
   },
   mapping = {
     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
@@ -310,18 +304,6 @@ cmp.setup {
     { name = "path" },
   },
 }
-
--- require("lspconfig").tsserver.setup {
--- init_options = require("nvim-lsp-ts-utils").init_options,
--- capabilities = capabilities,
--- on_attach = on_attach,
--- }
-
--- require("lspconfig").rust_analyzer.setup {
---   capabilities = capabilities,
---   on_attach = on_attach,
---   cmd = { "rustup", "run", "nightly", "rust-analyzer" },
--- }
 
 local utils = require "rust-tools.utils.utils"
 local rust_execute_command = function(command, args, cwd)

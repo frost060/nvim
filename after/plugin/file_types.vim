@@ -91,7 +91,8 @@ augroup END
 " Java
 augroup ft_java
   au!
-  au BufEnter,BufNewFile,BufRead *.java setlocal nolist
+  au BufEnter,BufNewFile,BufRead *.java setlocal
+        \ tabstop=4 shiftwidth=4 softtabstop=4 nolist
 augroup END
 
 " Quickfix List

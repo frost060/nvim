@@ -2,10 +2,6 @@ local function clock()
   return " " .. os.date "%H:%M"
 end
 
-local function holidays()
-  return "🎅🎄🌟🎁"
-end
-
 local function lsp_progress(_, is_active)
   if not is_active then
     return
@@ -36,7 +32,7 @@ vim.cmd "au User LspProgressUpdate let &ro = &ro"
 
 local config = {
   options = {
-    theme = "tokyonight",
+    theme = "gruvbox",
     section_separators = { left = "", right = "" },
     component_separators = { left = "", right = "" },
     icons_enabled = true,
@@ -60,7 +56,7 @@ local config = {
         color = { fg = "#ff9e64" },
       },
     },
-    lualine_x = { lsp_progress, require("github-notifications").statusline_notification_count, holidays },
+    lualine_x = { lsp_progress, require("github-notifications").statusline_notification_count },
     lualine_y = { "location" },
     lualine_z = { clock },
   },
