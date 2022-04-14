@@ -32,7 +32,7 @@ vim.cmd "au User LspProgressUpdate let &ro = &ro"
 
 local config = {
   options = {
-    theme = "gruvbox",
+    theme = "tokyonight",
     section_separators = { left = "", right = "" },
     component_separators = { left = "", right = "" },
     icons_enabled = true,
@@ -68,7 +68,7 @@ local config = {
     lualine_y = {},
     lualine_z = {},
   },
-  extensions = { "nvim-tree" },
+  extensions = { "fzf", "quickfix" },
 }
 
 -- try to load matching lualine theme

@@ -4,7 +4,7 @@ require "barometer.treesitter"
 require "barometer.telescope"
 require "barometer.lsp"
 require "barometer.stylua"
--- require "barometer.color"
+require "barometer.color"
 
 require("which-key").setup {}
 -- require("gitsigns").setup()

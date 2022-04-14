@@ -66,7 +66,7 @@ local on_attach = function(client, bufnr)
   -- have a fixed column for the diagnostics to appear in
   -- this removes the jitter when warnings/errors flow in
   vim.cmd [[set signcolumn=yes]]
-  vim.cmd [[set colorcolumn=100]]
+  -- vim.cmd [[set colorcolumn=100]]
 end
 
 require("lspconfig").dockerls.setup {}
@@ -261,6 +261,7 @@ function _G.workspace_diagnostics_status()
 end
 
 local cmp = require "cmp"
+local cmp_types = require "cmp.types.cmp"
 
 local lspkind = require "lspkind"
 require("lspkind").init {
@@ -269,16 +270,23 @@ require("lspkind").init {
 }
 
 cmp.setup {
-  window = {
-    documentation = "native",
-    -- completion = cmp.config.window.bordered(),
-    -- documentation = cmp.config.window.bordered(),
-  },
+  window = {},
   mapping = {
     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
     ["<C-d>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<CR>"] = cmp.mapping.confirm { select = true },
+    ["<Tab>"] = function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      else
+        fallback()
+      end
+    end,
+    ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp_types.SelectBehavior.Select },
+    ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp_types.SelectBehavior.Select },
+    ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp_types.SelectBehavior.Insert },
+    ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp_types.SelectBehavior.Insert },
   },
 
   formatting = {
@@ -304,6 +312,33 @@ cmp.setup {
     { name = "path" },
   },
 }
+
+-- Set configuration for specific filetype.
+cmp.setup.filetype("gitcommit", {
+  sources = cmp.config.sources({
+    { name = "cmp_git" }, -- You can specify the `cmp_git` source if you were installed it.
+  }, {
+    { name = "buffer" },
+  }),
+})
+
+-- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline("/", {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = "buffer" },
+  },
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(":", {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = "path" },
+  }, {
+    { name = "cmdline" },
+  }),
+})
 
 local utils = require "rust-tools.utils.utils"
 local rust_execute_command = function(command, args, cwd)

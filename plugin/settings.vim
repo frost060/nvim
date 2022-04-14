@@ -58,8 +58,8 @@ set softtabstop=2
 set shiftround
 set expandtab
 
-set list
-set listchars=tab:▸\ ,extends:❯,precedes:❮
+" set list
+" set listchars=tab:▸\ ,extends:❯,precedes:❮
 set ruler
 set laststatus=2
 

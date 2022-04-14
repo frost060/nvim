@@ -156,6 +156,7 @@ require("packer").startup(function()
       "nvim-lua/plenary.nvim",
     },
     -- tag = 'release' -- To use the latest release
+    disable = false,
   }
 
   use "doums/darcula"
