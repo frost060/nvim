@@ -21,7 +21,7 @@ local has_mmv, mmv_actions = pcall(require, "lir.mmv.actions")
 lir.setup {
   hide_cursor = true,
   show_hidden_files = true,
-  devicons_enable = true,
+  devicons_enable = has_devicons,
 
   float = { winblend = 15 },
 

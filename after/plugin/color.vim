@@ -10,7 +10,7 @@ set t_ut=
 set background=dark
 
 let g:gruvbox_baby_background_color = 'dark'
-let g:gruvbox_contrast_dark = "hard"
+let g:gruvbox_contrast_dark = "medium"
 let g:gruvbox_italicize_comments = 0
 let g:gruvbox_bold = 0
 
@@ -21,7 +21,10 @@ let g:tokyonight_transparent_sidebar = 0
 let g:tokyonight_dark_sidebar = 0
 let g:tokyonight_dark_float = 0
 
-" colorscheme onedark
+let g:transparent_sidebar=1
+let g:transparent=1
+
+colorscheme onedark
 " colorscheme tokyonight
 
 highlight DiagnosticUnderlineError cterm=undercurl gui=undercurl

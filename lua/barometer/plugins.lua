@@ -94,11 +94,11 @@ require("packer").startup(function()
   use "tjdevries/express_line.nvim"
   use "j-hui/fidget.nvim"
 
-  use "tjdevries/cyclist.vim"
+  -- use "tjdevries/cyclist.vim"
 
   use "folke/trouble.nvim"
 
-  use "kyazdani42/nvim-web-devicons"
+  -- use "kyazdani42/nvim-web-devicons"
   --   use "ryanoasis/vim-devicons"
 
   use {
@@ -150,15 +150,6 @@ require("packer").startup(function()
   use "jnurmine/Zenburn"
   use "lfv89/vim-interestingwords"
 
-  use {
-    "lewis6991/gitsigns.nvim",
-    requires = {
-      "nvim-lua/plenary.nvim",
-    },
-    -- tag = 'release' -- To use the latest release
-    disable = false,
-  }
-
   use "doums/darcula"
   use "tomasiser/vim-code-dark"
 
@@ -169,4 +160,8 @@ require("packer").startup(function()
   use "drewtempelmeyer/palenight.vim"
 
   use "navarasu/onedark.nvim"
+
+  -- use "glepnir/spaceline.vim"
+
+  -- use "ful1e5/onedark.nvim"
 end)

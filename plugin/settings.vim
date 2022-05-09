@@ -23,7 +23,7 @@ set wildmenu
 set scrolloff=5
 set number
 set relativenumber
-set cursorline
+set nocursorline
 set wrap
 set showmatch
 set backspace=2
@@ -58,6 +58,9 @@ set softtabstop=2
 set shiftround
 set expandtab
 
+set pumblend=20
+set winblend=20
+
 " set list
 " set listchars=tab:▸\ ,extends:❯,precedes:❮
 set ruler
@@ -67,7 +70,7 @@ set laststatus=2
 set tags=./tags;
 
 " set colorcolumn=80
-set signcolumn=yes
+set signcolumn=no
 
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/vendor/bundle/*,*/node_modules/*
 
