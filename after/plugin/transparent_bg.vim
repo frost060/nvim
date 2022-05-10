@@ -1,6 +1,6 @@
 augroup TransparentBg
     autocmd vimenter * hi netrwDir guifg=#5eacd3
-    autocmd vimenter * hi TelescopeBorder guifg=#5eacd
+    autocmd vimenter * hi clear TelescopeBorder
     """""" transparent bg
     autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
      """"""For Vim<8, replace EndOfBuffer by NonText

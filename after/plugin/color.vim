@@ -24,7 +24,11 @@ let g:tokyonight_dark_float = 0
 let g:transparent_sidebar=1
 let g:transparent=1
 
-colorscheme onedark
+let g:onedark_config = {
+    \ 'style': 'darker',
+\}
+
+" colorscheme onedarkpro
 " colorscheme tokyonight
 
 highlight DiagnosticUnderlineError cterm=undercurl gui=undercurl

@@ -159,9 +159,11 @@ require("packer").startup(function()
   use "ron-rs/ron.vim"
   use "drewtempelmeyer/palenight.vim"
 
-  use "navarasu/onedark.nvim"
+  -- use "navarasu/onedark.nvim"
+  use "olimorris/onedarkpro.nvim"
 
   -- use "glepnir/spaceline.vim"
 
-  -- use "ful1e5/onedark.nvim"
+  use "ful1e5/onedark.nvim"
+  use "Mofiqul/vscode.nvim"
 end)

@@ -34,7 +34,7 @@ local on_attach = function(client, bufnr)
     --   asdf reshim nodejs
 
     -- disable tsserver formatting because we use prettier/eslint for that
-    client.resolved_capabilities.document_formatting = false
+    -- client.resolved_capabilities.document_formatting = false
 
     vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting()"
 
