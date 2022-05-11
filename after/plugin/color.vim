@@ -30,6 +30,7 @@ let g:onedark_config = {
 
 " colorscheme onedarkpro
 " colorscheme tokyonight
+" colorscheme sitruuna
 
 highlight DiagnosticUnderlineError cterm=undercurl gui=undercurl
 highlight DiagnosticUnderlineWarn cterm=undercurl gui=undercurl

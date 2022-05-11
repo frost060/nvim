@@ -5,6 +5,7 @@ augroup TransparentBg
     autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
      """"""For Vim<8, replace EndOfBuffer by NonText
     autocmd vimenter * hi EndOfBuffer guibg=NONE ctermbg=NONE
+    autocmd vimenter * hi EndOfBuffer guifg=#71797E
 
     autocmd vimenter * hi ColorColumn ctermbg=0 guibg=grey
     autocmd vimenter * hi SignColumn guibg=none

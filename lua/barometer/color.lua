@@ -37,7 +37,7 @@ if enableOneDarkPro then
   onedarkpro.load()
 end
 
-local enableOneDark = true
+local enableOneDark = false
 if enableOneDark then
   require("onedark").setup {
     transparent = true,
@@ -45,7 +45,7 @@ if enableOneDark then
   }
 end
 
-local vscode = false
+local vscode = true
 if vscode then
   vim.g.vscode_style = "dark"
   vim.g.vscode_italic_comment = 0
