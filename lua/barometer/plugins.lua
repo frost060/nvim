@@ -98,7 +98,7 @@ require("packer").startup(function()
 
   use "folke/trouble.nvim"
 
-  -- use "kyazdani42/nvim-web-devicons"
+  use "kyazdani42/nvim-web-devicons"
   --   use "ryanoasis/vim-devicons"
 
   use {
@@ -166,4 +166,7 @@ require("packer").startup(function()
 
   use "ful1e5/onedark.nvim"
   use "Mofiqul/vscode.nvim"
+
+  use "feline-nvim/feline.nvim"
+  use "catppuccin/nvim"
 end)

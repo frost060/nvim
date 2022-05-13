@@ -23,7 +23,7 @@ set wildmenu
 set scrolloff=5
 set number
 set relativenumber
-set nocursorline
+set cursorline
 set wrap
 set showmatch
 set backspace=2
@@ -58,8 +58,8 @@ set softtabstop=2
 set shiftround
 set expandtab
 
-set pumblend=20
-set winblend=20
+" set pumblend=20
+" set winblend=20
 
 " set list
 " set listchars=tab:▸\ ,extends:❯,precedes:❮

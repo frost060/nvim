@@ -9,6 +9,10 @@ require "barometer.color"
 require("which-key").setup {}
 -- require("gitsigns").setup()
 
+require("feline").setup {
+  components = require "catppuccin.core.integrations.feline",
+}
+
 local cmd = vim.cmd
 local fn = vim.fn
 

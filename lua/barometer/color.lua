@@ -45,10 +45,19 @@ if enableOneDark then
   }
 end
 
-local vscode = true
+local vscode = false
 if vscode then
   vim.g.vscode_style = "dark"
   vim.g.vscode_italic_comment = 0
   vim.g.vscode_transparent = 1
   vim.cmd [[colorscheme vscode]]
+end
+
+local catppuccin = true
+if catppuccin then
+  require("catppuccin").setup {
+    term_colors = true,
+  }
+
+  vim.cmd [[colorscheme catppuccin]]
 end
