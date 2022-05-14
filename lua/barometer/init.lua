@@ -9,10 +9,12 @@ require("which-key").setup {}
 require("gitsigns").setup()
 
 -- Catppuccin needs termguicolors set
-vim.cmd [[ set termguicolors ]]
+vim.opt.termguicolors = true
 require("feline").setup {
   components = require "catppuccin.core.integrations.feline",
 }
+
+require("bufferline").setup {}
 
 local fn = vim.fn
 

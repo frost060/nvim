@@ -103,6 +103,7 @@ require("packer").startup(function()
   use "feline-nvim/feline.nvim"
   use "catppuccin/nvim"
 
-  use "akinsho/bufferline.nvim"
+  use { "akinsho/bufferline.nvim", tag = "v2.*", requires = "kyazdani42/nvim-web-devicons" }
+
   use "lewis6991/gitsigns.nvim"
 end)
