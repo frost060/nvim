@@ -97,7 +97,7 @@ M.git_files = function()
 end
 
 M.find_files = function()
-  local opts = themes.get_ivy { hidden = true, sorting_strategy = "ascending" }
+  local opts = { hidden = true, sorting_strategy = "ascending" }
   require("telescope.builtin").find_files(opts)
 end
 

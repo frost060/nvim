@@ -263,6 +263,27 @@ end
 local cmp = require "cmp"
 local cmp_types = require "cmp.types.cmp"
 
+vim.opt.completeopt = "menuone,noselect"
+
+local function border(hl_name)
+  return {
+    { "╭", hl_name },
+    { "─", hl_name },
+    { "╮", hl_name },
+    { "│", hl_name },
+    { "╯", hl_name },
+    { "─", hl_name },
+    { "╰", hl_name },
+    { "│", hl_name },
+  }
+end
+
+local cmp_window = require "cmp.utils.window"
+
+function cmp_window:has_scrollbar()
+  return false
+end
+
 local lspkind = require "lspkind"
 require("lspkind").init {
   mode = "symbol_text",
@@ -270,7 +291,14 @@ require("lspkind").init {
 }
 
 cmp.setup {
-  window = {},
+  window = {
+    completion = {
+      border = border "CmpBorder",
+    },
+    documentation = {
+      border = border "CmpDocBorder",
+    },
+  },
   mapping = {
     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
     ["<C-d>"] = cmp.mapping.scroll_docs(4),
@@ -290,19 +318,16 @@ cmp.setup {
   },
 
   formatting = {
-    format = lspkind.cmp_format {
-      with_text = true,
-      menu = {
-        buffer = "[Buffer]",
-        nvim_lsp = "[LSP]",
-        vsnip = "[vsnip]",
-        nvim_lua = "[Lua]",
-      },
-    },
+    format = function(_, vim_item)
+      local icons = require "barometer.lspkind_icons"
+      vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
+
+      return vim_item
+    end,
   },
   snippet = {
     expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
+      require("luasnip").lsp_expand(args.body)
     end,
   },
   sources = {
