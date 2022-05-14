@@ -28,9 +28,7 @@ let g:onedark_config = {
     \ 'style': 'darker',
 \}
 
-" colorscheme onedarkpro
-" colorscheme tokyonight
-" colorscheme sitruuna
+colorscheme catppuccin
 
 highlight DiagnosticUnderlineError cterm=undercurl gui=undercurl
 highlight DiagnosticUnderlineWarn cterm=undercurl gui=undercurl

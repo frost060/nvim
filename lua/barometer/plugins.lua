@@ -64,8 +64,6 @@ require("packer").startup(function()
   use "tamago324/lir.nvim"
   use "tamago324/lir-git-status.nvim"
 
-  -- use "github/copilot.vim"
-
   use "nvim-lua/lsp_extensions.nvim"
   use "jose-elias-alvarez/null-ls.nvim"
 
@@ -94,79 +92,17 @@ require("packer").startup(function()
   use "tjdevries/express_line.nvim"
   use "j-hui/fidget.nvim"
 
-  -- use "tjdevries/cyclist.vim"
-
   use "folke/trouble.nvim"
 
   use "kyazdani42/nvim-web-devicons"
-  --   use "ryanoasis/vim-devicons"
 
-  use {
-    "nvim-lualine/lualine.nvim",
-    requires = { "rlch/github-notifications.nvim" },
-    event = "VimEnter",
-    config = [[require('barometer.config.lualine')]],
-    wants = "nvim-web-devicons",
-    disable = true,
-  }
-
-  use {
-    "kdheepak/tabline.nvim",
-    config = function()
-      require("tabline").setup {
-        enable = true,
-        options = {
-          -- If lualine is installed tabline will use separators configured in lualine by default.
-          -- These options can be used to override those settings.
-          section_separators = { "", "" },
-          component_separators = { "", "" },
-          max_bufferline_percent = 66, -- set to nil by default, and it uses vim.o.columns * 2/3
-          show_tabs_always = true, -- this shows tabs only when there are more than one tab or if the first tab is named
-          show_devicons = true, -- this shows devicons in buffer section
-          show_bufnr = true, -- this appends [bufnr] to buffer section,
-          show_filename_only = false, -- shows base filename only instead of relative path in filename
-          modified_icon = "+ ", -- change the default modified icon
-          modified_italic = false,
-        },
-      }
-      vim.cmd [[
-   set guioptions-=e " Use showtabline in gui vim
-   set sessionoptions+=tabpages,globals " store tabpages and globals in session
-   ]]
-    end,
-    disable = true,
-  }
-
-  use {
-    "SmiteshP/nvim-gps",
-    requires = "nvim-treesitter/nvim-treesitter",
-    wants = "nvim-treesitter",
-    module = "nvim-gps",
-    config = function()
-      require("nvim-gps").setup { separator = " " }
-    end,
-  }
-
-  use "jnurmine/Zenburn"
   use "lfv89/vim-interestingwords"
 
-  use "doums/darcula"
-  use "tomasiser/vim-code-dark"
-
-  use "folke/tokyonight.nvim"
-
-  use "juanpabloaj/vim-pixelmuerto"
-  use "ron-rs/ron.vim"
-  use "drewtempelmeyer/palenight.vim"
-
-  -- use "navarasu/onedark.nvim"
-  use "olimorris/onedarkpro.nvim"
-
-  -- use "glepnir/spaceline.vim"
-
   use "ful1e5/onedark.nvim"
-  use "Mofiqul/vscode.nvim"
 
   use "feline-nvim/feline.nvim"
   use "catppuccin/nvim"
+
+  use "akinsho/bufferline.nvim"
+  use "lewis6991/gitsigns.nvim"
 end)
