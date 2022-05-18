@@ -23,13 +23,13 @@ nnoremap <Leader>nh :nohlsearch<CR>
 nmap <silent> <Leader>l <cmd>lua require('barometer.telescope').find_files()<CR>
 nmap <silent> <Leader>gg <cmd>lua require('barometer.telescope').git_files()<CR>
 nmap <silent> <Leader>ff <cmd>lua require('barometer.telescope').live_grep()<CR>
+nmap <silent> <Leader>fa <cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>
 nmap <silent> <Leader>ss <cmd>lua require('barometer.telescope').curr_buffer()<CR>
 nmap <silent> <Leader>b <cmd>lua require('barometer.telescope').buffers()<CR>
 nmap <silent> <Leader>tr <cmd>lua require('barometer.telescope').find_current_file()<CR>
 nmap <silent> <Leader>ds <cmd>lua require('barometer.telescope').document_symbols()<CR>
 nmap <silent> <Leader>dd <cmd>lua require('barometer.telescope').diagnostics()<CR>
 nmap <silent> <Leader>sc <cmd>lua require('barometer.telescope').list_colorschemes()<CR>
-" nmap <silent> <Leader>gs <cmd>lua require('barometer.telescope').git_status()<CR>
 nnoremap gr <cmd>lua require('barometer.telescope').lsp_references()<CR>
 nnoremap gi <cmd>lua require('barometer.telescope').lsp_implementations()<CR>
 nmap <silent> <Leader>h <cmd>Telescope help_tags<CR>
