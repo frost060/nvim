@@ -58,8 +58,8 @@ set softtabstop=2
 set shiftround
 set expandtab
 
-" set pumblend=20
-" set winblend=20
+set pumblend=20
+set winblend=20
 
 " set list
 " set listchars=tab:▸\ ,extends:❯,precedes:❮
@@ -93,3 +93,4 @@ let g:loaded_netrw       = 1
 let g:loaded_netrwPlugin = 1
 
 let g:vsnip_snippet_dir = "~/.vim/snippets"
+

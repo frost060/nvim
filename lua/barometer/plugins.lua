@@ -21,7 +21,7 @@ require("packer").startup(function()
   use "tpope/vim-fugitive" -- Git commands in nvim
   use "tpope/vim-commentary"
   use "tpope/vim-surround"
-  use "jiangmiao/auto-pairs"
+  use "windwp/nvim-autopairs"
 
   -- UI to select things (files, grep results, open buffers...)
   use { "nvim-telescope/telescope.nvim", requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } } }
@@ -80,9 +80,11 @@ require("packer").startup(function()
   use "vim-test/vim-test"
 
   use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-buffer"
-  use "hrsh7th/cmp-path"
-  use "hrsh7th/cmp-vsnip"
+  -- use "hrsh7th/cmp-buffer"
+  -- use "hrsh7th/cmp-path"
+  -- use "hrsh7th/cmp-vsnip"
+  use "rafamadriz/friendly-snippets"
+  use "L3MON4D3/LuaSnip"
   use "hrsh7th/nvim-cmp"
 
   use "onsails/lspkind-nvim"
@@ -106,4 +108,13 @@ require("packer").startup(function()
   use { "akinsho/bufferline.nvim", tag = "v2.*", requires = "kyazdani42/nvim-web-devicons" }
 
   use "lewis6991/gitsigns.nvim"
+
+  use "Mofiqul/vscode.nvim"
+  use {
+    "kyazdani42/nvim-tree.lua",
+    requires = {
+      "kyazdani42/nvim-web-devicons", -- optional, for file icon
+    },
+    tag = "nightly", -- optional, updated every week. (see issue #1193)
+  }
 end)
