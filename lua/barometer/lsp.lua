@@ -226,13 +226,13 @@ augroup BAROMETER_JENKINSFILE
 augroup END
 ]]
 
-cmd [[
-augroup BAROMETER_JDTLS
-    autocmd!
-    autocmd BufWritePre * %s/\s\+$//e
-    autocmd FileType java lua require('jdtls').start_or_attach({cmd = {'java-lsp.sh'}})
-augroup END
-]]
+-- cmd [[
+-- augroup BAROMETER_JDTLS
+--     autocmd!
+--     autocmd BufWritePre * %s/\s\+$//e
+--     autocmd FileType java lua require('jdtls').start_or_attach({cmd = {'java-lsp.sh'}})
+-- augroup END
+-- ]]
 
 function _G.workspace_diagnostics_status()
   if #vim.lsp.buf_get_clients() == 0 then

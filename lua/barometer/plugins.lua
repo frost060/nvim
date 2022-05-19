@@ -110,11 +110,4 @@ require("packer").startup(function()
   use "lewis6991/gitsigns.nvim"
 
   use "Mofiqul/vscode.nvim"
-  use {
-    "kyazdani42/nvim-tree.lua",
-    requires = {
-      "kyazdani42/nvim-web-devicons", -- optional, for file icon
-    },
-    tag = "nightly", -- optional, updated every week. (see issue #1193)
-  }
 end)
