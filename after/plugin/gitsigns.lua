@@ -1,31 +1,23 @@
-local ok, signs = pcall(require, "gitsigns")
-if not ok then
-  return
-end
-
-signs.setup {
+require("gitsigns").setup {
   signs = {
-    add = { hl = "GitSignsAdd", text = "│", numhl = "GitSignsAddNr" },
-    change = { hl = "GitSignsChange", text = "│", numhl = "GitSignsChangeNr" },
-    delete = { hl = "GitSignsDelete", text = "_", numhl = "GitSignsDeleteNr" },
-    topdelete = { hl = "GitSignsDelete", text = "‾", numhl = "GitSignsDeleteNr" },
-    changedelete = { hl = "GitSignsDelete", text = "~", numhl = "GitSignsChangeNr" },
+    add = { hl = "GitSignsAdd", text = "│", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
+    change = { hl = "GitSignsChange", text = "│", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+    delete = { hl = "GitSignsDelete", text = "_", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
+    topdelete = { hl = "GitSignsDelete", text = "‾", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
+    changedelete = { hl = "GitSignsChange", text = "~", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
   },
-
-  -- Can't decide if I like this or not :)
   numhl = false,
-  keymaps = {
-    -- Default keymap options
-    noremap = true,
-    buffer = true,
-
-    ["n <space>hd"] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'" },
-    ["n <space>hu"] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'" },
-
-    -- ['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
-    -- ['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
-    -- ['n <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
-    -- ['n <leader>hp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-    -- ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line()<CR>',
+  linehl = false,
+  keymaps = {},
+  watch_gitdir = {
+    interval = 1000,
+  },
+  signcolumn = false,
+  current_line_blame = false,
+  sign_priority = 6,
+  update_debounce = 100,
+  status_formatter = nil, -- Use default
+  diff_opts = {
+    internal = true, -- If luajit is present
   },
 }

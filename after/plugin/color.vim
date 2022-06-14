@@ -6,9 +6,16 @@ set ttyfast
 set termguicolors
 set t_Co=256
 set t_ut=
+let &t_ZH="\e[3m"
+let &t_ZR="\e[23m"
+
+let g:gruvbox_italic=0
+let g:gruvbox_italicize_comments=0
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 set background=dark
-colorscheme catppuccin
+colorscheme gruvbox
 
 highlight DiagnosticUnderlineError cterm=undercurl gui=undercurl
 highlight DiagnosticUnderlineWarn cterm=undercurl gui=undercurl

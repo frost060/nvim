@@ -57,7 +57,6 @@ require("packer").startup(function()
   use "rust-lang/rust.vim"
 
   use "nanotee/sqls.nvim"
-
   use "jose-elias-alvarez/nvim-lsp-ts-utils"
   use "windwp/nvim-ts-autotag"
 
@@ -70,7 +69,7 @@ require("packer").startup(function()
   use "sbdchd/neoformat"
 
   -- Themes
-  use "morhetz/gruvbox"
+  use "gruvbox-community/gruvbox"
   use "tjdevries/colorbuddy.vim"
   use "tjdevries/gruvbuddy.nvim"
   use "norcalli/nvim-colorizer.lua"
@@ -79,35 +78,55 @@ require("packer").startup(function()
 
   use "vim-test/vim-test"
 
-  use "hrsh7th/cmp-nvim-lsp"
-  -- use "hrsh7th/cmp-buffer"
-  -- use "hrsh7th/cmp-path"
-  -- use "hrsh7th/cmp-vsnip"
-  use "rafamadriz/friendly-snippets"
-  use "L3MON4D3/LuaSnip"
-  use "hrsh7th/nvim-cmp"
+  use {
+    "hrsh7th/nvim-cmp",
+    requires = {
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lua",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-emoji",
+      {
+        -- Snippets
+        "L3MON4D3/LuaSnip",
+        requires = {
+          "saadparwaiz1/cmp_luasnip",
+          "rafamadriz/friendly-snippets",
+        },
+      },
+    },
+  }
+  use {
+    "weilbith/nvim-code-action-menu",
+    cmd = "CodeActionMenu",
+  }
 
   use "onsails/lspkind-nvim"
   use "hrsh7th/vim-vsnip"
   use "hrsh7th/vim-vsnip-integ"
 
-  use "tjdevries/express_line.nvim"
-  use "j-hui/fidget.nvim"
-
   use "folke/trouble.nvim"
-
-  use "kyazdani42/nvim-web-devicons"
-
-  use "lfv89/vim-interestingwords"
 
   use "ful1e5/onedark.nvim"
 
-  use "feline-nvim/feline.nvim"
-  use "catppuccin/nvim"
-
-  use { "akinsho/bufferline.nvim", tag = "v2.*", requires = "kyazdani42/nvim-web-devicons" }
-
-  use "lewis6991/gitsigns.nvim"
-
   use "Mofiqul/vscode.nvim"
+  use "tpope/vim-vividchalk"
+  -- use "akinsho/bufferline.nvim"
+
+  -- use "kyazdani42/nvim-web-devicons"
+
+  use {
+    "lewis6991/gitsigns.nvim",
+    requires = "nvim-lua/plenary.nvim",
+  }
+
+  use "folke/tokyonight.nvim"
+  use "marko-cerovac/material.nvim"
+  use "catppuccin/nvim"
+  use "feline-nvim/feline.nvim"
+  use "fxn/vim-monochrome"
+  use "Lokaltog/vim-monotone"
+
+  use "marciomazza/vim-brogrammer-theme"
+  use "shaunsingh/nord.nvim"
 end)

@@ -1,6 +1,13 @@
 -- TELESCOPE
 require("telescope").setup {
   defaults = {
+    file_ignore_patterns = {
+      "node_modules",
+      ".work/.*",
+      ".idea/.*",
+      "dist/.*",
+      ".git/.*",
+    },
     vimgrep_arguments = {
       "rg",
       "--color=never",
@@ -11,7 +18,7 @@ require("telescope").setup {
       "--smart-case",
     },
     prompt_prefix = " 🔍 ",
-    selection_caret = "  ",
+    selection_caret = "❯ ",
     entry_prefix = "  ",
     initial_mode = "insert",
     selection_strategy = "reset",
@@ -31,7 +38,6 @@ require("telescope").setup {
       preview_cutoff = 120,
     },
     file_sorter = require("telescope.sorters").get_fuzzy_file,
-    file_ignore_patterns = { "node_modules" },
     generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
     path_display = { "truncate" },
     winblend = 0,

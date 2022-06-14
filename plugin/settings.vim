@@ -58,13 +58,13 @@ set softtabstop=2
 set shiftround
 set expandtab
 
-set pumblend=20
-set winblend=20
+set pumblend=0
+set winblend=0
 
 " set list
 " set listchars=tab:▸\ ,extends:❯,precedes:❮
 set ruler
-set laststatus=2
+set laststatus=3
 
 " ctags tags file
 set tags=./tags;

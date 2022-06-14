@@ -55,7 +55,7 @@ augroup END
 augroup ft_java
   au!
   au BufEnter,BufNewFile,BufRead *.java setlocal
-        \ tabstop=4 shiftwidth=4 softtabstop=4
+        \ tabstop=4 shiftwidth=4 softtabstop=4 colorcolumn=100
 augroup END
 
 " Quickfix List
