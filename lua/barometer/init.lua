@@ -1,5 +1,5 @@
 require "barometer.plugins"
-
+require "barometer.neogit"
 require "barometer.treesitter"
 require "barometer.telescope"
 require "barometer.lsp"

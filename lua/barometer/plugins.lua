@@ -130,4 +130,5 @@ require("packer").startup(function()
 
   use "marciomazza/vim-brogrammer-theme"
   use "shaunsingh/nord.nvim"
+  use "TimUntersberger/neogit"
 end)
