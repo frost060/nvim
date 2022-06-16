@@ -13,9 +13,10 @@ nnoremap <C-k> :cprevious<CR>
 
 map <C-c> "+y
 
+" fugitive
 " nnoremap <Leader>gs :G<CR>
-noremap <Leader>gf :diffget //2<CR>
-noremap <Leader>gh :diffget //3<CR>
+" noremap <Leader>gf :diffget //2<CR>
+" noremap <Leader>gh :diffget //3<CR>
 
 nnoremap <Leader>nh :nohlsearch<CR>
 
@@ -72,6 +73,3 @@ omap <Leader>c  <Plug>Commentary
 nmap <Leader>cc <Plug>CommentaryLine
 
 nmap mm :nohl<CR>
-
-nmap <Leader>vv :DiffviewOpen<CR>
-nmap <Leader>vc :DiffviewClose<CR>
