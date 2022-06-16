@@ -120,7 +120,8 @@ require("packer").startup(function()
     requires = "nvim-lua/plenary.nvim",
   }
 
-  use "folke/tokyonight.nvim"
+  -- use "folke/tokyonight.nvim"
+  use "ghifarit53/tokyonight-vim"
   use "marko-cerovac/material.nvim"
   use "catppuccin/nvim"
   use "feline-nvim/feline.nvim"

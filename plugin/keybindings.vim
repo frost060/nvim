@@ -30,6 +30,7 @@ nmap <silent> <Leader>tr <cmd>lua require('barometer.telescope').find_current_fi
 nmap <silent> <Leader>ds <cmd>lua require('barometer.telescope').document_symbols()<CR>
 nmap <silent> <Leader>dd <cmd>lua require('barometer.telescope').diagnostics()<CR>
 nmap <silent> <Leader>sc <cmd>lua require('barometer.telescope').list_colorschemes()<CR>
+nmap <silent> <Leader>ab <cmd>lua require('barometer.telescope').anime_selector()<CR>
 nnoremap gr <cmd>lua require('barometer.telescope').lsp_references()<CR>
 nnoremap gi <cmd>lua require('barometer.telescope').lsp_implementations()<CR>
 nmap <silent> <Leader>h <cmd>Telescope help_tags<CR>
@@ -74,7 +75,3 @@ nmap mm :nohl<CR>
 
 nmap <Leader>vv :DiffviewOpen<CR>
 nmap <Leader>vc :DiffviewClose<CR>
-
-" Nvim Tree
-nnoremap <C-n> :NvimTreeToggle <CR>
-nnoremap <leader>z :NvimTreeFocus<CR>
