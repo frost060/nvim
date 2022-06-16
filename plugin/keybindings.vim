@@ -14,9 +14,9 @@ nnoremap <C-k> :cprevious<CR>
 map <C-c> "+y
 
 " fugitive
-" nnoremap <Leader>gs :G<CR>
-" noremap <Leader>gf :diffget //2<CR>
-" noremap <Leader>gh :diffget //3<CR>
+nnoremap <Leader>gs :G<CR>
+noremap <Leader>gf :diffget //2<CR>
+noremap <Leader>gh :diffget //3<CR>
 
 nnoremap <Leader>nh :nohlsearch<CR>
 
