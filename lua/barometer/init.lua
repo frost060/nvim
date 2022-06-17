@@ -24,6 +24,8 @@ if fn.executable "stylua" == 0 then
 end
 
 vim.cmd [[
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline_powerline_fonts = 1
   augroup StyluaAuto
     autocmd BufWritePre *.lua :lua require("barometer.stylua").format()
   augroup END

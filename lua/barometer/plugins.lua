@@ -120,8 +120,8 @@ require("packer").startup(function()
     requires = "nvim-lua/plenary.nvim",
   }
 
-  -- use "folke/tokyonight.nvim"
-  use "ghifarit53/tokyonight-vim"
+  use "folke/tokyonight.nvim"
+  -- use "ghifarit53/tokyonight-vim"
   use "marko-cerovac/material.nvim"
   use "catppuccin/nvim"
   use "feline-nvim/feline.nvim"
@@ -131,4 +131,6 @@ require("packer").startup(function()
   use "marciomazza/vim-brogrammer-theme"
   use "shaunsingh/nord.nvim"
   use "TimUntersberger/neogit"
+  use "vim-airline/vim-airline"
+  use "vim-airline/vim-airline-themes"
 end)
