@@ -23,7 +23,7 @@ set wildmenu
 set scrolloff=5
 set number
 set relativenumber
-set cursorline
+" set cursorline
 set wrap
 set showmatch
 set backspace=2
@@ -52,14 +52,14 @@ set ignorecase
 set smartcase  "Do not ignore case, if uppercase is in search term
 
 " Indenting
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=8
 set shiftround
 set expandtab
 
-set pumblend=20
-set winblend=20
+" set pumblend=0
+" set winblend=0
 
 " set list
 " set listchars=tab:▸\ ,extends:❯,precedes:❮

@@ -40,7 +40,7 @@ require("telescope").setup {
     file_sorter = require("telescope.sorters").get_fuzzy_file,
     generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
     path_display = { "truncate" },
-    winblend = 20,
+    winblend = 0,
     border = {},
     borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
     color_devicons = true,
@@ -208,5 +208,6 @@ local function image_selector(prompt, cwd)
 end
 
 M.anime_selector = image_selector("< Anime Bobs > ", "~/dev/anime-wallpapers")
+M.wallpaper = image_selector("< Wallpaper > ", "~/Pictures")
 
 return M

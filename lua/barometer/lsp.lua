@@ -2,8 +2,6 @@
 -- https://github.com/mrnugget/vimconfig/blob/master/lua/lsp.lua
 local cmd = vim.cmd
 
-local lspconfig_util = require "lspconfig.util"
-
 local function setup_signs()
   local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
   for type, icon in pairs(signs) do
@@ -13,19 +11,6 @@ local function setup_signs()
 end
 
 setup_signs()
-
-local function setup_diagnostics()
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = {
-      update_in_insert = false,
-      virtual_text = true,
-      underline = false,
-      signs = true,
-      prefix = "", -- Could be '●', '▎', 'x'
-      spacing = 4,
-    },
-  })
-end
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -89,7 +74,7 @@ local on_attach = function(client, bufnr)
   -- have a fixed column for the diagnostics to appear in
   -- this removes the jitter when warnings/errors flow in
   vim.cmd [[set signcolumn=yes]]
-  vim.cmd [[set colorcolumn=100]]
+  -- vim.cmd [[set colorcolumn=100]]
 end
 
 require("lspconfig").dockerls.setup {}
@@ -137,8 +122,6 @@ require("lspconfig").groovyls.setup {
   cmd = { "groovy-lsp.sh" },
   filetypes = { "groovy", "jenkinsfile" },
 }
-
---Enable (broadcasting) snippet capability for completion
 
 require("lspconfig").html.setup {
   capabilities = capabilities,
@@ -312,6 +295,13 @@ require("lspkind").init {
   mode = "symbol_text",
   -- preset = "codicons",
 }
+local source_mapping = {
+  buffer = "[Buffer]",
+  nvim_lsp = "[LSP]",
+  nvim_lua = "[Lua]",
+  cmp_tabnine = "[TN]",
+  path = "[Path]",
+}
 
 cmp.setup {
   window = {
@@ -339,26 +329,60 @@ cmp.setup {
     ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp_types.SelectBehavior.Insert },
     ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp_types.SelectBehavior.Insert },
   },
-
   formatting = {
-    format = function(_, vim_item)
+    format = function(entry, vim_item)
       local icons = require "barometer.lspkind_icons"
       vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
-
+      local menu = source_mapping[entry.source.name]
+      if entry.source.name == "cmp_tabnine" then
+        if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
+          menu = entry.completion_item.data.detail .. " " .. menu
+        end
+        vim_item.kind = ""
+      end
+      vim_item.menu = menu
       return vim_item
     end,
   },
   snippet = {
     expand = function(args)
+      -- For `vsnip` user.
+      -- vim.fn["vsnip#anonymous"](args.body)
+
+      -- For `luasnip` user.
       require("luasnip").lsp_expand(args.body)
+
+      -- For `ultisnips` user.
+      -- vim.fn["UltiSnips#Anon"](args.body)
     end,
   },
   sources = {
+    -- tabnine completion? yayaya
+
+    { name = "cmp_tabnine" },
+
     { name = "nvim_lsp" },
-    { name = "vsnip" },
-    { name = "buffer", keyword_length = 5 },
-    { name = "path" },
+
+    -- For vsnip user.
+    -- { name = 'vsnip' },
+
+    -- For luasnip user.
+    { name = "luasnip" },
+
+    -- For ultisnips user.
+    -- { name = 'ultisnips' },
+
+    { name = "buffer" },
   },
+}
+
+local tabnine = require "cmp_tabnine.config"
+tabnine:setup {
+  max_lines = 1000,
+  max_num_results = 20,
+  sort = true,
+  run_on_every_keystroke = true,
+  snippet_placeholder = "..",
 }
 
 -- Set configuration for specific filetype.
@@ -490,4 +514,38 @@ vim.g.completion_chain_complete_list = {
   { complete_items = { "lsp", "snippet" } },
   { mode = "<c-p>" },
   { mode = "<c-n>" },
+}
+
+local opts = {
+  -- whether to highlight the currently hovered symbol
+  -- disable if your cpu usage is higher than you want it
+  -- or you just hate the highlight
+  -- default: true
+  highlight_hovered_item = true,
+
+  -- whether to show outline guides
+  -- default: true
+  show_guides = true,
+}
+
+require("symbols-outline").setup(opts)
+
+local snippets_paths = function()
+  local plugins = { "friendly-snippets" }
+  local paths = {}
+  local path
+  local root_path = vim.env.HOME .. "/.vim/plugged/"
+  for _, plug in ipairs(plugins) do
+    path = root_path .. plug
+    if vim.fn.isdirectory(path) ~= 0 then
+      table.insert(paths, path)
+    end
+  end
+  return paths
+end
+
+require("luasnip.loaders.from_vscode").lazy_load {
+  paths = snippets_paths(),
+  include = nil, -- Load all languages
+  exclude = {},
 }
