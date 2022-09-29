@@ -108,5 +108,18 @@ require("packer").startup(function()
   use {
     "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
+    disable = true,
   }
+
+  use "Mofiqul/vscode.nvim"
+  use {'shaunsingh/oxocarbon.nvim', run = './install.sh'}
+  use { "catppuccin/nvim", as = "catppuccin" }
+  use "rose-pine/neovim"
+  use "rmehri01/onenord.nvim"
+
+  -- use "tjdevries/colorbuddy.vim"
+  -- use "tjdevries/gruvbuddy.nvim"
+  -- use "tjdevries/cyclist.vim"
+  -- use "tjdevries/express_line.nvim"
+  -- use "j-hui/fidget.nvim"
 end)

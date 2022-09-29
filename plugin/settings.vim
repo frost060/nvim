@@ -52,9 +52,9 @@ set ignorecase
 set smartcase  "Do not ignore case, if uppercase is in search term
 
 " Indenting
-set tabstop=4
-set shiftwidth=4
-set softtabstop=8
+set tabstop=2
+set shiftwidth=2
+set softtabstop=4
 set shiftround
 set expandtab
 

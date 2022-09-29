@@ -18,11 +18,11 @@ require("nvim-autopairs").setup {}
 
 -- require("bufferline").setup {}
 
-require("lualine").setup {
-  options = {
-    icons_enabled = true,
-  },
-}
+-- require("lualine").setup {
+--   options = {
+--     icons_enabled = true,
+--   },
+-- }
 
 local fn = vim.fn
 

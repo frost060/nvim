@@ -44,6 +44,9 @@ local on_attach = function(client, bufnr)
     -- disable tsserver formatting because we use prettier/eslint for that
     -- client.resolved_capabilities.document_formatting = false
 
+    vim.cmd "set tabstop=2"
+    vim.cmd "set shiftwidth=2"
+    vim.cmd "set softtabstop=4"
     vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting()"
 
     local ts_utils = require "nvim-lsp-ts-utils"
