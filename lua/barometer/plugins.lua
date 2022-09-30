@@ -112,10 +112,15 @@ require("packer").startup(function()
   }
 
   use "Mofiqul/vscode.nvim"
-  use {'shaunsingh/oxocarbon.nvim', run = './install.sh'}
   use { "catppuccin/nvim", as = "catppuccin" }
   use "rose-pine/neovim"
   use "rmehri01/onenord.nvim"
+  use "mhartington/oceanic-next"
+  use "projekt0n/github-nvim-theme"
+  use "olivercederborg/poimandres.nvim"
+  use 'B4mbus/oxocarbon-lua.nvim'
+  use "lewpoly/sherbet.nvim"
+  use "UndeadLeech/vim-undead"
 
   -- use "tjdevries/colorbuddy.vim"
   -- use "tjdevries/gruvbuddy.nvim"

@@ -88,3 +88,23 @@ require('onenord').setup({
   custom_highlights = {}, -- Overwrite default highlight groups
   custom_colors = {}, -- Overwrite default colors
 })
+
+require('github-theme').setup({
+  dark_float = false,
+  dark_sidebar = false,
+  transparent = true,
+})
+
+require('poimandres').setup {
+  bold_vert_split = false, -- use bold vertical separators
+  dim_nc_background = true, -- dim 'non-current' window backgrounds
+  disable_background = true, -- disable background
+  disable_float_background = true, -- disable background for floats
+  disable_italics = false, -- disable italics
+}
+
+vim.g.sherbet_italic_keywords = true
+vim.g.sherbet_italic_functions = false
+vim.g.sherbet_italic_comments = true
+vim.g.sherbet_italic_loops = true
+vim.g.sherbet_italic_conditionals = true

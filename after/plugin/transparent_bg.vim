@@ -19,8 +19,8 @@ augroup TransparentBg
     autocmd vimenter * hi clear SignColumn
     autocmd vimenter * hi clear StatusLine
 
-    " autocmd vimenter * hi clear LineNr
-    " autocmd vimenter * hi LineNr guifg=#71797E ctermfg=243
+    autocmd vimenter * hi clear LineNr
+    autocmd vimenter * hi LineNr guifg=#71797E ctermfg=243
     autocmd vimenter * hi Comment guifg=#71797E
 
     autocmd vimenter * hi ColorColumn ctermbg=0 guibg=grey

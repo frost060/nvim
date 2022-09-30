@@ -1,4 +1,3 @@
-" Template: Base 16 Default Scheme by Chris Kempson (http://chriskempson.com)
 " Vim Airline Undead by UndeadLeech (https://undeadleech.com)
 let g:airline#themes#undead#palette = {}
 

@@ -80,6 +80,8 @@ local on_attach = function(client, bufnr)
   -- vim.cmd [[set colorcolumn=100]]
 end
 
+-- dockerls
+-- npm install -g dockerfile-language-server-nodejs
 require("lspconfig").dockerls.setup {}
 
 require("lspconfig").jsonls.setup {
@@ -166,8 +168,8 @@ require("lspconfig").tsserver.setup {
   root_dir = util.root_pattern ".git",
 }
 
+-- brew install lua-language-server
 require("lspconfig").sumneko_lua.setup {
-  cmd = { "lua-lsp.sh" },
   settings = {
     Lua = {
       runtime = {
@@ -462,10 +464,8 @@ function _G.workspace_diagnostics_status()
   end
 
   local status = {}
-  local errors = #vim.diagnostic.get(
-    0,
-    { severity = { min = vim.diagnostic.severity.ERROR, max = vim.diagnostic.severity.ERROR } }
-  )
+  local errors =
+    #vim.diagnostic.get(0, { severity = { min = vim.diagnostic.severity.ERROR, max = vim.diagnostic.severity.ERROR } })
   if errors > 0 then
     table.insert(status, "E: " .. errors)
   end
@@ -478,18 +478,14 @@ function _G.workspace_diagnostics_status()
     table.insert(status, "W: " .. warnings)
   end
 
-  local hints = #vim.diagnostic.get(
-    0,
-    { severity = { min = vim.diagnostic.severity.HINT, max = vim.diagnostic.severity.HINT } }
-  )
+  local hints =
+    #vim.diagnostic.get(0, { severity = { min = vim.diagnostic.severity.HINT, max = vim.diagnostic.severity.HINT } })
   if hints > 0 then
     table.insert(status, "H: " .. hints)
   end
 
-  local infos = #vim.diagnostic.get(
-    0,
-    { severity = { min = vim.diagnostic.severity.INFO, max = vim.diagnostic.severity.INFO } }
-  )
+  local infos =
+    #vim.diagnostic.get(0, { severity = { min = vim.diagnostic.severity.INFO, max = vim.diagnostic.severity.INFO } })
   if infos > 0 then
     table.insert(status, "I: " .. infos)
   end
@@ -552,3 +548,10 @@ require("luasnip.loaders.from_vscode").lazy_load {
   include = nil, -- Load all languages
   exclude = {},
 }
+
+-- bufls
+require("lspconfig").bufls.setup {}
+
+-- bashls
+-- npm i -g bash-language-server
+require("lspconfig").bashls.setup {}

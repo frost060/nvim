@@ -1,3 +1,4 @@
+-- cargo install stylua
 local Path = require "plenary.path"
 local Job = require "plenary.job"
 
