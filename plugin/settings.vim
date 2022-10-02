@@ -14,7 +14,7 @@ set visualbell
 " set clipboard=unnamed
 set clipboard+=unnamedplus
 
-set showmode
+set noshowmode
 set showcmd
 set history=500
 set nocompatible
@@ -94,3 +94,7 @@ let g:loaded_netrwPlugin = 1
 
 let g:vsnip_snippet_dir = "~/.vim/snippets"
 
+set listchars=tab:⭲\ ,trail:~,extends:>,precedes:<,space:· 
+set list 
+hi Whitespace guifg=#505050 
+hi NonText guifg=#505050

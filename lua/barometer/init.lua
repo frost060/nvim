@@ -10,19 +10,56 @@ require("which-key").setup {}
 require("gitsigns").setup()
 require("nvim-autopairs").setup {}
 
--- -- Catppuccin needs termguicolors set
--- vim.opt.termguicolors = true
--- require("feline").setup {
---   components = require "catppuccin.core.integrations.feline",
--- }
+require("bufferline").setup {
+  options = {
+    indicator = {
+      icon = "▎", -- this should be omitted if indicator style is not 'icon'
+      style = "none",
+    },
+    modified_icon = "",
+    close_icon = "",
+    show_buffer_icons = false, -- disable filetype icons for buffers
+    show_buffer_close_icons = false,
+    show_buffer_default_icon = false, -- whether or not an unrecognised filetype should show a default icon
+    show_close_icon = true,
+    show_tab_indicators = false,
+    show_duplicate_prefix = false, -- whether to show duplicate buffer prefix
+  },
+  highlights = {
+    buffer_selected = {
+      italic = false,
+      bold = false,
+    },
+  },
+}
 
--- require("bufferline").setup {}
-
--- require("lualine").setup {
---   options = {
---     icons_enabled = true,
---   },
--- }
+require("lualine").setup {
+  options = {
+    icons_enabled = false,
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
+  },
+  sections = {
+    lualine_a = { "mode" },
+    lualine_b = { "branch", "diagnostics" },
+    lualine_c = { "filename" },
+    lualine_x = { "filetype" },
+    lualine_y = { "progress" },
+    lualine_z = { "location" },
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = { "filename" },
+    lualine_x = { "location" },
+    lualine_y = {},
+    lualine_z = {},
+  },
+  tabline = {},
+  winbar = {},
+  inactive_winbar = {},
+  extensions = {},
+}
 
 local fn = vim.fn
 

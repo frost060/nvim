@@ -168,6 +168,17 @@ require("lspconfig").tsserver.setup {
   root_dir = util.root_pattern ".git",
 }
 
+require("typescript").setup({
+    disable_commands = false, -- prevent the plugin from creating Vim commands
+    debug = false, -- enable debug logging for commands
+    go_to_source_definition = {
+        fallback = true, -- fall back to standard LSP definition on failure
+    },
+    server = { -- pass options to lspconfig's setup method
+        on_attach = on_attach,
+    },
+})
+
 -- brew install lua-language-server
 require("lspconfig").sumneko_lua.setup {
   settings = {
@@ -555,3 +566,11 @@ require("lspconfig").bufls.setup {}
 -- bashls
 -- npm i -g bash-language-server
 require("lspconfig").bashls.setup {}
+
+-- Lua
+require("lsp-colors").setup {
+  Error = "#db4b4b",
+  Warning = "#e0af68",
+  Information = "#0db9d7",
+  Hint = "#10B981",
+}

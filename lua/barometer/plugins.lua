@@ -62,6 +62,7 @@ require("packer").startup(function()
   use "tamago324/lir-git-status.nvim"
 
   use "jose-elias-alvarez/null-ls.nvim"
+  use "jose-elias-alvarez/typescript.nvim"
 
   use "sbdchd/neoformat"
 
@@ -107,9 +108,9 @@ require("packer").startup(function()
   use "navarasu/onedark.nvim"
   use {
     "nvim-lualine/lualine.nvim",
-    requires = { "kyazdani42/nvim-web-devicons", opt = true },
-    disable = true,
+    disable = false,
   }
+  use { "akinsho/bufferline.nvim", tag = "v2.*" }
 
   use "Mofiqul/vscode.nvim"
   use { "catppuccin/nvim", as = "catppuccin" }
@@ -118,9 +119,14 @@ require("packer").startup(function()
   use "mhartington/oceanic-next"
   use "projekt0n/github-nvim-theme"
   use "olivercederborg/poimandres.nvim"
-  use 'B4mbus/oxocarbon-lua.nvim'
+  use "B4mbus/oxocarbon-lua.nvim"
   use "lewpoly/sherbet.nvim"
   use "UndeadLeech/vim-undead"
+  use "overcache/NeoSolarized"
+  use "LunarVim/horizon.nvim"
+  use "cocopon/iceberg.vim"
+
+  use "folke/lsp-colors.nvim"
 
   -- use "tjdevries/colorbuddy.vim"
   -- use "tjdevries/gruvbuddy.nvim"

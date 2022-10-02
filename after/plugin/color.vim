@@ -4,7 +4,6 @@ syntax enable
 set ttyfast
 
 set termguicolors
-" set notermguicolors
 set t_Co=256
 set t_ut=
 let &t_ZH="\e[3m"
@@ -26,19 +25,19 @@ let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
 
 " colorscheme vscode
-colorscheme OceanicNext
+" colorscheme OceanicNext
 " colorscheme oxocarbon-lua
 " colorscheme github_dark
 " colorscheme oxocarbon
 " colorscheme catppuccin
 " colorscheme poimandres
 " colorscheme undead
+" colorscheme tokyonight
+colorscheme iceberg
 
 highlight DiagnosticUnderlineError cterm=undercurl gui=undercurl
 highlight DiagnosticUnderlineWarn cterm=undercurl gui=undercurl
 highlight DiagnosticUnderlineInfo cterm=undercurl gui=undercurl
 highlight DiagnosticUnderlineHint cterm=undercurl gui=undercurl
-
-highlight TelescopeSelection gui=bold " selected item
 
 highlight TelescopeSelection gui=bold

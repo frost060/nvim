@@ -1,5 +1,10 @@
+local disable = true
+if disable then
+  return
+end
+
 -- require('colorbuddy').colorscheme('gruvbuddy')
-require("tokyonight").setup({
+require("tokyonight").setup {
   -- your configuration comes here
   -- or leave it empty to use the default settings
   style = "storm", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
@@ -17,53 +22,53 @@ require("tokyonight").setup({
     floats = "dark", -- style for floating windows
   },
   sidebars = { "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
-})
+}
 
-require("catppuccin").setup({
-  transparent_background = true
-})
-require('rose-pine').setup({
-	--- @usage 'main' | 'moon'
-	dark_variant = 'main',
-	bold_vert_split = false,
-	dim_nc_background = false,
-	disable_background = true,
-	disable_float_background = true,
-	disable_italics = true,
+require("catppuccin").setup {
+  transparent_background = true,
+}
+require("rose-pine").setup {
+  --- @usage 'main' | 'moon'
+  dark_variant = "main",
+  bold_vert_split = false,
+  dim_nc_background = false,
+  disable_background = true,
+  disable_float_background = true,
+  disable_italics = true,
 
-	--- @usage string hex value or named color from rosepinetheme.com/palette
-	groups = {
-		background = 'base',
-		panel = 'surface',
-		border = 'highlight_med',
-		comment = 'muted',
-		link = 'iris',
-		punctuation = 'subtle',
+  --- @usage string hex value or named color from rosepinetheme.com/palette
+  groups = {
+    background = "base",
+    panel = "surface",
+    border = "highlight_med",
+    comment = "muted",
+    link = "iris",
+    punctuation = "subtle",
 
-		error = 'love',
-		hint = 'iris',
-		info = 'foam',
-		warn = 'gold',
+    error = "love",
+    hint = "iris",
+    info = "foam",
+    warn = "gold",
 
-		headings = {
-			h1 = 'iris',
-			h2 = 'foam',
-			h3 = 'rose',
-			h4 = 'gold',
-			h5 = 'pine',
-			h6 = 'foam',
-		}
-		-- or set all headings at once
-		-- headings = 'subtle'
-	},
+    headings = {
+      h1 = "iris",
+      h2 = "foam",
+      h3 = "rose",
+      h4 = "gold",
+      h5 = "pine",
+      h6 = "foam",
+    },
+    -- or set all headings at once
+    -- headings = 'subtle'
+  },
 
-	-- Change specific vim highlight groups
-	highlight_groups = {
-		ColorColumn = { bg = 'rose' }
-	}
-})
+  -- Change specific vim highlight groups
+  highlight_groups = {
+    ColorColumn = { bg = "rose" },
+  },
+}
 
-require('onenord').setup({
+require("onenord").setup {
   theme = nil, -- "dark" or "light". Alternatively, remove the option and set vim.o.background instead
   borders = true, -- Split window borders
   fade_nc = false, -- Fade non-current windows, making them more distinguishable
@@ -87,15 +92,15 @@ require('onenord').setup({
   },
   custom_highlights = {}, -- Overwrite default highlight groups
   custom_colors = {}, -- Overwrite default colors
-})
+}
 
-require('github-theme').setup({
+require("github-theme").setup {
   dark_float = false,
   dark_sidebar = false,
   transparent = true,
-})
+}
 
-require('poimandres').setup {
+require("poimandres").setup {
   bold_vert_split = false, -- use bold vertical separators
   dim_nc_background = true, -- dim 'non-current' window backgrounds
   disable_background = true, -- disable background
