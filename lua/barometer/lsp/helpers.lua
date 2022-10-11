@@ -28,4 +28,14 @@ helpers.goimports = function(wait_ms)
   vim.lsp.buf.formatting_sync()
 end
 
+helpers.format_lsp = function(bufnr)
+  vim.lsp.buf.format {
+    -- Never request tsserver for formatting, because we use prettier/eslint for that
+    filter = function(client)
+      return client.name ~= "tsserver" and client.name ~= "sumneko_lua"
+    end,
+    bufnr = bufnr,
+  }
+end
+
 return helpers

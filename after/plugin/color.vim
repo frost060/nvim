@@ -13,31 +13,21 @@ let g:gruvbox_italic=0
 let g:gruvbox_italicize_comments=0
 
 set background=dark
-let g:gruvbox_contrast_dark="medium"
-let g:tokyonight_transparent_background=1
-let g:tokyonight_enable_italic=0
-let g:tokyonight_disable_italic_comment=1
-let g:oxocarbon_lua_transparent = 1
-let g:oxocarbon_lua_alternative_telescope = 1
+let g:gruvbox_contrast_dark="hard"
 
-let g:catppuccin_flavour = "mocha" " latte, frappe, macchiato, mocha
-let g:oceanic_next_terminal_bold = 1
-let g:oceanic_next_terminal_italic = 1
-
-" colorscheme vscode
-" colorscheme OceanicNext
-" colorscheme oxocarbon-lua
-" colorscheme github_dark
-" colorscheme oxocarbon
-" colorscheme catppuccin
-" colorscheme poimandres
-" colorscheme undead
-" colorscheme tokyonight
-colorscheme iceberg
+colorscheme gruvbox
 
 highlight DiagnosticUnderlineError cterm=undercurl gui=undercurl
 highlight DiagnosticUnderlineWarn cterm=undercurl gui=undercurl
 highlight DiagnosticUnderlineInfo cterm=undercurl gui=undercurl
 highlight DiagnosticUnderlineHint cterm=undercurl gui=undercurl
 
-highlight TelescopeSelection gui=bold
+hi! link LspReferenceRead DiffChange
+hi! link LspReferenceText DiffChange
+hi! link LspReferenceWrite DiffChange
+hi! link LspSignatureActiveParameter GruvboxOrange
+
+hi! link TelescopeBorder GruvboxYellowBold
+hi! link TelescopePromptBorder Normal
+hi! link TelescopeResultsBorder FloatBorder
+hi! link TelescopePreviewBorder FloatBorder

@@ -1,6 +1,9 @@
 -- Reference LSP Config (Thorston Ball)
 -- https://github.com/mrnugget/vimconfig/blob/master/lua/lsp.lua
-local cmd = vim.cmd
+local lspconfig = require "lspconfig"
+
+vim.diagnostic.config { float = { source = "always" } }
+local formatting_augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 local function setup_signs()
   local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
@@ -16,68 +19,63 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protoco
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local on_attach = function(client, bufnr)
+  local function buf_set_keymap(binding, cmd)
+    local opts = { noremap = true, silent = true }
+    vim.api.nvim_buf_set_keymap(bufnr, "n", binding, cmd, opts)
+  end
+
+  local function create_autocmd(events, callback)
+    vim.api.nvim_create_autocmd(events, { buffer = bufnr, callback = callback })
+  end
+
   local filetype = vim.api.nvim_buf_get_option(0, "filetype")
-
   if filetype == "rust" then
-    vim.cmd [[autocmd BufWritePre <buffer> :lua require('barometer.lsp.helpers').format_rust()]]
-
-    vim.cmd [[autocmd BufEnter,BufNewFile,BufRead <buffer> nmap <buffer> gle <cmd>lua vim.lsp.codelens.refresh()<CR>]]
-    vim.cmd [[autocmd BufEnter,BufNewFile,BufRead <buffer> nmap <buffer> glr <cmd>lua vim.lsp.codelens.run()<CR>]]
-  end
-  if filetype == "go" then
-    vim.cmd [[autocmd BufWritePre <buffer> :lua require('barometer.lsp.helpers').goimports(2000)]]
-
+    buf_set_keymap("gle", "<cmd>lua vim.lsp.codelens.refresh()<CR>")
+    buf_set_keymap("glr", "<cmd>lua vim.lsp.codelens.run()<CR>")
+  elseif filetype == "go" then
     -- gopls requires a require to list workspace arguments.
-    vim.cmd [[autocmd BufEnter,BufNewFile,BufRead <buffer> map <buffer> <leader>fs <cmd>lua require('telescope.builtin').lsp_workspace_symbols { query = vim.fn.input("Query: ") }<cr>]]
-  end
-
-  --if filetype == "sql" then
-  --vim.cmd "autocmd BufWritePre *.sql lua vim.lsp.buf.formatting()"
-  --end
-
-  if filetype == "typescriptreact" or filetype == "typescript" then
+    buf_set_keymap(
+      "<leader>fs",
+      "lua require('telescope.builtin').lsp_workspace_symbols { query = vim.fn.input('Query: ')"
+    )
+  elseif filetype == "typescriptreact" or filetype == "typescript" then
     -- TypeScript/ESLint/Prettier
     -- Requirements:
     --   npm install -g typescript-language-server prettier eslint_d
     --   asdf reshim nodejs
-
-    -- disable tsserver formatting because we use prettier/eslint for that
-    -- client.resolved_capabilities.document_formatting = false
-
-    vim.cmd "set tabstop=2"
-    vim.cmd "set shiftwidth=2"
-    vim.cmd "set softtabstop=4"
-    vim.cmd "autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting()"
-
-    local ts_utils = require "nvim-lsp-ts-utils"
-    ts_utils.setup {
-      debug = true,
-      enable_import_on_completion = true,
-      eslint_enable_code_actions = true,
-      eslint_enable_disable_comments = true,
-      eslint_bin = "eslint_d",
-      eslint_enable_diagnostics = true,
-      eslint_show_rule_id = true,
-      auto_inlay_hints = false,
-
-      enable_formatting = true,
-      formatter = "prettier",
-
-      update_imports_on_move = true,
-    }
-
-    ts_utils.setup_client(client)
+    --
+    -- See the null-ls setup below for prettier/eslint_d config
+    buf_set_keymap("gs", ":TypescriptOrganizeImports<CR>")
+    buf_set_keymap("gi", ":TypescriptAddMissingImports<CR>")
+    -- buf_set_keymap("<leader>es", "mF:%!eslint_d --stdin --fix-to-stdout --stdin-filename %<CR>`F")
   end
 
-  -- https://github.com/neovim/nvim-lspconfig/wiki/UI-customization#show-source-in-diagnostics
-  vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
-  -- [DEPRECATED] vim.cmd [[autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics({ focusable = false })]]
+  -- formatting
+  if client.supports_method "textDocument/formatting" then
+    vim.api.nvim_clear_autocmds { group = formatting_augroup, buffer = bufnr }
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = formatting_augroup,
+      buffer = bufnr,
+      callback = function()
+        if filetype == "go" then
+          require("barometer.lsp.helpers").goimports(2000)
+        else
+          require("barometer.lsp.helpers").format_lsp(bufnr)
+        end
+      end,
+    })
+  end
+
+  require("lsp_signature").on_attach(client, bufnr)
+
+  create_autocmd("CursorHold", function()
+    vim.diagnostic.open_float { focusable = false }
+  end)
   -- 300ms of no cursor movement to trigger CursorHold
   vim.cmd [[set updatetime=300]]
   -- have a fixed column for the diagnostics to appear in
   -- this removes the jitter when warnings/errors flow in
   vim.cmd [[set signcolumn=yes]]
-  -- vim.cmd [[set colorcolumn=100]]
 end
 
 -- dockerls
@@ -122,16 +120,13 @@ require("lspconfig").sqls.setup {
 
 require("lspconfig").terraformls.setup {}
 
-require("lspconfig").groovyls.setup {
-  -- Unix
-  cmd = { "groovy-lsp.sh" },
-  filetypes = { "groovy", "jenkinsfile" },
-}
-
 require("lspconfig").html.setup {
   capabilities = capabilities,
 }
 
+-------------------------------------------------------------------------------
+-- gopls
+-------------------------------------------------------------------------------
 require("lspconfig").gopls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
@@ -158,8 +153,51 @@ require("null-ls").setup {
   },
 }
 
+-------------------------------------------------------------------------------
+-- null-ls for TypeScript/JS
+-------------------------------------------------------------------------------
+local js_filetypes = { "typescriptreact", "scss", "typescript", "javascript", "javascriptreact" }
+local null_ls = require "null-ls"
+null_ls.setup {
+  on_attach = on_attach,
+  sources = {
+    null_ls.builtins.diagnostics.eslint_d.with {
+      filetypes = js_filetypes,
+      condition = function(utils)
+        return utils.root_has_file { ".eslintrc.js" }
+      end,
+    },
+    null_ls.builtins.code_actions.eslint_d.with { filetypes = js_filetypes },
+    null_ls.builtins.formatting.prettier.with {
+      filetypes = js_filetypes,
+      prefer_local = "node_modules/.bin",
+      condition = function(utils)
+        return utils.root_has_file { "prettier.config.js", ".prettierrc", ".prettierignore" }
+      end,
+    },
+    null_ls.builtins.formatting.stylua.with {
+      filetypes = { "lua" },
+    },
+    null_ls.builtins.formatting.sql_formatter.with {
+      filetypes = { "sql" },
+      extra_args = function()
+        return {
+          "--config",
+          vim.fn.expand "~/.vim/sql-formatter.json",
+        }
+      end,
+    },
+    null_ls.builtins.formatting.shfmt.with {
+      filetypes = { "sh" },
+    },
+  },
+}
+
+-------------------------------------------------------------------------------
+-- tsserver for TypeScript
+-------------------------------------------------------------------------------
 local util = require "lspconfig/util"
-require("lspconfig").tsserver.setup {
+lspconfig.tsserver.setup {
   capabilities = capabilities,
   on_attach = on_attach,
   flags = {
@@ -168,17 +206,20 @@ require("lspconfig").tsserver.setup {
   root_dir = util.root_pattern ".git",
 }
 
-require("typescript").setup({
-    disable_commands = false, -- prevent the plugin from creating Vim commands
-    debug = false, -- enable debug logging for commands
-    go_to_source_definition = {
-        fallback = true, -- fall back to standard LSP definition on failure
-    },
-    server = { -- pass options to lspconfig's setup method
-        on_attach = on_attach,
-    },
-})
+require("typescript").setup {
+  disable_commands = false, -- prevent the plugin from creating Vim commands
+  debug = false, -- enable debug logging for commands
+  go_to_source_definition = {
+    fallback = true, -- fall back to standard LSP definition on failure
+  },
+  server = { -- pass options to lspconfig's setup method
+    on_attach = on_attach,
+  },
+}
 
+-------------------------------------------------------------------------------
+-- lua
+-------------------------------------------------------------------------------
 -- brew install lua-language-server
 require("lspconfig").sumneko_lua.setup {
   settings = {
@@ -242,20 +283,6 @@ vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", { expr = true })
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
 
-cmd [[
-augroup BAROMETER_JENKINSFILE
-    au BufNewFile,BufRead Jenkinsfile setf groovy
-augroup END
-]]
-
--- cmd [[
--- augroup BAROMETER_JDTLS
---     autocmd!
---     autocmd BufWritePre * %s/\s\+$//e
---     autocmd FileType java lua require('jdtls').start_or_attach({cmd = {'java-lsp.sh'}})
--- augroup END
--- ]]
-
 function _G.workspace_diagnostics_status()
   if #vim.lsp.buf_get_clients() == 0 then
     return ""
@@ -287,29 +314,9 @@ local cmp_types = require "cmp.types.cmp"
 
 vim.opt.completeopt = "menuone,noselect"
 
-local function border(hl_name)
-  return {
-    { "╭", hl_name },
-    { "─", hl_name },
-    { "╮", hl_name },
-    { "│", hl_name },
-    { "╯", hl_name },
-    { "─", hl_name },
-    { "╰", hl_name },
-    { "│", hl_name },
-  }
-end
-
-local cmp_window = require "cmp.utils.window"
-
-function cmp_window:has_scrollbar()
-  return false
-end
-
-local lspkind = require "lspkind"
 require("lspkind").init {
   mode = "symbol_text",
-  -- preset = "codicons",
+  preset = "codicons",
 }
 local source_mapping = {
   buffer = "[Buffer]",
@@ -320,14 +327,6 @@ local source_mapping = {
 }
 
 cmp.setup {
-  window = {
-    completion = {
-      border = border "CmpBorder",
-    },
-    documentation = {
-      border = border "CmpDocBorder",
-    },
-  },
   mapping = {
     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
     ["<C-d>"] = cmp.mapping.scroll_docs(4),
@@ -504,12 +503,6 @@ function _G.workspace_diagnostics_status()
   return table.concat(status, " | ")
 end
 
--- lsp-trouble.nvim
-require("trouble").setup {
-  auto_preview = false,
-  auto_close = true,
-}
-
 vim.api.nvim_set_keymap(
   "n",
   "<leader>xx",
@@ -574,3 +567,82 @@ require("lsp-colors").setup {
   Information = "#0db9d7",
   Hint = "#10B981",
 }
+
+-- Jump directly to the first available definition every time.
+vim.lsp.handlers["textDocument/definition"] = function(_, result)
+  if not result or vim.tbl_isempty(result) then
+    print "[LSP] Could not find definition"
+    return
+  end
+
+  if vim.tbl_islist(result) then
+    vim.lsp.util.jump_to_location(result[1], "utf-8")
+  else
+    vim.lsp.util.jump_to_location(result, "utf-8")
+  end
+end
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] =
+  vim.lsp.with(vim.lsp.handlers["textDocument/publishDiagnostics"], {
+    signs = {
+      severity_limit = "Error",
+    },
+    underline = {
+      severity_limit = "Warning",
+    },
+    virtual_text = true,
+  })
+
+
+_LspMessageBuffer = _LspMessageBuffer or vim.api.nvim_create_buf(false, true)
+
+-- TODO: map this to a keybind :)
+function LspShowMessageBuffer()
+  vim.cmd [[new]]
+  vim.cmd([[buffer ]] .. _LspMessageBuffer)
+end
+
+require("trouble").setup {
+  auto_preview = false,
+  auto_close = true,
+  action_keys = {
+    -- default binding is <esc> for this and it confuses me endlessly that I
+    -- can't just escape in that window.
+    cancel = {},
+  },
+}
+
+function _G.workspace_diagnostics_status()
+  if #vim.lsp.buf_get_clients() == 0 then
+    return ""
+  end
+
+  local status = {}
+  local errors =
+    #vim.diagnostic.get(0, { severity = { min = vim.diagnostic.severity.ERROR, max = vim.diagnostic.severity.ERROR } })
+  if errors > 0 then
+    table.insert(status, "E: " .. errors)
+  end
+
+  local warnings = #vim.diagnostic.get(
+    0,
+    { severity = { min = vim.diagnostic.severity.WARNING, max = vim.diagnostic.severity.WARNING } }
+  )
+  if warnings > 0 then
+    table.insert(status, "W: " .. warnings)
+  end
+
+  local hints =
+    #vim.diagnostic.get(0, { severity = { min = vim.diagnostic.severity.HINT, max = vim.diagnostic.severity.HINT } })
+  if hints > 0 then
+    table.insert(status, "H: " .. hints)
+  end
+
+  local infos =
+    #vim.diagnostic.get(0, { severity = { min = vim.diagnostic.severity.INFO, max = vim.diagnostic.severity.INFO } })
+  if infos > 0 then
+    table.insert(status, "I: " .. infos)
+  end
+
+  return table.concat(status, " | ")
+end

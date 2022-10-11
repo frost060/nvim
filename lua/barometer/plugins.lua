@@ -32,13 +32,6 @@ require("packer").startup(function()
 
   use "rcarriga/nvim-notify"
 
-  use {
-    "AckslD/nvim-neoclip.lua",
-    config = function()
-      require("neoclip").setup()
-    end,
-  }
-
   -- Highlight, edit, and navigate code using a fast incremental parsing library
   use "nvim-treesitter/nvim-treesitter"
   use "nvim-treesitter/nvim-treesitter-textobjects"
@@ -49,6 +42,7 @@ require("packer").startup(function()
   use "folke/which-key.nvim"
 
   use "mfussenegger/nvim-jdtls"
+  use "jose-elias-alvarez/typescript.nvim"
 
   use "ziglang/zig.vim"
   use "simrat39/rust-tools.nvim"
@@ -62,7 +56,6 @@ require("packer").startup(function()
   use "tamago324/lir-git-status.nvim"
 
   use "jose-elias-alvarez/null-ls.nvim"
-  use "jose-elias-alvarez/typescript.nvim"
 
   use "sbdchd/neoformat"
 
@@ -91,46 +84,15 @@ require("packer").startup(function()
   use "hrsh7th/vim-vsnip"
   use "hrsh7th/vim-vsnip-integ"
 
-  use "folke/trouble.nvim"
-
   use {
     "lewis6991/gitsigns.nvim",
     requires = "nvim-lua/plenary.nvim",
   }
 
-  use "folke/tokyonight.nvim"
-  -- use "ghifarit53/tokyonight-vim"
-  -- Lua
-  use {
-    "folke/zen-mode.nvim",
-  }
-  use "rebelot/kanagawa.nvim"
-  use "navarasu/onedark.nvim"
-  use {
-    "nvim-lualine/lualine.nvim",
-    disable = false,
-  }
-  use { "akinsho/bufferline.nvim", tag = "v2.*" }
+  use "ray-x/lsp_signature.nvim"
 
-  use "Mofiqul/vscode.nvim"
-  use { "catppuccin/nvim", as = "catppuccin" }
-  use "rose-pine/neovim"
-  use "rmehri01/onenord.nvim"
-  use "mhartington/oceanic-next"
-  use "projekt0n/github-nvim-theme"
-  use "olivercederborg/poimandres.nvim"
-  use "B4mbus/oxocarbon-lua.nvim"
-  use "lewpoly/sherbet.nvim"
-  use "UndeadLeech/vim-undead"
-  use "overcache/NeoSolarized"
-  use "LunarVim/horizon.nvim"
-  use "cocopon/iceberg.vim"
+  use "kyazdani42/nvim-web-devicons"
+  use "folke/lsp-trouble.nvim"
 
   use "folke/lsp-colors.nvim"
-
-  -- use "tjdevries/colorbuddy.vim"
-  -- use "tjdevries/gruvbuddy.nvim"
-  -- use "tjdevries/cyclist.vim"
-  -- use "tjdevries/express_line.nvim"
-  -- use "j-hui/fidget.nvim"
 end)
