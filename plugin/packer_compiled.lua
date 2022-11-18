@@ -99,10 +99,25 @@ _G.packer_plugins = {
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["colorbuddy.nvim"] = {
+    loaded = true,
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/colorbuddy.nvim",
+    url = "https://github.com/tjdevries/colorbuddy.nvim"
+  },
+  ["colorbuddy.vim"] = {
+    loaded = true,
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/colorbuddy.vim",
+    url = "https://github.com/tjdevries/colorbuddy.vim"
+  },
   ["completion-nvim"] = {
     loaded = true,
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/completion-nvim",
     url = "https://github.com/nvim-lua/completion-nvim"
+  },
+  ["cyclist.vim"] = {
+    loaded = true,
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/cyclist.vim",
+    url = "https://github.com/tjdevries/cyclist.vim"
   },
   ["gitsigns.nvim"] = {
     loaded = true,
@@ -113,6 +128,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/gruvbox",
     url = "https://github.com/gruvbox-community/gruvbox"
+  },
+  ["gruvbuddy.nvim"] = {
+    loaded = true,
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/gruvbuddy.nvim",
+    url = "https://github.com/tjdevries/gruvbuddy.nvim"
   },
   ["lir-git-status.nvim"] = {
     loaded = true,
@@ -154,10 +174,20 @@ _G.packer_plugins = {
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
     url = "https://github.com/glepnir/lspsaga.nvim"
   },
+  ["lualine.nvim"] = {
+    loaded = true,
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
   neoformat = {
     loaded = true,
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/neoformat",
     url = "https://github.com/sbdchd/neoformat"
+  },
+  ["neosolarized.nvim"] = {
+    loaded = true,
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/neosolarized.nvim",
+    url = "https://github.com/svrana/neosolarized.nvim"
   },
   ["null-ls.nvim"] = {
     loaded = true,
@@ -181,6 +211,11 @@ _G.packer_plugins = {
     only_cond = false,
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/opt/nvim-code-action-menu",
     url = "https://github.com/weilbith/nvim-code-action-menu"
+  },
+  ["nvim-colorizer.lua"] = {
+    loaded = true,
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
+    url = "https://github.com/norcalli/nvim-colorizer.lua"
   },
   ["nvim-compe"] = {
     loaded = true,
@@ -206,6 +241,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-navic"] = {
+    loaded = true,
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/nvim-navic",
+    url = "https://github.com/SmiteshP/nvim-navic"
   },
   ["nvim-notify"] = {
     loaded = true,
@@ -297,10 +337,20 @@ _G.packer_plugins = {
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    url = "https://github.com/folke/tokyonight.nvim"
+  },
   ["typescript.nvim"] = {
     loaded = true,
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/typescript.nvim",
     url = "https://github.com/jose-elias-alvarez/typescript.nvim"
+  },
+  vim = {
+    loaded = true,
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/vim",
+    url = "https://github.com/dracula/vim"
   },
   ["vim-commentary"] = {
     loaded = true,

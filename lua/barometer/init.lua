@@ -4,6 +4,7 @@ require "barometer.telescope"
 require "barometer.lsp"
 require "barometer.stylua"
 require "barometer.treesitter-context"
+require "barometer.lualine"
 
 require("which-key").setup {}
 require("gitsigns").setup()
@@ -14,3 +15,5 @@ vim.cmd [[
     autocmd BufWritePre *.lua :lua require("barometer.stylua").format()
   augroup END
 ]]
+
+-- require("colorbuddy").colorscheme "gruvbuddy"

@@ -23,7 +23,7 @@ set wildmenu
 set scrolloff=5
 set number
 set relativenumber
-" set cursorline
+set nocursorline
 set wrap
 set showmatch
 set backspace=2
@@ -94,7 +94,7 @@ let g:loaded_netrwPlugin = 1
 
 let g:vsnip_snippet_dir = "~/.vim/snippets"
 
-set listchars=tab:⭲\ ,trail:~,extends:>,precedes:<,space:· 
-set list 
-hi Whitespace guifg=#505050 
-hi NonText guifg=#505050
+" set listchars=tab:⭲\ ,trail:~,extends:>,precedes:<,space:· 
+" set list 
+" hi Whitespace guifg=#505050 
+" hi NonText guifg=#505050

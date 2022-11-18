@@ -1,99 +1,63 @@
-local function clock()
-  return " " .. os.date "%H:%M"
+local status, lualine = pcall(require, "lualine")
+if not status then
+  return
 end
 
-local function holidays()
-  return ""
-  -- return "🎅🎄🌟🎁"
+local hide_in_width = function()
+  return vim.fn.winwidth(0) > 80
 end
 
-local function lsp_progress(_, is_active)
-  if not is_active then
-    return
-  end
-  local messages = vim.lsp.util.get_progress_messages()
-  if #messages == 0 then
-    return ""
-  end
-  -- dump(messages)
-  local status = {}
-  for _, msg in pairs(messages) do
-    local title = ""
-    if msg.title then
-      title = msg.title
-    end
-    -- if msg.message then
-    --   title = title .. " " .. msg.message
-    -- end
-    table.insert(status, (msg.percentage or 0) .. "%% " .. title)
-  end
-  local spinners = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
-  local ms = vim.loop.hrtime() / 1000000
-  local frame = math.floor(ms / 120) % #spinners
-  return table.concat(status, "  ") .. " " .. spinners[frame + 1]
+local diagnostics = {
+  "diagnostics",
+  sources = { "nvim_diagnostic" },
+  sections = { "error", "warn" },
+  symbols = { error = " ", warn = " " },
+  colored = false,
+  always_visible = true,
+}
+
+local diff = {
+  "diff",
+  colored = false,
+  symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
+  cond = hide_in_width,
+}
+
+local filename = {
+  "filename",
+  path = 1,
+}
+
+local filetype = {
+  "filetype",
+  icons_enabled = false,
+}
+
+local location = {
+  "location",
+  padding = 0,
+}
+
+local spaces = function()
+  return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
-vim.cmd "au User LspProgressUpdate let &ro = &ro"
-
-local config = {
+lualine.setup {
   options = {
-    theme = "catppuccin",
-    section_separators = { left = "", right = "" },
-    component_separators = { left = "", right = "" },
-    icons_enabled = true,
     globalstatus = true,
+    icons_enabled = true,
+    theme = "dracula",
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
+    disabled_filetypes = { "alpha", "dashboard" },
+    always_divide_middle = true,
   },
   sections = {
     lualine_a = { "mode" },
     lualine_b = { "branch" },
-    lualine_c = {
-      { "diagnostics", sources = { "nvim_diagnostic" } },
-      { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-      { "filename", path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
-      {
-        function()
-          local gps = require "nvim-gps"
-          return gps.get_location()
-        end,
-        cond = function()
-          local gps = require "nvim-gps"
-          return pcall(require, "nvim-treesitter.parsers") and gps.is_available()
-        end,
-        color = { fg = "#ff9e64" },
-      },
-    },
-    lualine_x = { lsp_progress, require("github-notifications").statusline_notification_count, holidays },
-    lualine_y = { "location" },
-    lualine_z = { clock },
+    lualine_c = { diagnostics },
+    lualine_x = { diff, filename, filetype },
+    lualine_y = { location },
+    lualine_z = { "progress" },
   },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = {},
-  },
-  extensions = { "nvim-tree" },
 }
-
--- try to load matching lualine theme
-
-local M = {}
-
-function M.load()
-  local name = vim.g.colors_name or ""
-  local ok, _ = pcall(require, "lualine.themes." .. name)
-  if ok then
-    config.options.theme = name
-  end
-  require("lualine").setup(config)
-end
-
-M.load()
-
--- vim.api.nvim_exec([[
---   autocmd ColorScheme * lua require("config.lualine").load();
--- ]], false)
-
-return M

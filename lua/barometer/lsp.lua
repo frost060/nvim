@@ -15,7 +15,7 @@ end
 
 setup_signs()
 
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local on_attach = function(client, bufnr)
@@ -96,19 +96,6 @@ require("lspconfig").vimls.setup {}
 
 require("lspconfig").yamlls.setup {}
 
-require("lspconfig").ocamlls.setup {}
-
-require("lspconfig").elixirls.setup {
-  cmd = { "elixir-lsp.sh" },
-}
-
-require("lspconfig").zls.setup {
-  on_attach = function(_, bufnr)
-    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-    require("completion").on_attach()
-  end,
-}
-
 require("lspconfig").sqls.setup {
   on_attach = function(client)
     client.resolved_capabilities.execute_command = true
@@ -117,8 +104,6 @@ require("lspconfig").sqls.setup {
     require("sqls").setup {}
   end,
 }
-
-require("lspconfig").terraformls.setup {}
 
 require("lspconfig").html.setup {
   capabilities = capabilities,
@@ -196,26 +181,25 @@ null_ls.setup {
 -------------------------------------------------------------------------------
 -- tsserver for TypeScript
 -------------------------------------------------------------------------------
-local util = require "lspconfig/util"
 lspconfig.tsserver.setup {
-  capabilities = capabilities,
   on_attach = on_attach,
-  flags = {
-    debounce_text_changes = 200,
-  },
-  root_dir = util.root_pattern ".git",
+  -- filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript" },
+  cmd = { "typescript-language-server", "--stdio" },
+  capabilities = capabilities,
 }
+lspconfig.tailwindcss.setup {}
+lspconfig.graphql.setup {}
 
-require("typescript").setup {
-  disable_commands = false, -- prevent the plugin from creating Vim commands
-  debug = false, -- enable debug logging for commands
-  go_to_source_definition = {
-    fallback = true, -- fall back to standard LSP definition on failure
-  },
-  server = { -- pass options to lspconfig's setup method
-    on_attach = on_attach,
-  },
-}
+-- require("typescript").setup {
+--   disable_commands = false, -- prevent the plugin from creating Vim commands
+--   debug = false, -- enable debug logging for commands
+--   go_to_source_definition = {
+--     fallback = true, -- fall back to standard LSP definition on failure
+--   },
+--   server = { -- pass options to lspconfig's setup method
+--     on_attach = on_attach,
+--   },
+-- }
 
 -------------------------------------------------------------------------------
 -- lua
@@ -593,7 +577,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
     virtual_text = true,
   })
 
-
 _LspMessageBuffer = _LspMessageBuffer or vim.api.nvim_create_buf(false, true)
 
 -- TODO: map this to a keybind :)
@@ -646,3 +629,7 @@ function _G.workspace_diagnostics_status()
 
   return table.concat(status, " | ")
 end
+
+require("lspconfig").clangd.setup {
+  on_attach = on_attach,
+}

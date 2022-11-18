@@ -61,6 +61,8 @@ require("packer").startup(function()
 
   -- Themes
   use "gruvbox-community/gruvbox"
+  use "folke/tokyonight.nvim"
+
   use "AndrewRadev/splitjoin.vim"
 
   use "vim-test/vim-test"
@@ -94,5 +96,27 @@ require("packer").startup(function()
   use "kyazdani42/nvim-web-devicons"
   use "folke/lsp-trouble.nvim"
 
+  use "tjdevries/colorbuddy.vim"
+  use "tjdevries/gruvbuddy.nvim"
+  use "norcalli/nvim-colorizer.lua"
+
   use "folke/lsp-colors.nvim"
+  use {
+    "svrana/neosolarized.nvim",
+    requires = { "tjdevries/colorbuddy.nvim" },
+  }
+
+  use {
+    "SmiteshP/nvim-navic",
+    requires = "neovim/nvim-lspconfig",
+  }
+  use {
+    "nvim-lualine/lualine.nvim",
+    requires = { "kyazdani42/nvim-web-devicons", opt = true },
+  }
+
+  -- use "dracula/vim"
+  use "Mofiqul/dracula.nvim"
+
+  use "tjdevries/cyclist.vim"
 end)

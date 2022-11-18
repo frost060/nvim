@@ -34,6 +34,7 @@ require("nvim-treesitter.configs").setup {
     "svelte",
     "toml",
     "typescript",
+    "tsx",
     "vim",
     "vue",
     "yaml",
