@@ -1,4 +1,6 @@
 -- TELESCOPE
+local actions = require "telescope.actions"
+
 require("telescope").setup {
   defaults = {
     file_ignore_patterns = {
@@ -59,7 +61,7 @@ require("telescope").setup {
   extensions_list = { "themes", "terms" },
   extensions = {
     ["ui-select"] = {
-      require("telescope.themes").get_dropdown {
+      require("telescope.themes").get_cursor {
         -- even more opts
       },
 
@@ -99,8 +101,7 @@ M.curr_buffer = function()
 end
 
 M.live_grep = function()
-  local opts = {}
-  require("telescope.builtin").live_grep(opts)
+  require("telescope.builtin").live_grep()
 end
 
 M.git_files = function()
@@ -108,12 +109,29 @@ M.git_files = function()
     prompt_prefix = "🔍",
     find_command = { "rg", "--hidden", "--files" },
   }
-  require("telescope.builtin").git_files(opts)
+  require("telescope.builtin").git_files(themes.get_dropdown(opts))
+end
+
+M.git_branches = function()
+  local opts = {
+    attach_mappings = function(_, map)
+      map("n", "dd", actions.git_delete_branch)
+      return true
+    end,
+  }
+  require("telescope.builtin").git_branches(themes.get_dropdown(opts))
 end
 
 M.find_files = function()
-  local opts = { hidden = true, sorting_strategy = "ascending" }
-  require("telescope.builtin").find_files(opts)
+  require("telescope.builtin").find_files(themes.get_dropdown())
+end
+
+M.installed_plugins = function()
+  require("telescope.builtin").find_files(require("telescope.themes").get_dropdown {
+    -- winblend = 5,
+    border = true,
+    cwd = vim.fn.stdpath "data" .. "/site/pack/packer/start/",
+  })
 end
 
 M.file_browser = function()

@@ -32,6 +32,7 @@ nmap <silent> <Leader>dd <cmd>lua require('barometer.telescope').diagnostics()<C
 nmap <silent> <Leader>sc <cmd>lua require('barometer.telescope').list_colorschemes()<CR>
 nmap <silent> <Leader>aa <cmd>lua require('barometer.telescope').anime_selector()<CR>
 nmap <silent> <Leader>aw <cmd>lua require('barometer.telescope').wallpaper()<CR>
+nmap <silent> <Leader>gb <cmd>lua require('barometer.telescope').git_branches()<CR>
 nnoremap gr <cmd>lua require('barometer.telescope').lsp_references()<CR>
 nnoremap gi <cmd>lua require('barometer.telescope').lsp_implementations()<CR>
 nmap <silent> <Leader>h <cmd>Telescope help_tags<CR>

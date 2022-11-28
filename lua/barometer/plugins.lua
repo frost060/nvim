@@ -67,6 +67,7 @@ require("packer").startup(function()
 
   use "vim-test/vim-test"
   use "neovim/nvim-lspconfig"
+  use "lukas-reineke/lsp-format.nvim"
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-buffer"
   use "hrsh7th/nvim-cmp" --completion
@@ -113,10 +114,17 @@ require("packer").startup(function()
   use {
     "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
+    disable = false,
   }
 
   -- use "dracula/vim"
   use "Mofiqul/dracula.nvim"
 
   use "tjdevries/cyclist.vim"
+
+  use "beauwilliams/flatbox"
+  use "luisiacc/gruvbox-baby"
+  use { "beauwilliams/statusline.lua", disable = true }
+
+  use "kdheepak/lazygit.nvim"
 end)

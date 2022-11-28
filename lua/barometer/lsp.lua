@@ -1,6 +1,8 @@
 -- Reference LSP Config (Thorston Ball)
 -- https://github.com/mrnugget/vimconfig/blob/master/lua/lsp.lua
 local lspconfig = require "lspconfig"
+local lsp_format = require "lsp-format"
+lsp_format.setup {}
 
 vim.diagnostic.config { float = { source = "always" } }
 local formatting_augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -19,6 +21,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protoc
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local on_attach = function(client, bufnr)
+  lsp_format.on_attach(client, bufnr)
   local function buf_set_keymap(binding, cmd)
     local opts = { noremap = true, silent = true }
     vim.api.nvim_buf_set_keymap(bufnr, "n", binding, cmd, opts)
@@ -75,7 +78,8 @@ local on_attach = function(client, bufnr)
   vim.cmd [[set updatetime=300]]
   -- have a fixed column for the diagnostics to appear in
   -- this removes the jitter when warnings/errors flow in
-  vim.cmd [[set signcolumn=yes]]
+  -- vim.cmd [[set signcolumn=yes]]
+  -- vim.cmd [[set colorcolumn=80]]
 end
 
 -- dockerls
