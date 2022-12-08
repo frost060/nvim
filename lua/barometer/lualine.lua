@@ -1,21 +1,71 @@
-require("lualine").setup {
+local status, lualine = pcall(require, "lualine")
+if not status then
+  return
+end
+
+local hide_in_width = function()
+  return vim.fn.winwidth(0) > 80
+end
+
+local diagnostics = {
+  "diagnostics",
+  sources = { "nvim_diagnostic" },
+  sections = { "error", "warn" },
+  symbols = { error = " ", warn = " " },
+  colored = false,
+  always_visible = true,
+}
+
+local diff = {
+  "diff",
+  colored = false,
+  symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
+  cond = hide_in_width,
+}
+
+local filename = {
+  "filename",
+  path = 1,
+}
+
+local filetype = {
+  "filetype",
+  icons_enabled = false,
+}
+
+local location = {
+  "location",
+  padding = 0,
+}
+
+local spaces = function()
+  return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
+end
+
+lualine.setup {
   options = {
-    theme = "tokyonight",
+    globalstatus = true,
+    icons_enabled = true,
+    theme = "dracula",
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
+    disabled_filetypes = { "alpha", "dashboard" },
+    always_divide_middle = true,
   },
   sections = {
-    lualine_a = { {
-      "mode",
-      fmt = function(str)
-        return str:sub(1, 1)
-      end,
-    } },
-    lualine_b = { "b:gitsigns_head", "diff", { "diagnostics", sources = { "nvim_diagnostic", "nvim_lsp" } } },
-    lualine_c = {
-      { "filename", path = 3 },
-      -- 'buffers'
-    },
-    lualine_x = { "g:metals_status" },
+    lualine_a = { "mode" },
+    lualine_b = { "branch" },
+    lualine_c = { diagnostics },
+    lualine_x = { diff, filename, filetype },
+    lualine_y = { location },
+    lualine_z = { "progress" },
+  },
+  tabline = {
+    lualine_a = { "buffers" },
+    lualine_b = { "branch" },
+    lualine_c = { "filename" },
+    lualine_x = {},
     lualine_y = {},
-    lualine_z = { "location" },
+    lualine_z = { "tabs" },
   },
 }

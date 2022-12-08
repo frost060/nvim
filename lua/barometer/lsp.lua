@@ -302,10 +302,10 @@ local cmp_types = require "cmp.types.cmp"
 
 vim.opt.completeopt = "menuone,noselect"
 
-require("lspkind").init {
-  mode = "symbol_text",
-  preset = "codicons",
-}
+-- require("lspkind").init {
+--   mode = "symbol_text",
+--   preset = "codicons",
+-- }
 local source_mapping = {
   buffer = "[Buffer]",
   nvim_lsp = "[LSP]",

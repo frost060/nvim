@@ -23,7 +23,7 @@ set wildmenu
 set scrolloff=5
 set number
 " set relativenumber
-set nocursorline
+set cursorline
 set wrap
 set showmatch
 set backspace=2

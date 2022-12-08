@@ -73,6 +73,10 @@ nmap <Leader>c  <Plug>Commentary
 omap <Leader>c  <Plug>Commentary
 nmap <Leader>cc <Plug>CommentaryLine
 
+nmap <C-n> :NvimTreeToggle<CR>
+nmap <Leader>fr :NvimTreeFindFile<CR>
+nmap <Leader>fc :NvimTreeCollapse<CR> 
+
 nmap mm :nohl<CR>
 
 nmap <Leader>vv :DiffviewOpen<CR>

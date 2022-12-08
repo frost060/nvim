@@ -1,5 +1,4 @@
 local install_path = vim.fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.fn.execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
 end
@@ -89,7 +88,9 @@ require("packer").startup(function()
 
   use {
     "lewis6991/gitsigns.nvim",
-    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("gitsigns").setup()
+    end,
   }
 
   use "ray-x/lsp_signature.nvim"
@@ -113,18 +114,24 @@ require("packer").startup(function()
   }
   use {
     "nvim-lualine/lualine.nvim",
-    requires = { "kyazdani42/nvim-web-devicons", opt = true },
     disable = false,
   }
 
   -- use "dracula/vim"
   use "Mofiqul/dracula.nvim"
+  -- use "lunarvim/horizon.nvim"
+  use "ntk148v/vim-horizon"
 
-  use "tjdevries/cyclist.vim"
+  use { "tjdevries/cyclist.vim", disable = true }
 
   use "beauwilliams/flatbox"
   use "luisiacc/gruvbox-baby"
   use { "beauwilliams/statusline.lua", disable = true }
 
   use "kdheepak/lazygit.nvim"
+  use "cocopon/iceberg.vim"
+  use "tanvirtin/monokai.nvim"
+  use "nvim-tree/nvim-tree.lua"
+
+  use "monsonjeremy/onedark.nvim"
 end)

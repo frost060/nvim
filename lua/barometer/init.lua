@@ -6,6 +6,7 @@ require "barometer.stylua"
 require "barometer.treesitter-context"
 require "barometer.lualine"
 require "barometer.color"
+require "barometer.nvimtree"
 
 require("which-key").setup {}
 require("gitsigns").setup()
@@ -17,9 +18,7 @@ vim.cmd [[
   augroup END
 ]]
 
--- local statusline = require "statusline"
--- statusline.enable = true
--- statusline.lsp_diagnostics = true
--- statusline.ale_diagnostics = false
-
--- require("colorbuddy").colorscheme "gruvbuddy"
+vim.cmd [[
+  let g:airline_powerline_fonts = 1
+  let g:airline#extensions#tabline#enabled = 1
+]]
