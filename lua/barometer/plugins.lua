@@ -134,4 +134,6 @@ require("packer").startup(function()
   use "nvim-tree/nvim-tree.lua"
 
   use "monsonjeremy/onedark.nvim"
+
+  use "voldikss/vim-floaterm"
 end)
