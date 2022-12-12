@@ -18,8 +18,7 @@ Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
 
 Plug 'ocaml/vim-ocaml'
-
-Plug 'ocaml/vim-ocaml'
+Plug 'cespare/vim-toml', { 'branch': 'main' }
 
 Plug 'nvim-lua/plenary.nvim'
 
@@ -41,6 +40,7 @@ Plug 'Mofiqul/dracula.nvim'
 
 Plug 'preservim/nerdtree'
 Plug 'voldikss/vim-floaterm'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
@@ -101,15 +101,18 @@ set shiftround
 set expandtab
 set ruler
 set laststatus=2
+set undofile
 
 " ctags tags file
 set tags=./tags;
 
 set number
-set colorcolumn=80
-set signcolumn=no
+set colorcolumn=0
+set signcolumn=yes
 
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/vendor/bundle/*,*/node_modules/*
+
+set formatoptions = "tcrqn"
 
 let g:completion_enable_auto_popup = 1
 
