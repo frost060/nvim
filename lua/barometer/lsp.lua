@@ -548,14 +548,6 @@ require("lspconfig").bufls.setup {}
 -- npm i -g bash-language-server
 require("lspconfig").bashls.setup {}
 
--- Lua
-require("lsp-colors").setup {
-  Error = "#db4b4b",
-  Warning = "#e0af68",
-  Information = "#0db9d7",
-  Hint = "#10B981",
-}
-
 -- Jump directly to the first available definition every time.
 vim.lsp.handlers["textDocument/definition"] = function(_, result)
   if not result or vim.tbl_isempty(result) then
@@ -588,16 +580,6 @@ function LspShowMessageBuffer()
   vim.cmd [[new]]
   vim.cmd([[buffer ]] .. _LspMessageBuffer)
 end
-
-require("trouble").setup {
-  auto_preview = false,
-  auto_close = true,
-  action_keys = {
-    -- default binding is <esc> for this and it confuses me endlessly that I
-    -- can't just escape in that window.
-    cancel = {},
-  },
-}
 
 function _G.workspace_diagnostics_status()
   if #vim.lsp.buf_get_clients() == 0 then
@@ -637,3 +619,6 @@ end
 require("lspconfig").clangd.setup {
   on_attach = on_attach,
 }
+
+require("lspconfig").ocamlls.setup {}
+require("lspconfig").ocamllsp.setup {}

@@ -96,17 +96,6 @@ require("packer").startup(function()
   use "ray-x/lsp_signature.nvim"
 
   use "kyazdani42/nvim-web-devicons"
-  use "folke/lsp-trouble.nvim"
-
-  use "tjdevries/colorbuddy.vim"
-  use "tjdevries/gruvbuddy.nvim"
-  use "norcalli/nvim-colorizer.lua"
-
-  use "folke/lsp-colors.nvim"
-  use {
-    "svrana/neosolarized.nvim",
-    requires = { "tjdevries/colorbuddy.nvim" },
-  }
 
   use {
     "SmiteshP/nvim-navic",
@@ -117,23 +106,14 @@ require("packer").startup(function()
     disable = false,
   }
 
-  -- use "dracula/vim"
-  use "Mofiqul/dracula.nvim"
-  -- use "lunarvim/horizon.nvim"
-  use "ntk148v/vim-horizon"
-
-  use { "tjdevries/cyclist.vim", disable = true }
-
-  use "beauwilliams/flatbox"
-  use "luisiacc/gruvbox-baby"
-  use { "beauwilliams/statusline.lua", disable = true }
-
-  use "kdheepak/lazygit.nvim"
-  use "cocopon/iceberg.vim"
-  use "tanvirtin/monokai.nvim"
   use "nvim-tree/nvim-tree.lua"
 
+  -- use "navarasu/onedark.nvim"
   use "monsonjeremy/onedark.nvim"
 
   use "voldikss/vim-floaterm"
+
+  use "kaicataldo/material.vim"
+  use "NTBBloodbath/doom-one.nvim"
+  use "lifepillar/vim-solarized8"
 end)

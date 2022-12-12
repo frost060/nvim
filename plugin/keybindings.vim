@@ -74,13 +74,16 @@ omap <Leader>c  <Plug>Commentary
 nmap <Leader>cc <Plug>CommentaryLine
 
 " Float term
-nmap <Leader>ft :FloatermNew --autoclose=2 --height=0.7 --width=0.7<CR>
+let g:floaterm_keymap_toggle = '<Leader>ft'
+let g:floaterm_width=0.7
+let g:floaterm_height=0.7
+let g:floaterm_autoclose=2
 tmap <Leader>e exit<CR>
 
 " nvim tree
-nmap <C-n> :NvimTreeToggle<CR>
-nmap <Leader>fr :NvimTreeFindFile<CR>
-nmap <Leader>fc :NvimTreeCollapse<CR> 
+" nmap <C-n> :NvimTreeToggle<CR>
+" nmap <Leader>fr :NvimTreeFindFile<CR>
+" nmap <Leader>fc :NvimTreeCollapse<CR> 
 
 nmap mm :nohl<CR>
 

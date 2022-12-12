@@ -10,3 +10,6 @@
 " hi StatusLine   term=bold cterm=bold ctermfg=White ctermbg=235
 " hi StatusLineNC term=bold cterm=bold ctermfg=White ctermbg=235
 
+set statusline=\ \ \ %<%f\ %h%m%r
+" Line, col
+set statusline+=%=%(%l,%c%V%)

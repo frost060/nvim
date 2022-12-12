@@ -70,7 +70,7 @@ set laststatus=3
 set tags=./tags;
 
 " set colorcolumn=80
-set signcolumn=yes
+set signcolumn=no
 
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/vendor/bundle/*,*/node_modules/*
 

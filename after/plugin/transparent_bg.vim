@@ -1,5 +1,5 @@
 augroup TransparentBg
-    autocmd vimenter * hi Comment cterm=italic gui=italic
+    " autocmd vimenter * hi Comment cterm=italic gui=italic
     "autocmd vimenter * hi netrwDir guifg=#5eacd3
     """"""" transparent bg
     "autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
@@ -16,10 +16,10 @@ augroup TransparentBg
     "autocmd vimenter * hi StatusLine ctermbg=none cterm=bold
     "autocmd vimenter * hi clear StatusLine
 
-    "autocmd vimenter * hi clear SignColumn
-    "autocmd vimenter * hi clear StatusLine
+    " autocmd vimenter * hi clear SignColumn
+    " autocmd vimenter * hi clear StatusLine
 
-    "autocmd vimenter * hi clear LineNr
+    " autocmd vimenter * hi clear LineNr
     "autocmd vimenter * hi LineNr guifg=#5eacd3 ctermfg=243
     "" autocmd vimenter * hi Comment guifg=#71797E
 
@@ -46,4 +46,7 @@ augroup TransparentBg
 
     "autocmd vimenter * hi IncSearch ctermfg=15 cterm=bold,underline term=standout
     "autocmd vimenter * hi Search ctermfg=15 cterm=NONE term=standout ctermbg=NONE
+    autocmd vimenter * hi LineNr cterm=NONE ctermbg=Black ctermfg=Green
+    autocmd vimenter * hi VertSplit cterm=NONE ctermbg=Black ctermfg=Green
+
 augroup END
