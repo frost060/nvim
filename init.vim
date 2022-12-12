@@ -1,5 +1,4 @@
-filetype plugin indent on
-syntax enable
+filetype plugin indent on syntax enable
 
 call plug#begin()
 Plug 'fatih/vim-go', { 'tag': '*' }
@@ -205,3 +204,10 @@ let g:floaterm_autoclose=2
 tmap <Leader>e exit<CR>
 
 let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git \) -prune -o -print'
+let g:fzf_layout = { 'down': '~30%' }
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
