@@ -204,3 +204,4 @@ let g:floaterm_height=0.7
 let g:floaterm_autoclose=2
 tmap <Leader>e exit<CR>
 
+let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git \) -prune -o -print'
