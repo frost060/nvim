@@ -6,11 +6,11 @@ Plug 'fatih/vim-go', { 'tag': '*' }
 
 Plug 'nvim-treesitter/nvim-treesitter'
 
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
-Plug 'lifepillar/vim-solarized8'
-Plug 'altercation/vim-colors-solarized'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
@@ -38,7 +38,7 @@ Plug 'monsonjeremy/onedark.nvim'
 Plug 'rose-pine/neovim'
 Plug 'Mofiqul/dracula.nvim'
 
-Plug 'preservim/nerdtree'
+Plug 'nvim-tree/nvim-tree.lua'
 Plug 'voldikss/vim-floaterm'
 Plug 'airblade/vim-gitgutter'
 
@@ -168,8 +168,8 @@ set statusline+=%=%(%l,%c%V%)
 lua require("barometer")
 
 " Keybindings
-nnoremap <C-n> :NERDTreeToggle<CR>
-nnoremap <Leader>fr :NERDTreeFind<CR>
+nnoremap <C-n> :NvimTreeToggle<CR>
+nnoremap <Leader>fr :NvimTreeFindFile<CR>
 
 function! ToggleQuickFix()
     if empty(filter(getwininfo(), 'v:val.quickfix'))
@@ -184,9 +184,11 @@ nnoremap <Leader>qq :call ToggleQuickFix()<cr>
 nnoremap <Leader>rn :lua vim.lsp.buf.rename()<CR>
 nnoremap <Leader>ac :lua vim.lsp.buf.code_action()<CR>
 nnoremap gd :lua vim.lsp.buf.definition()<CR>
-nnoremap gr :lua vim.lsp.buf.references()<CR>
-nnoremap gi :lua vim.lsp.buf.implementation()<CR>
+nnoremap gr :lua require('barometer.telescope').lsp_references()<CR>
+nnoremap gi :lua require('barometer.telescope').lsp_implementations()<CR>
 nnoremap <Leader>ww :lua vim.lsp.buf.hover()<CR>
+nnoremap <Leader>ds :lua require('barometer.telescope').document_symbols()<CR>
+nnoremap <Leader>dd :lua require('barometer.telescope').diagnostics()<CR>
 
 nnoremap <C-j> :cnext<CR>
 nnoremap <C-k> :cprevious<CR>
@@ -204,7 +206,7 @@ let g:floaterm_height=0.7
 let g:floaterm_autoclose=2
 tmap <Leader>e exit<CR>
 
-let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git \) -prune -o -print'
+let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name dist -o -name build \) -prune -o -print'
 " https://gist.github.com/sajoku/c3e12d06f5dcb6bca85402dbc46837ab
 " let $FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git, node_modules}/*"'
 let g:fzf_layout = { 'down': '~30%' }
