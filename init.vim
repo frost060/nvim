@@ -37,8 +37,10 @@ Plug 'folke/tokyonight.nvim'
 Plug 'monsonjeremy/onedark.nvim'
 Plug 'rose-pine/neovim'
 Plug 'Mofiqul/dracula.nvim'
+Plug 'shaunsingh/nord.nvim'
 
-Plug 'nvim-tree/nvim-tree.lua'
+Plug 'tamago324/lir.nvim'
+Plug 'tamago324/lir-git-status.nvim'
 Plug 'voldikss/vim-floaterm'
 Plug 'airblade/vim-gitgutter'
 
@@ -168,9 +170,6 @@ set statusline+=%=%(%l,%c%V%)
 lua require("barometer")
 
 " Keybindings
-nnoremap <C-n> :NvimTreeToggle<CR>
-nnoremap <Leader>fr :NvimTreeFindFile<CR>
-
 function! ToggleQuickFix()
     if empty(filter(getwininfo(), 'v:val.quickfix'))
         copen
