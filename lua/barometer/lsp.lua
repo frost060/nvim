@@ -49,8 +49,6 @@ local on_attach = function(client, bufnr)
       callback = function()
         if filetype == "go" then
           require("barometer.lsp.helpers").goimports(2000)
-        else
-          require("barometer.lsp.helpers").format_lsp(bufnr)
         end
       end,
     })
