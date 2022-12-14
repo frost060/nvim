@@ -3,7 +3,6 @@ syntax enable
 
 call plug#begin()
 Plug 'fatih/vim-go', { 'tag': '*' }
-
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 
@@ -150,7 +149,7 @@ nmap <Leader>c  <Plug>Commentary
 map <Leader>c  <Plug>Commentary
 nmap <Leader>cc <Plug>CommentaryLine
 
-nnoremap <silent> <Leader>ff :Ag<CR>
+nnoremap <silent> <Leader>ff :Rg<CR>
 nnoremap <silent> <Leader>l :FZF<CR>
 nnoremap <silent> <Leader>gg :GFiles<CR>
 nnoremap <silent> <Leader>ss :Lines<CR>
@@ -206,9 +205,11 @@ tmap <Leader>e exit<CR>
 
 let g:zig_fmt_autosave = 1
 
-let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name dist -o -name build \) -prune -o -print'
+" let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name dist -o -name build \) -prune -o -print'
 " https://gist.github.com/sajoku/c3e12d06f5dcb6bca85402dbc46837ab
-" let $FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git, node_modules}/*"'
+" https://dev.to/matrixersp/how-to-use-fzf-with-ripgrep-to-selectively-ignore-vcs-files-4e27
+let $FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs -g "!{node_modules,.git,.idea,dist,build,tags,*.iml,*.lock,*-lock.json}" '
+
 let g:fzf_layout = { 'down': '~30%' }
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
