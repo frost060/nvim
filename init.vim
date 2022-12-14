@@ -30,6 +30,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'neovim/nvim-lspconfig'
 
 Plug 'eemed/sitruuna.vim'
+Plug 'Mofiqul/dracula.nvim'
 
 Plug 'preservim/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
@@ -178,6 +179,7 @@ nnoremap <Leader>ac :lua vim.lsp.buf.code_action()<CR>
 nnoremap gd :lua vim.lsp.buf.definition()<CR>
 nnoremap gr :lua require('barometer.telescope').lsp_references()<CR>
 nnoremap gi :lua require('barometer.telescope').lsp_implementations()<CR>
+nnoremap <Leader>aa :lua require('barometer.telescope').anime_selector()<CR>
 nnoremap <Leader>ww :lua vim.lsp.buf.hover()<CR>
 nnoremap <Leader>ds :lua require('barometer.telescope').document_symbols()<CR>
 nnoremap <Leader>dd :lua require('barometer.telescope').diagnostics()<CR>
@@ -193,7 +195,7 @@ nnoremap <Leader>nh :nohlsearch<CR>
 
 nnoremap <Leader>t :TagbarToggle<CR>
 " Create new file in current directory
-nnoremap <Leader>c :e %:h/
+nnoremap <Leader>cs :e %:h/
 
 " Float term
 let g:floaterm_keymap_toggle = '<Leader>ft'
@@ -217,7 +219,7 @@ command! -bang -nargs=* Rg
 
 nnoremap - :Ex<CR>
 
-colorscheme sitruuna
+colorscheme dracula
 
 vnoremap <silent> * :call VisualSelection('f')<CR>
 vnoremap <silent> # :call VisualSelection('b')<CR>
@@ -231,3 +233,23 @@ set statusline+=%{&paste?'\ \ \|\ PASTE\ ':'\ '}
 set statusline+=%=\ %{&fileformat}\ \|\ %{&fileencoding}\ \|\ %{&filetype}\ \|\ %l/%L\(%c\)\
 
 lua require('barometer')
+
+" Transparency
+augroup TransparentBg
+    autocmd vimenter * hi Comment cterm=italic gui=italic
+    autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
+    autocmd vimenter * hi EndOfBuffer guibg=NONE ctermbg=NONE
+    autocmd vimenter * hi ColorColumn ctermbg=0 guibg=grey
+    autocmd vimenter * hi SignColumn guibg=none
+    autocmd vimenter * hi CursorLineNR guibg=None
+    autocmd vimenter * hi StatusLine ctermbg=0 cterm=NONE
+    autocmd vimenter * hi StatusLine ctermbg=none cterm=bold
+    autocmd vimenter * hi TelescopeNormal guibg=NONE ctermbg=NONE
+
+    autocmd vimenter * hi clear StatusLine
+    autocmd vimenter * hi clear SignColumn
+    autocmd vimenter * hi clear TelescopeBorder
+    autocmd vimenter * hi clear TelescopeResultsNormal
+    
+    autocmd vimenter hi! link NormalFloat Normal
+augroup END
