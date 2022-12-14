@@ -34,7 +34,7 @@ Plug 'Mofiqul/dracula.nvim'
 Plug 'preservim/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'voldikss/vim-floaterm'
-Plug 'airblade/vim-gitgutter'
+Plug 'lewis6991/gitsigns.nvim'
 
 call plug#end()
 
