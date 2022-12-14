@@ -5,6 +5,7 @@ call plug#begin()
 Plug 'fatih/vim-go', { 'tag': '*' }
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-treesitter/nvim-treesitter'
 
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
