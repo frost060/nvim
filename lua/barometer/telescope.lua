@@ -1,8 +1,5 @@
 require("telescope").setup {}
 
---To get fzf loaded and working with telescope
-_ = require("telescope").load_extension "fzf"
-
 local M = {}
 local themes = require "telescope.themes"
 

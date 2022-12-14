@@ -119,52 +119,6 @@ require("lspconfig").gopls.setup {
   },
 }
 
-require("null-ls").setup {
-  sources = {
-    require("null-ls").builtins.diagnostics.golangci_lint,
-  },
-}
-
--------------------------------------------------------------------------------
--- null-ls for TypeScript/JS
--------------------------------------------------------------------------------
-local js_filetypes = { "typescriptreact", "scss", "typescript", "javascript", "javascriptreact" }
-local null_ls = require "null-ls"
-null_ls.setup {
-  on_attach = on_attach,
-  sources = {
-    null_ls.builtins.diagnostics.eslint_d.with {
-      filetypes = js_filetypes,
-      condition = function(utils)
-        return utils.root_has_file { ".eslintrc.js" }
-      end,
-    },
-    null_ls.builtins.code_actions.eslint_d.with { filetypes = js_filetypes },
-    null_ls.builtins.formatting.prettier.with {
-      filetypes = js_filetypes,
-      prefer_local = "node_modules/.bin",
-      condition = function(utils)
-        return utils.root_has_file { "prettier.config.js", ".prettierrc", ".prettierignore" }
-      end,
-    },
-    null_ls.builtins.formatting.stylua.with {
-      filetypes = { "lua" },
-    },
-    null_ls.builtins.formatting.sql_formatter.with {
-      filetypes = { "sql" },
-      extra_args = function()
-        return {
-          "--config",
-          vim.fn.expand "~/.vim/sql-formatter.json",
-        }
-      end,
-    },
-    null_ls.builtins.formatting.shfmt.with {
-      filetypes = { "sh" },
-    },
-  },
-}
-
 -------------------------------------------------------------------------------
 -- tsserver for TypeScript
 -------------------------------------------------------------------------------
@@ -176,17 +130,6 @@ lspconfig.tsserver.setup {
 }
 lspconfig.tailwindcss.setup {}
 lspconfig.graphql.setup {}
-
--- require("typescript").setup {
---   disable_commands = false, -- prevent the plugin from creating Vim commands
---   debug = false, -- enable debug logging for commands
---   go_to_source_definition = {
---     fallback = true, -- fall back to standard LSP definition on failure
---   },
---   server = { -- pass options to lspconfig's setup method
---     on_attach = on_attach,
---   },
--- }
 
 -------------------------------------------------------------------------------
 -- lua

@@ -4,8 +4,6 @@ syntax enable
 call plug#begin()
 Plug 'fatih/vim-go', { 'tag': '*' }
 
-Plug 'nvim-treesitter/nvim-treesitter'
-
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 
@@ -19,28 +17,22 @@ Plug 'jiangmiao/auto-pairs'
 
 Plug 'ocaml/vim-ocaml'
 Plug 'cespare/vim-toml', { 'branch': 'main' }
-
-Plug 'nvim-lua/plenary.nvim'
+Plug 'mustache/vim-mustache-handlebars'
 
 Plug 'hrsh7th/nvim-compe'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
-Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'quangnguyen30192/cmp-nvim-tags'
 
 Plug 'sbdchd/neoformat'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'neovim/nvim-lspconfig'
 
-Plug 'gruvbox-community/gruvbox'
-Plug 'folke/tokyonight.nvim'
-Plug 'monsonjeremy/onedark.nvim'
-Plug 'rose-pine/neovim'
-Plug 'Mofiqul/dracula.nvim'
-Plug 'shaunsingh/nord.nvim'
+Plug 'eemed/sitruuna.vim'
 
-Plug 'tamago324/lir.nvim'
-Plug 'tamago324/lir-git-status.nvim'
+Plug 'preservim/tagbar'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'voldikss/vim-floaterm'
 Plug 'airblade/vim-gitgutter'
 
@@ -57,8 +49,8 @@ set ttimeout
 set ttimeoutlen=100
 
 " Basic stuff
-set clipboard=unnamed
-" set clipboard+=unnamedplus
+" set clipboard=unnamed
+set clipboard+=unnamedplus
 
 set noshowmode
 set showcmd
@@ -68,7 +60,7 @@ set hidden
 set wildmenu
 set scrolloff=5
 set nonumber
-" set relativenumber
+set relativenumber
 set nocursorline
 set wrap
 set showmatch
@@ -80,6 +72,9 @@ set exrc
 set shiftround
 set modeline
 set termguicolors
+
+set nolbr
+set tw=0
 
 " Backup
 set backupdir=~/.vim/tmp/backup//
@@ -147,7 +142,7 @@ nnoremap <Leader>gs :G<CR>
 noremap <Leader>gf :diffget //2<CR>
 noremap <Leader>gh :diffget //3<CR>
 
-nnoremap <Leader>nh :nohlsearch<CR>
+nnoremap mm :nohlsearch<CR>
 
 xmap <Leader>c  <Plug>Commentary
 nmap <Leader>c  <Plug>Commentary
@@ -166,8 +161,6 @@ nnoremap <silent> <Leader>h :History<CR>
 set statusline=\ \ \ %<%f\ %h%m%r
 " Line, col
 set statusline+=%=%(%l,%c%V%)
-
-lua require("barometer")
 
 " Keybindings
 function! ToggleQuickFix()
@@ -198,12 +191,18 @@ noremap <Leader>gh :diffget //3<CR>
 
 nnoremap <Leader>nh :nohlsearch<CR>
 
+nnoremap <Leader>t :TagbarToggle<CR>
+" Create new file in current directory
+nnoremap <Leader>c :e %:h/
+
 " Float term
 let g:floaterm_keymap_toggle = '<Leader>ft'
 let g:floaterm_width=0.7
 let g:floaterm_height=0.7
 let g:floaterm_autoclose=2
 tmap <Leader>e exit<CR>
+
+let g:zig_fmt_autosave = 1
 
 let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name dist -o -name build \) -prune -o -print'
 " https://gist.github.com/sajoku/c3e12d06f5dcb6bca85402dbc46837ab
@@ -215,3 +214,20 @@ command! -bang -nargs=* Rg
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
+
+nnoremap - :Ex<CR>
+
+colorscheme sitruuna
+
+vnoremap <silent> * :call VisualSelection('f')<CR>
+vnoremap <silent> # :call VisualSelection('b')<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Statusline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set statusline=%<\ %{mode()}\ \|\ %f%m\ \|\ %{fugitive#statusline()\ }
+set statusline+=%{&paste?'\ \ \|\ PASTE\ ':'\ '}
+set statusline+=%=\ %{&fileformat}\ \|\ %{&fileencoding}\ \|\ %{&filetype}\ \|\ %l/%L\(%c\)\
+
+lua require('barometer')
