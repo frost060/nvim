@@ -24,12 +24,14 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 Plug 'quangnguyen30192/cmp-nvim-tags'
+Plug 'L3MON4D3/LuaSnip'
 
 Plug 'sbdchd/neoformat'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'neovim/nvim-lspconfig'
 
 Plug 'eemed/sitruuna.vim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'Mofiqul/dracula.nvim'
 
 Plug 'preservim/tagbar'
@@ -221,7 +223,7 @@ command! -bang -nargs=* Rg
 
 nnoremap - :Ex<CR>
 
-colorscheme dracula
+colorscheme tokyonight
 
 vnoremap <silent> * :call VisualSelection('f')<CR>
 vnoremap <silent> # :call VisualSelection('b')<CR>
