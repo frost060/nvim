@@ -33,11 +33,15 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'eemed/sitruuna.vim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'Mofiqul/dracula.nvim'
+Plug 'ellisonleao/gruvbox.nvim'
 
 Plug 'preservim/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'voldikss/vim-floaterm'
 Plug 'lewis6991/gitsigns.nvim'
+
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 
 call plug#end()
 
@@ -223,7 +227,7 @@ command! -bang -nargs=* Rg
 
 nnoremap - :Ex<CR>
 
-colorscheme tokyonight
+colorscheme gruvbox
 
 vnoremap <silent> * :call VisualSelection('f')<CR>
 vnoremap <silent> # :call VisualSelection('b')<CR>
@@ -231,10 +235,9 @@ vnoremap <silent> # :call VisualSelection('b')<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Statusline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-set statusline=%<\ %{mode()}\ \|\ %f%m\ \|\ %{fugitive#statusline()\ }
-set statusline+=%{&paste?'\ \ \|\ PASTE\ ':'\ '}
-set statusline+=%=\ %{&fileformat}\ \|\ %{&fileencoding}\ \|\ %{&filetype}\ \|\ %l/%L\(%c\)\
+" set statusline=%<\ %{mode()}\ \|\ %f%m\ \|\ %{fugitive#statusline()\ }
+" set statusline+=%{&paste?'\ \ \|\ PASTE\ ':'\ '}
+" set statusline+=%=\ %{&fileformat}\ \|\ %{&fileencoding}\ \|\ %{&filetype}\ \|\ %l/%L\(%c\)\
 
 lua require('barometer')
 
