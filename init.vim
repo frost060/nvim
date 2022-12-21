@@ -66,8 +66,8 @@ set hidden
 set wildmenu
 set scrolloff=5
 set nonumber
-set relativenumber
-set nocursorline
+set norelativenumber
+set cursorline
 set wrap
 set showmatch
 set backspace=2
@@ -77,7 +77,7 @@ set nojoinspaces
 set exrc
 set shiftround
 set modeline
-set termguicolors
+set notermguicolors
 
 set nolbr
 set tw=0
