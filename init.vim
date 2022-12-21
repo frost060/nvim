@@ -29,19 +29,18 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'sbdchd/neoformat'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'neovim/nvim-lspconfig'
-
+Plug 'gruvbox-community/gruvbox'
 Plug 'eemed/sitruuna.vim'
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-Plug 'Mofiqul/dracula.nvim'
-Plug 'ellisonleao/gruvbox.nvim'
 
 Plug 'preservim/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'voldikss/vim-floaterm'
 Plug 'lewis6991/gitsigns.nvim'
 
-Plug 'nvim-lualine/lualine.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
+Plug 'preservim/nerdtree'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
@@ -112,7 +111,7 @@ set tags=./tags;
 
 set number
 set colorcolumn=0
-set signcolumn=yes
+set signcolumn=no
 
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/vendor/bundle/*,*/node_modules/*
 
@@ -190,14 +189,16 @@ nnoremap <Leader>ww :lua vim.lsp.buf.hover()<CR>
 nnoremap <Leader>ds :lua require('barometer.telescope').document_symbols()<CR>
 nnoremap <Leader>dd :lua require('barometer.telescope').diagnostics()<CR>
 
-nnoremap <C-j> :cnext<CR>
+nnoremap <Leader>fr :NERDTreeFind<CR>
+nnoremap <Leader>, :NERDTreeToggle<CR>
+nnoremap <C-j> :cnext<CR>;
 nnoremap <C-k> :cprevious<CR>
 
 nnoremap <Leader>gs :G<CR>
 noremap <Leader>gf :diffget //2<CR>
 noremap <Leader>gh :diffget //3<CR>
 
-nnoremap <Leader>nh :nohlsearch<CR>
+nnoremap mm :nohlsearch<CR>
 
 nnoremap <Leader>t :TagbarToggle<CR>
 " Create new file in current directory
@@ -232,31 +233,12 @@ colorscheme gruvbox
 vnoremap <silent> * :call VisualSelection('f')<CR>
 vnoremap <silent> # :call VisualSelection('b')<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Statusline
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set statusline=%<\ %{mode()}\ \|\ %f%m\ \|\ %{fugitive#statusline()\ }
-" set statusline+=%{&paste?'\ \ \|\ PASTE\ ':'\ '}
-" set statusline+=%=\ %{&fileformat}\ \|\ %{&fileencoding}\ \|\ %{&filetype}\ \|\ %l/%L\(%c\)\
-
 lua require('barometer')
 
-" Transparency
-augroup TransparentBg
-    autocmd vimenter * hi Comment cterm=italic gui=italic
-    autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
-    autocmd vimenter * hi EndOfBuffer guibg=NONE ctermbg=NONE
-    autocmd vimenter * hi ColorColumn ctermbg=0 guibg=grey
-    autocmd vimenter * hi SignColumn guibg=none
-    autocmd vimenter * hi CursorLineNR guibg=None
-    autocmd vimenter * hi StatusLine ctermbg=0 cterm=NONE
-    autocmd vimenter * hi StatusLine ctermbg=none cterm=bold
-    autocmd vimenter * hi TelescopeNormal guibg=NONE ctermbg=NONE
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 
-    autocmd vimenter * hi clear StatusLine
-    autocmd vimenter * hi clear SignColumn
-    autocmd vimenter * hi clear TelescopeBorder
-    autocmd vimenter * hi clear TelescopeResultsNormal
-    
-    autocmd vimenter hi! link NormalFloat Normal
-augroup END
+augroup NerdTree
+  autocmd VimEnter * NERDTree | wincmd p
+  autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+augroup end
