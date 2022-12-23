@@ -5,16 +5,6 @@ local lspconfig = require "lspconfig"
 vim.diagnostic.config { float = { source = "always" } }
 local formatting_augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
-local function setup_signs()
-  local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
-  for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-  end
-end
-
-setup_signs()
-
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -404,3 +394,5 @@ _LspMessageBuffer = _LspMessageBuffer or vim.api.nvim_create_buf(false, true)
 require("lspconfig").clangd.setup {
   on_attach = on_attach,
 }
+
+require'lspconfig'.rust_analyzer.setup{}

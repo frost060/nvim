@@ -29,18 +29,23 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'sbdchd/neoformat'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'neovim/nvim-lspconfig'
+
 Plug 'gruvbox-community/gruvbox'
 Plug 'eemed/sitruuna.vim'
+Plug 'tjdevries/colorbuddy.nvim'
+Plug 'svrana/neosolarized.nvim'
+Plug 'sickill/vim-monokai'
+Plug 'tomasr/molokai'
+Plug 'folke/tokyonight.nvim'
+
+Plug 'nvim-lualine/lualine.nvim'
 
 Plug 'preservim/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'voldikss/vim-floaterm'
 Plug 'lewis6991/gitsigns.nvim'
 
-Plug 'preservim/nerdtree'
-
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'williamboman/mason.nvim'
 
 call plug#end()
 
@@ -65,9 +70,9 @@ set nocompatible
 set hidden
 set wildmenu
 set scrolloff=5
-set nonumber
-set norelativenumber
-set cursorline
+" set nonumber
+" set norelativenumber
+set nocursorline
 set wrap
 set showmatch
 set backspace=2
@@ -77,7 +82,7 @@ set nojoinspaces
 set exrc
 set shiftround
 set modeline
-set notermguicolors
+set termguicolors
 
 set nolbr
 set tw=0
@@ -103,7 +108,6 @@ set softtabstop=4
 set shiftround
 set expandtab
 set ruler
-set laststatus=2
 set undofile
 
 " ctags tags file
@@ -189,8 +193,6 @@ nnoremap <Leader>ww :lua vim.lsp.buf.hover()<CR>
 nnoremap <Leader>ds :lua require('barometer.telescope').document_symbols()<CR>
 nnoremap <Leader>dd :lua require('barometer.telescope').diagnostics()<CR>
 
-nnoremap <Leader>fr :NERDTreeFind<CR>
-nnoremap <Leader>, :NERDTreeToggle<CR>
 nnoremap <C-j> :cnext<CR>;
 nnoremap <C-k> :cprevious<CR>
 
@@ -216,7 +218,7 @@ let g:zig_fmt_autosave = 1
 " let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name dist -o -name build \) -prune -o -print'
 " https://gist.github.com/sajoku/c3e12d06f5dcb6bca85402dbc46837ab
 " https://dev.to/matrixersp/how-to-use-fzf-with-ripgrep-to-selectively-ignore-vcs-files-4e27
-let $FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs -g "!{node_modules,.git,.idea,dist,build,tags,*.iml,*.lock,*-lock.json}" '
+let $FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs -g "!{node_modules,target,.git,.idea,dist,build,tags,*.iml,*.lock,*-lock.json}" '
 
 let g:fzf_layout = { 'down': '~30%' }
 command! -bang -nargs=* Rg
@@ -228,17 +230,8 @@ command! -bang -nargs=* Rg
 
 nnoremap - :Ex<CR>
 
-colorscheme gruvbox
-
 vnoremap <silent> * :call VisualSelection('f')<CR>
 vnoremap <silent> # :call VisualSelection('b')<CR>
 
 lua require('barometer')
 
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-
-augroup NerdTree
-  autocmd VimEnter * NERDTree | wincmd p
-  autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-augroup end
