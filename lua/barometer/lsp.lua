@@ -33,15 +33,6 @@ local on_attach = function(client, bufnr)
   -- formatting
   if client.supports_method "textDocument/formatting" then
     vim.api.nvim_clear_autocmds { group = formatting_augroup, buffer = bufnr }
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = formatting_augroup,
-      buffer = bufnr,
-      callback = function()
-        if filetype == "go" then
-          require("barometer.lsp.helpers").goimports(2000)
-        end
-      end,
-    })
   end
 
   create_autocmd("CursorHold", function()
@@ -396,3 +387,5 @@ require("lspconfig").clangd.setup {
 }
 
 require'lspconfig'.rust_analyzer.setup{}
+
+vim.cmd[[let g:v_autofmt_bufwritepre = 1]]

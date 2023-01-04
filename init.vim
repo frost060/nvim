@@ -3,6 +3,7 @@ syntax enable
 
 call plug#begin()
 Plug 'fatih/vim-go', { 'tag': '*' }
+Plug 'rust-lang/rust.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'nvim-treesitter/nvim-treesitter'
@@ -13,11 +14,12 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 
 Plug 'ocaml/vim-ocaml'
 Plug 'cespare/vim-toml', { 'branch': 'main' }
 Plug 'mustache/vim-mustache-handlebars'
+Plug 'ollykel/v-vim'
 
 Plug 'hrsh7th/nvim-compe'
 Plug 'hrsh7th/nvim-cmp'
@@ -37,6 +39,8 @@ Plug 'svrana/neosolarized.nvim'
 Plug 'sickill/vim-monokai'
 Plug 'tomasr/molokai'
 Plug 'folke/tokyonight.nvim'
+Plug 'rose-pine/neovim'
+Plug 'christianchiarulli/nvcode-color-schemes.vim'
 
 Plug 'nvim-lualine/lualine.nvim'
 
@@ -44,6 +48,8 @@ Plug 'preservim/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'voldikss/vim-floaterm'
 Plug 'lewis6991/gitsigns.nvim'
+
+Plug 'AndrewRadev/splitjoin.vim'
 
 Plug 'williamboman/mason.nvim'
 
@@ -71,7 +77,7 @@ set hidden
 set wildmenu
 set scrolloff=5
 " set nonumber
-" set norelativenumber
+" set relativenumber
 set nocursorline
 set wrap
 set showmatch
@@ -113,7 +119,6 @@ set undofile
 " ctags tags file
 set tags=./tags;
 
-set number
 set colorcolumn=0
 set signcolumn=no
 
@@ -234,4 +239,17 @@ vnoremap <silent> * :call VisualSelection('f')<CR>
 vnoremap <silent> # :call VisualSelection('b')<CR>
 
 lua require('barometer')
+
+" Split Join
+nnoremap <Leader>sp :SplitjoinSplit<CR>
+nnoremap <Leader>sj :SplitjoinJoin<CR>
+
+" nnoremap <unique> <tab> %
+" vnoremap <unique> <tab> %
+" tabe %
+
+" https://vim.fandom.com/wiki/Open_every_buffer_in_its_own_tabpage
+" augroup Tabs
+"   au BufAdd,BufNewFile,BufRead * nested tab sball
+" augroup end
 
