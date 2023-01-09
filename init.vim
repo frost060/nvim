@@ -6,7 +6,7 @@ Plug 'fatih/vim-go', { 'tag': '*' }
 Plug 'rust-lang/rust.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -36,22 +36,11 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'eemed/sitruuna.vim'
 Plug 'tjdevries/colorbuddy.nvim'
 Plug 'svrana/neosolarized.nvim'
-Plug 'sickill/vim-monokai'
-Plug 'tomasr/molokai'
-Plug 'folke/tokyonight.nvim'
-Plug 'rose-pine/neovim'
-Plug 'christianchiarulli/nvcode-color-schemes.vim'
+Plug 'Mofiqul/dracula.nvim'
 
 Plug 'nvim-lualine/lualine.nvim'
 
 Plug 'preservim/tagbar'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'voldikss/vim-floaterm'
-Plug 'lewis6991/gitsigns.nvim'
-
-Plug 'AndrewRadev/splitjoin.vim'
-
-Plug 'williamboman/mason.nvim'
 
 call plug#end()
 
@@ -76,7 +65,7 @@ set nocompatible
 set hidden
 set wildmenu
 set scrolloff=5
-" set nonumber
+set nonumber
 " set relativenumber
 set nocursorline
 set wrap
