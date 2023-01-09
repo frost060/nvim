@@ -3,6 +3,8 @@ require('neosolarized').setup({
   background_set = false,
 })
 
+-- require("lvim-colorscheme").setup()
+
 vim.cmd [[
   hi clear StatusLine
 ]]

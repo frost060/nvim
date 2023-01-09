@@ -36,6 +36,7 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'eemed/sitruuna.vim'
 Plug 'tjdevries/colorbuddy.nvim'
 Plug 'svrana/neosolarized.nvim'
+Plug 'lvim-tech/lvim-colorscheme'
 Plug 'Mofiqul/dracula.nvim'
 
 Plug 'nvim-lualine/lualine.nvim'
