@@ -32,14 +32,7 @@ Plug 'sbdchd/neoformat'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'neovim/nvim-lspconfig'
 
-Plug 'gruvbox-community/gruvbox'
 Plug 'eemed/sitruuna.vim'
-Plug 'tjdevries/colorbuddy.nvim'
-Plug 'svrana/neosolarized.nvim'
-Plug 'lvim-tech/lvim-colorscheme'
-Plug 'Mofiqul/dracula.nvim'
-
-Plug 'nvim-lualine/lualine.nvim'
 
 Plug 'preservim/tagbar'
 
@@ -66,7 +59,7 @@ set nocompatible
 set hidden
 set wildmenu
 set scrolloff=5
-set nonumber
+set number
 " set relativenumber
 set nocursorline
 set wrap
@@ -78,7 +71,7 @@ set nojoinspaces
 set exrc
 set shiftround
 set modeline
-set termguicolors
+set notermguicolors
 
 set nolbr
 set tw=0
@@ -100,7 +93,7 @@ set smartcase  "Do not ignore case, if uppercase is in search term
 " Indenting
 set tabstop=2
 set shiftwidth=2
-set softtabstop=4
+set softtabstop=2
 set shiftround
 set expandtab
 set ruler
@@ -234,12 +227,10 @@ lua require('barometer')
 nnoremap <Leader>sp :SplitjoinSplit<CR>
 nnoremap <Leader>sj :SplitjoinJoin<CR>
 
-" nnoremap <unique> <tab> %
-" vnoremap <unique> <tab> %
-" tabe %
-
-" https://vim.fandom.com/wiki/Open_every_buffer_in_its_own_tabpage
-" augroup Tabs
-"   au BufAdd,BufNewFile,BufRead * nested tab sball
-" augroup end
+hi clear CursorLine
+hi clear StatusLine
+hi Comment ctermfg=102
+hi LineNr ctermfg=102
+hi String ctermfg=34
+hi Identifier ctermfg=61
 

@@ -216,7 +216,6 @@ cmp.setup {
         if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
           menu = entry.completion_item.data.detail .. " " .. menu
         end
-        vim_item.kind = ""
       end
       vim_item.menu = menu
       return vim_item
@@ -334,20 +333,6 @@ vim.g.completion_chain_complete_list = {
   { mode = "<c-n>" },
 }
 
-local snippets_paths = function()
-  local plugins = { "friendly-snippets" }
-  local paths = {}
-  local path
-  local root_path = vim.env.HOME .. "/.vim/plugged/"
-  for _, plug in ipairs(plugins) do
-    path = root_path .. plug
-    if vim.fn.isdirectory(path) ~= 0 then
-      table.insert(paths, path)
-    end
-  end
-  return paths
-end
-
 -- bufls
 require("lspconfig").bufls.setup {}
 
@@ -389,3 +374,6 @@ require("lspconfig").clangd.setup {
 require'lspconfig'.rust_analyzer.setup{}
 
 vim.cmd[[let g:v_autofmt_bufwritepre = 1]]
+
+require'lspconfig'.pyright.setup{}
+
