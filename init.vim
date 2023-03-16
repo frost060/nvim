@@ -31,12 +31,27 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'sbdchd/neoformat'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'neovim/nvim-lspconfig'
+Plug 'jose-elias-alvarez/null-ls.nvim'
 
 Plug 'eemed/sitruuna.vim'
+Plug 'folke/tokyonight.nvim'
 
 Plug 'preservim/tagbar'
 
+Plug 'github/copilot.vim'
+
 call plug#end()
+
+set belloff=all
+set noerrorbells
+set vb t_vb=
+
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set ai
+set hlsearch
+set ruler
 
 set autoindent
 set backspace=indent,eol,start
@@ -180,6 +195,7 @@ nnoremap <Leader>aa :lua require('barometer.telescope').anime_selector()<CR>
 nnoremap <Leader>ww :lua vim.lsp.buf.hover()<CR>
 nnoremap <Leader>ds :lua require('barometer.telescope').document_symbols()<CR>
 nnoremap <Leader>dd :lua require('barometer.telescope').diagnostics()<CR>
+nnoremap <Leader>xx <cmd>lua vim.diagnostic.open_float()<CR>
 
 nnoremap <C-j> :cnext<CR>;
 nnoremap <C-k> :cprevious<CR>

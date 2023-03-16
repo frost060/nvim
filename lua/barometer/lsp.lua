@@ -8,6 +8,9 @@ local formatting_augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+vim.diagnostic.config({virtual_text = false})
+
+
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(binding, cmd)
     local opts = { noremap = true, silent = true }
@@ -64,14 +67,7 @@ require("lspconfig").vimls.setup {}
 
 require("lspconfig").yamlls.setup {}
 
-require("lspconfig").sqls.setup {
-  on_attach = function(client)
-    client.resolved_capabilities.execute_command = true
-    client.commands = require("sqls").commands -- Neovim 0.6+ only
-
-    require("sqls").setup {}
-  end,
-}
+require("lspconfig").sqlls.setup {}
 
 require("lspconfig").html.setup {
   capabilities = capabilities,
@@ -116,25 +112,24 @@ lspconfig.graphql.setup {}
 -- lua
 -------------------------------------------------------------------------------
 -- brew install lua-language-server
-require("lspconfig").sumneko_lua.setup {
+require'lspconfig'.lua_ls.setup {
   settings = {
     Lua = {
       runtime = {
         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = "LuaJIT",
-        -- Setup your lua path
-        path = vim.split(package.path, ";"),
+        version = 'LuaJIT',
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = { "vim" },
+        globals = {'vim'},
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
-        library = {
-          [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-          [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
-        },
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
       },
     },
   },
@@ -187,7 +182,6 @@ local source_mapping = {
   buffer = "[Buffer]",
   nvim_lsp = "[LSP]",
   nvim_lua = "[Lua]",
-  cmp_tabnine = "[TN]",
   path = "[Path]",
 }
 
@@ -212,11 +206,6 @@ cmp.setup {
   formatting = {
     format = function(entry, vim_item)
       local menu = source_mapping[entry.source.name]
-      if entry.source.name == "cmp_tabnine" then
-        if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
-          menu = entry.completion_item.data.detail .. " " .. menu
-        end
-      end
       vim_item.menu = menu
       return vim_item
     end,
@@ -234,10 +223,6 @@ cmp.setup {
     end,
   },
   sources = {
-    -- tabnine completion? yayaya
-
-    { name = "cmp_tabnine" },
-
     { name = "nvim_lsp" },
 
     -- For vsnip user.
@@ -251,15 +236,6 @@ cmp.setup {
 
     { name = "buffer" },
   },
-}
-
-local tabnine = require "cmp_tabnine.config"
-tabnine:setup {
-  max_lines = 1000,
-  max_num_results = 20,
-  sort = true,
-  run_on_every_keystroke = true,
-  snippet_placeholder = "..",
 }
 
 -- Set configuration for specific filetype.
@@ -376,4 +352,30 @@ require'lspconfig'.rust_analyzer.setup{}
 vim.cmd[[let g:v_autofmt_bufwritepre = 1]]
 
 require'lspconfig'.pyright.setup{}
+
+local null_ls = require("null-ls")
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+local sources = {
+    null_ls.builtins.formatting.prettier.with({
+	    command = "npx prettier",
+    }),
+    null_ls.builtins.formatting.black,
+    null_ls.builtins.diagnostics.pylint,
+}
+
+
+null_ls.setup({ sources = sources, debug=true, on_attach = function(client, bufnr)
+        if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = augroup,
+                buffer = bufnr,
+                callback = function()
+                    -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+                    vim.lsp.buf.format({ bufnr = bufnr })
+                end,
+            })
+        end
+    end,
+})
 
