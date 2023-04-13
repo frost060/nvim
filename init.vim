@@ -5,21 +5,36 @@ call plug#begin()
 Plug 'fatih/vim-go', { 'tag': '*' }
 Plug 'rust-lang/rust.vim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-" Plug 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'
 
 Plug 'ocaml/vim-ocaml'
 Plug 'cespare/vim-toml', { 'branch': 'main' }
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'ollykel/v-vim'
+
+Plug 'neovim/nvim-lspconfig'             " Required
+Plug 'williamboman/mason.nvim'           " Optional
+Plug 'williamboman/mason-lspconfig.nvim' " Optional
+
+" Autocompletion Engine
+Plug 'hrsh7th/nvim-cmp'         " Required
+Plug 'hrsh7th/cmp-nvim-lsp'     " Required
+Plug 'hrsh7th/cmp-buffer'       " Optional
+Plug 'hrsh7th/cmp-path'         " Optional
+Plug 'saadparwaiz1/cmp_luasnip' " Optional
+Plug 'hrsh7th/cmp-nvim-lua'     " Optional
+
+"  Snippets
+Plug 'L3MON4D3/LuaSnip'             " Required
+Plug 'rafamadriz/friendly-snippets' " Optional
+
+Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v1.x'}
 
 Plug 'hrsh7th/nvim-compe'
 Plug 'hrsh7th/nvim-cmp'
@@ -30,11 +45,12 @@ Plug 'L3MON4D3/LuaSnip'
 
 Plug 'sbdchd/neoformat'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'neovim/nvim-lspconfig'
-Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'averms/black-nvim', {'do': ':UpdateRemotePlugins'}
 
 Plug 'eemed/sitruuna.vim'
-Plug 'folke/tokyonight.nvim'
+Plug 'rose-pine/neovim'
+Plug 'Mofiqul/vscode.nvim'
+Plug 'gruvbox-community/gruvbox'
 
 Plug 'preservim/tagbar'
 
@@ -45,94 +61,6 @@ call plug#end()
 set belloff=all
 set noerrorbells
 set vb t_vb=
-
-set tabstop=2
-set shiftwidth=2
-set expandtab
-set ai
-set hlsearch
-set ruler
-
-set autoindent
-set backspace=indent,eol,start
-" set complete-=i
-set smarttab
-
-set nrformats-=octal
-
-set ttimeout
-set ttimeoutlen=100
-
-" Basic stuff
-" set clipboard=unnamed
-set clipboard+=unnamedplus
-
-set noshowmode
-set showcmd
-set history=500
-set nocompatible
-set hidden
-set wildmenu
-set scrolloff=5
-set number
-" set relativenumber
-set nocursorline
-set wrap
-set showmatch
-set backspace=2
-" Make J not insert whitespace
-set nojoinspaces
-" Allow project-specific vimrc files
-set exrc
-set shiftround
-set modeline
-set notermguicolors
-
-set nolbr
-set tw=0
-
-" Backup
-set backupdir=~/.vim/tmp/backup//
-set backup
-set noswapfile
-
-" Resize vim windows when resizing the main window
-au VimResized * :wincmd =
-
-" Searching
-set incsearch
-set hlsearch
-set ignorecase
-set smartcase  "Do not ignore case, if uppercase is in search term
-
-" Indenting
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set shiftround
-set expandtab
-set ruler
-set undofile
-
-" ctags tags file
-set tags=./tags;
-
-set colorcolumn=0
-set signcolumn=no
-
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/vendor/bundle/*,*/node_modules/*
-
-set formatoptions = "tcrqn"
-
-let g:completion_enable_auto_popup = 1
-
-" Use ripgrep with fzz as :grep
-if executable('rg')
-  set grepprg=rg\ --vimgrep
-endif
-
-" Set completeopt to have a better completion experience
-set completeopt=menu,menuone,noselect
 
 let mapleader = ","
 
@@ -162,14 +90,6 @@ nmap <Leader>c  <Plug>Commentary
 map <Leader>c  <Plug>Commentary
 nmap <Leader>cc <Plug>CommentaryLine
 
-nnoremap <silent> <Leader>ff :Rg<CR>
-nnoremap <silent> <Leader>l :FZF<CR>
-nnoremap <silent> <Leader>gg :GFiles<CR>
-nnoremap <silent> <Leader>ss :Lines<CR>
-nnoremap <silent> <Leader>b :Buffers<CR>
-nnoremap <silent> <Leader>sc :Colors<CR>
-nnoremap <silent> <Leader>h :History<CR>
-
 " filename [Help][-][RO]
 set statusline=\ \ \ %<%f\ %h%m%r
 " Line, col
@@ -196,6 +116,12 @@ nnoremap <Leader>ww :lua vim.lsp.buf.hover()<CR>
 nnoremap <Leader>ds :lua require('barometer.telescope').document_symbols()<CR>
 nnoremap <Leader>dd :lua require('barometer.telescope').diagnostics()<CR>
 nnoremap <Leader>xx <cmd>lua vim.diagnostic.open_float()<CR>
+nnoremap <silent> <Leader>l :lua require('barometer.telescope').find_files()<CR>
+nnoremap <silent> <Leader>gg :lua require('barometer.telescope').git_files()<CR>
+nnoremap <silent> <Leader>ff :lua require('barometer.telescope').live_grep()<CR>
+nnoremap <silent> <Leader>b :lua require('barometer.telescope').buffers()<CR>
+nnoremap <silent> <Leader>ss :lua require('barometer.telescope').curr_buffer()<CR>
+nnoremap <silent> <Leader>sc :lua require('barometer.telescope').list_colorschemes()<CR>
 
 nnoremap <C-j> :cnext<CR>;
 nnoremap <C-k> :cprevious<CR>
@@ -242,11 +168,4 @@ lua require('barometer')
 " Split Join
 nnoremap <Leader>sp :SplitjoinSplit<CR>
 nnoremap <Leader>sj :SplitjoinJoin<CR>
-
-hi clear CursorLine
-hi clear StatusLine
-hi Comment ctermfg=102
-hi LineNr ctermfg=102
-hi String ctermfg=34
-hi Identifier ctermfg=61
 

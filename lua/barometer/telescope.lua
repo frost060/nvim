@@ -3,6 +3,51 @@ require("telescope").setup {}
 local M = {}
 local themes = require "telescope.themes"
 
+M.list_colorschemes = function()
+  local opts = themes.get_dropdown {
+    layout_config = {
+      height = 20,
+    },
+    previewer = false,
+  }
+  require("telescope.builtin").colorscheme(opts)
+end
+
+M.curr_buffer = function()
+  local opts = {
+    layout_config = {
+      height = 30,
+    },
+  }
+  require("telescope.builtin").current_buffer_fuzzy_find(opts)
+end
+
+M.live_grep = function()
+  require("telescope.builtin").live_grep()
+end
+
+M.git_files = function()
+  local opts = {
+    prompt_prefix = "🔍",
+    find_command = { "rg", "--hidden", "--files" },
+  }
+  require("telescope.builtin").git_files(themes.get_dropdown(opts))
+end
+
+M.find_files = function()
+  require("telescope.builtin").find_files(themes.get_dropdown())
+end
+
+M.buffers = function()
+  local opts = themes.get_dropdown {
+    layout_config = {
+      height = 20,
+    },
+    previewer = false,
+  }
+  require("telescope.builtin").buffers(opts)
+end
+
 M.lsp_references = function()
   local opts = themes.get_ivy {
     layout_config = {
