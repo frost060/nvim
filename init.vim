@@ -5,7 +5,7 @@ call plug#begin()
 Plug 'fatih/vim-go', { 'tag': '*' }
 Plug 'rust-lang/rust.vim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'tpope/vim-fugitive'
@@ -21,6 +21,7 @@ Plug 'ollykel/v-vim'
 Plug 'neovim/nvim-lspconfig'             " Required
 Plug 'williamboman/mason.nvim'           " Optional
 Plug 'williamboman/mason-lspconfig.nvim' " Optional
+Plug 'jose-elias-alvarez/null-ls.nvim'
 
 " Autocompletion Engine
 Plug 'hrsh7th/nvim-cmp'         " Required
@@ -51,10 +52,18 @@ Plug 'eemed/sitruuna.vim'
 Plug 'rose-pine/neovim'
 Plug 'Mofiqul/vscode.nvim'
 Plug 'gruvbox-community/gruvbox'
+Plug 'ericbn/vim-solarized'
+Plug 'tjdevries/colorbuddy.nvim'
+Plug 'svrana/neosolarized.nvim'
+Plug 'dracula/vim'
 
 Plug 'preservim/tagbar'
 
 Plug 'github/copilot.vim'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'akinsho/bufferline.nvim'
+Plug 'lewis6991/gitsigns.nvim'
 
 call plug#end()
 
