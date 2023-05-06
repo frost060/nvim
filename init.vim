@@ -7,6 +7,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
@@ -40,7 +41,6 @@ Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v1.x'}
 Plug 'hrsh7th/nvim-compe'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 Plug 'quangnguyen30192/cmp-nvim-tags'
 Plug 'L3MON4D3/LuaSnip'
 
@@ -52,18 +52,19 @@ Plug 'eemed/sitruuna.vim'
 Plug 'rose-pine/neovim'
 Plug 'Mofiqul/vscode.nvim'
 Plug 'gruvbox-community/gruvbox'
-Plug 'ericbn/vim-solarized'
 Plug 'tjdevries/colorbuddy.nvim'
-Plug 'svrana/neosolarized.nvim'
-Plug 'dracula/vim'
+Plug 'Mofiqul/vscode.nvim'
+Plug 'tomasiser/vim-code-dark'
+Plug 'martinsione/darkplus.nvim'
+Plug 'tjdevries/gruvbuddy.nvim'
 
 Plug 'preservim/tagbar'
 
 Plug 'github/copilot.vim'
 Plug 'nvim-lualine/lualine.nvim'
-Plug 'nvim-tree/nvim-web-devicons'
 Plug 'akinsho/bufferline.nvim'
 Plug 'lewis6991/gitsigns.nvim'
+Plug 'dinhhuy258/git.nvim'
 
 call plug#end()
 
@@ -177,4 +178,5 @@ lua require('barometer')
 " Split Join
 nnoremap <Leader>sp :SplitjoinSplit<CR>
 nnoremap <Leader>sj :SplitjoinJoin<CR>
+
 

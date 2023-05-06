@@ -1,24 +1,24 @@
-require("telescope").setup {}
+require("telescope").setup({})
 
 local M = {}
-local themes = require "telescope.themes"
+local themes = require("telescope.themes")
 
 M.list_colorschemes = function()
-    local opts = themes.get_dropdown {
+    local opts = themes.get_dropdown({
         layout_config = {
             height = 20,
         },
         previewer = false,
-    }
+    })
     require("telescope.builtin").colorscheme(opts)
 end
 
 M.curr_buffer = function()
-    require("telescope.builtin").current_buffer_fuzzy_find({})
+    require("telescope.builtin").current_buffer_fuzzy_find(themes.get_ivy())
 end
 
 M.live_grep = function()
-    require("telescope.builtin").live_grep()
+    require("telescope.builtin").live_grep(themes.get_ivy())
 end
 
 M.git_files = function()
@@ -26,56 +26,56 @@ M.git_files = function()
         prompt_prefix = "🔍 ",
         find_command = { "rg", "--hidden", "--files" },
     }
-    require("telescope.builtin").git_files(themes.get_dropdown(opts))
+    require("telescope.builtin").git_files(themes.get_ivy(opts))
 end
 
 M.find_files = function()
-    require("telescope.builtin").find_files(themes.get_dropdown())
+    require("telescope.builtin").find_files(themes.get_ivy({}))
 end
 
 M.buffers = function()
-    local opts = themes.get_dropdown {
+    local opts = themes.get_ivy({
         layout_config = {
             height = 20,
         },
         previewer = false,
-    }
+    })
     require("telescope.builtin").buffers(opts)
 end
 
 M.lsp_references = function()
-    local opts = themes.get_ivy {
+    local opts = themes.get_ivy({
         layout_config = {
             height = 20,
         },
-    }
+    })
     require("telescope.builtin").lsp_references(opts)
 end
 
 M.lsp_implementations = function()
-    local opts = themes.get_ivy {
+    local opts = themes.get_ivy({
         layout_config = {
             height = 20,
         },
-    }
+    })
     require("telescope.builtin").lsp_implementations(opts)
 end
 
 M.diagnostics = function()
-    local opts = themes.get_ivy {
+    local opts = themes.get_ivy({
         layout_config = {
             height = 20,
         },
-    }
+    })
     require("telescope.builtin").diagnostics(opts)
 end
 
 M.document_symbols = function()
-    local opts = themes.get_ivy {
+    local opts = themes.get_ivy({
         layout_config = {
             height = 20,
         },
-    }
+    })
     require("telescope.builtin").lsp_document_symbols(opts)
 end
 
@@ -112,7 +112,7 @@ end
 
 local function image_selector(prompt, cwd)
     return function()
-        require("telescope.builtin").find_files {
+        require("telescope.builtin").find_files({
             prompt_title = prompt,
             cwd = cwd,
 
@@ -123,7 +123,7 @@ local function image_selector(prompt, cwd)
                 -- Ctrl+n/p to move up and down the list.
                 return true
             end,
-        }
+        })
     end
 end
 
