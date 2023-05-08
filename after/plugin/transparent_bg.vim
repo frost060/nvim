@@ -3,8 +3,8 @@ augroup TransparentBg
     " autocmd vimenter * hi Comment guifg=#74985D
     "autocmd vimenter * hi netrwDir guifg=#5eacd3
     """"""" transparent bg
-    autocmd vimenter * hi Normal guibg=#2f2f2f ctermbg=NONE
-    " autocmd vimenter * hi Normal guibg=#1e1e1e ctermbg=NONE
+    " autocmd vimenter * hi Normal guibg=#2f2f2f ctermbg=NONE
+    autocmd vimenter * hi Normal guibg=#1e1e1e ctermbg=NONE
     """""""For Vim<8, replace EndOfBuffer by NonText
     " autocmd vimenter * hi EndOfBuffer guibg=NONE ctermbg=NONE
     " autocmd vimenter * hi EndOfBuffer guifg=#71797E ctermfg=245
@@ -59,4 +59,16 @@ augroup VscodeTheme
     autocmd vimenter * hi @keyword guifg=#C586C0
     autocmd vimenter * hi @keyword.operator guifg=#C586C0
     autocmd vimenter * hi @keyword.function guifg=#569cd6
+augroup END
+
+
+" https://superuser.com/questions/921920/display-trailing-spaces-in-vim
+augroup HighlightTrailingWhitespace
+    autocmd vimenter * hi ExtraWhitespace ctermbg=red guibg=red
+    match ExtraWhitespace /\s\+$/
+    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+    " autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+    autocmd InsertEnter * match ExtraWhitespace /\s\+$/
+    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+    autocmd BufWinLeave * call clearmatches()
 augroup END

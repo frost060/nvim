@@ -179,4 +179,8 @@ lua require('barometer')
 nnoremap <Leader>sp :SplitjoinSplit<CR>
 nnoremap <Leader>sj :SplitjoinJoin<CR>
 
+" https://stackoverflow.com/questions/3702581/how-do-i-indent-a-single-line-multiple-times-in-vi-or-vim
+" vnoremap < <gv
+" vnoremap > >gv
+
 
