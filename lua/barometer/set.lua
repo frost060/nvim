@@ -31,6 +31,7 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 vim.opt.laststatus = 0
+vim.opt.cmdheight = 0
 
 -- move winbar text to the center
 vim.opt.winbar = "%=%{expand('%:p:h:t')}/%t%="

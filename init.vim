@@ -1,4 +1,4 @@
-filetype plugin indent on 
+filetype plugin indent on
 syntax enable
 
 call plug#begin()
@@ -183,4 +183,5 @@ nnoremap <Leader>sj :SplitjoinJoin<CR>
 " vnoremap < <gv
 " vnoremap > >gv
 
-
+" https://stackoverflow.com/questions/290465/how-to-paste-over-without-overwriting-registero
+xnoremap p "_dP

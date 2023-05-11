@@ -1,3 +1,4 @@
+
 augroup TransparentBg
     " autocmd vimenter * hi Comment cterm=italic gui=bold
     " autocmd vimenter * hi Comment guifg=#74985D
@@ -59,6 +60,7 @@ augroup VscodeTheme
     autocmd vimenter * hi @keyword guifg=#C586C0
     autocmd vimenter * hi @keyword.operator guifg=#C586C0
     autocmd vimenter * hi @keyword.function guifg=#569cd6
+    autocmd vimenter * hi MsgArea guibg=#D4D3D3 guifg=#1e1e1e gui=bold
 augroup END
 
 
@@ -72,3 +74,25 @@ augroup HighlightTrailingWhitespace
     autocmd InsertLeave * match ExtraWhitespace /\s\+$/
     autocmd BufWinLeave * call clearmatches()
 augroup END
+
+" function! HandleMsgAreaEnter()
+"     if &buftype ==# 'messages'
+"         " Custom logic for handling the "enter" keypress in the message area
+"         echo ""
+"         hi MsgArea guibg=#D4D3D3 guifg=#1e1e1e gui=bold
+"     endif
+" endfunction
+
+function! RemoveStatusLine(timer)
+    set cmdheight=0
+endfunction
+
+function! SaveBuffer()
+    call timer_start(2000, 'RemoveStatusLine')
+endfunction
+
+augroup BufSaveStatusline
+    " autocmd CursorMoved * call HandleMsgAreaEnter()
+    autocmd BufWrite * call SaveBuffer()
+augroup END
+
