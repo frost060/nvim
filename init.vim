@@ -70,10 +70,12 @@ Plug 'akinsho/bufferline.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'dinhhuy258/git.nvim'
 
-" Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'echasnovski/mini.indentscope'
 Plug 'folke/todo-comments.nvim'
+Plug 'akinsho/bufferline.nvim'
 " TODO: Add the following plugins
 
 call plug#end()

@@ -3,7 +3,6 @@ require("rose-pine").setup({
 	disable_float_background = true,
 	disable_italics = true,
 })
-
 require("vscode").setup({
 	-- Alternatively set style in setup
 	style = "dark",
@@ -21,12 +20,12 @@ require("catppuccin").setup({
 	flavour = "mocha", -- latte, frappe, macchiato, mocha
 	styles = {
 		-- Handles the styles of general hi groups (see `:h highlight-args`):
-		comments = {}, -- Change the style of comments
-		-- conditionals = { "italic" },
+		comments = { "italic" }, -- Change the style of comments
+		conditionals = { "italic" },
 		loops = {},
-		functions = {},
-		keywords = {},
-		strings = {},
+		functions = { "italic" },
+		keywords = { "italic" },
+		strings = { "italic" },
 		variables = {},
 		numbers = {},
 		booleans = {},
@@ -37,4 +36,4 @@ require("catppuccin").setup({
 })
 
 -- setup must be called before loading
-vim.cmd.colorscheme("sitruuna")
+vim.cmd.colorscheme("catppuccin-mocha")
