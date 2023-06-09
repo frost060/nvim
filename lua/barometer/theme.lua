@@ -8,10 +8,33 @@ require("vscode").setup({
 	-- Alternatively set style in setup
 	style = "dark",
 	-- Enable transparent background
-	transparent = false,
+	transparent = true,
 	-- Enable italic comment
 	italic_comments = false,
 	-- Disable nvim-tree background color
 	disable_nvimtree_bg = false,
 })
-require("vscode").load()
+-- require("vscode").load()
+-- require("onedark").load()
+
+require("catppuccin").setup({
+	flavour = "mocha", -- latte, frappe, macchiato, mocha
+	styles = {
+		-- Handles the styles of general hi groups (see `:h highlight-args`):
+		comments = {}, -- Change the style of comments
+		-- conditionals = { "italic" },
+		loops = {},
+		functions = {},
+		keywords = {},
+		strings = {},
+		variables = {},
+		numbers = {},
+		booleans = {},
+		properties = {},
+		types = {},
+		operators = {},
+	},
+})
+
+-- setup must be called before loading
+vim.cmd.colorscheme("sitruuna")

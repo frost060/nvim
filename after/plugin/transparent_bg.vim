@@ -5,7 +5,7 @@ augroup TransparentBg
     "autocmd vimenter * hi netrwDir guifg=#5eacd3
     """"""" transparent bg
     " autocmd vimenter * hi Normal guibg=#2f2f2f ctermbg=NONE
-    autocmd vimenter * hi Normal guibg=#1e1e1e ctermbg=NONE
+    " autocmd vimenter * hi Normal guibg=#1e1e1e ctermbg=NONE
     """""""For Vim<8, replace EndOfBuffer by NonText
     " autocmd vimenter * hi EndOfBuffer guibg=NONE ctermbg=NONE
     " autocmd vimenter * hi EndOfBuffer guifg=#71797E ctermfg=245
@@ -26,7 +26,7 @@ augroup TransparentBg
     " " autocmd vimenter * hi LineNr guifg=#5eacd3
 
     " autocmd vimenter * hi StatusLine guifg=#1e1e1e guibg=#D4D3D3 gui=bold
-    autocmd vimenter * hi Winbar guifg=#1e1e1e guibg=#D4D3D3 gui=bold
+    " autocmd vimenter * hi Winbar guifg=#1e1e1e guibg=#D4D3D3 gui=bold
     " autocmd vimenter * hi Winbar guifg=#d4d3d3 guibg=None gui=bold
     " autocmd vimenter * hi MsgArea guifg=#1e1e1e guibg=#D4D3D3 gui=bold
     " autocmd vimenter * hi SignColumn guibg=none
@@ -48,51 +48,51 @@ augroup TransparentBg
 
 augroup END
 
-augroup VscodeTheme
-    autocmd vimenter * hi @variable guifg=#D4D3D3
-    autocmd vimenter * hi @field guifg=#D4D3D3
-    autocmd vimenter * hi @constant guifg=#D4D3D3
-    autocmd vimenter * hi @constructor guifg=#D4D3D3
-    autocmd vimenter * hi @type guifg=#D4D3D3
-    autocmd vimenter * hi @type.builtin guifg=#4EC9B0
-    autocmd vimenter * hi @attribute guifg=#4EC9B0
-    autocmd vimenter * hi @method guifg=#DCDCAA
-    autocmd vimenter * hi @keyword guifg=#C586C0
-    autocmd vimenter * hi @keyword.operator guifg=#C586C0
-    autocmd vimenter * hi @keyword.function guifg=#569cd6
-    autocmd vimenter * hi MsgArea guibg=#D4D3D3 guifg=#1e1e1e gui=bold
-augroup END
+" augroup VscodeTheme
+"     autocmd vimenter * hi @variable guifg=#D4D3D3
+"     autocmd vimenter * hi @field guifg=#D4D3D3
+"     autocmd vimenter * hi @constant guifg=#D4D3D3
+"     autocmd vimenter * hi @constructor guifg=#D4D3D3
+"     autocmd vimenter * hi @type guifg=#D4D3D3
+"     autocmd vimenter * hi @type.builtin guifg=#4EC9B0
+"     autocmd vimenter * hi @attribute guifg=#4EC9B0
+"     autocmd vimenter * hi @method guifg=#DCDCAA
+"     autocmd vimenter * hi @keyword guifg=#C586C0
+"     autocmd vimenter * hi @keyword.operator guifg=#C586C0
+"     autocmd vimenter * hi @keyword.function guifg=#569cd6
+"     autocmd vimenter * hi MsgArea guibg=#D4D3D3 guifg=#1e1e1e gui=bold
+" augroup END
 
 
-" https://superuser.com/questions/921920/display-trailing-spaces-in-vim
-augroup HighlightTrailingWhitespace
-    autocmd vimenter * hi ExtraWhitespace ctermbg=red guibg=red
-    match ExtraWhitespace /\s\+$/
-    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-    " autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-    autocmd InsertEnter * match ExtraWhitespace /\s\+$/
-    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-    autocmd BufWinLeave * call clearmatches()
-augroup END
+" " https://superuser.com/questions/921920/display-trailing-spaces-in-vim
+" augroup HighlightTrailingWhitespace
+"     autocmd vimenter * hi ExtraWhitespace ctermbg=red guibg=red
+"     match ExtraWhitespace /\s\+$/
+"     autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+"     " autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+"     autocmd InsertEnter * match ExtraWhitespace /\s\+$/
+"     autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+"     autocmd BufWinLeave * call clearmatches()
+" augroup END
 
-" function! HandleMsgAreaEnter()
-"     if &buftype ==# 'messages'
-"         " Custom logic for handling the "enter" keypress in the message area
-"         echo ""
-"         hi MsgArea guibg=#D4D3D3 guifg=#1e1e1e gui=bold
-"     endif
+" " function! HandleMsgAreaEnter()
+" "     if &buftype ==# 'messages'
+" "         " Custom logic for handling the "enter" keypress in the message area
+" "         echo ""
+" "         hi MsgArea guibg=#D4D3D3 guifg=#1e1e1e gui=bold
+" "     endif
+" " endfunction
+
+" function! RemoveStatusLine(timer)
+"     set cmdheight=0
 " endfunction
 
-function! RemoveStatusLine(timer)
-    set cmdheight=0
-endfunction
+" function! SaveBuffer()
+"     call timer_start(2000, 'RemoveStatusLine')
+" endfunction
 
-function! SaveBuffer()
-    call timer_start(2000, 'RemoveStatusLine')
-endfunction
-
-augroup BufSaveStatusline
-    " autocmd CursorMoved * call HandleMsgAreaEnter()
-    autocmd BufWrite * call SaveBuffer()
-augroup END
+" augroup BufSaveStatusline
+"     " autocmd CursorMoved * call HandleMsgAreaEnter()
+"     autocmd BufWrite * call SaveBuffer()
+" augroup END
 

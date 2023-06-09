@@ -57,6 +57,10 @@ Plug 'Mofiqul/vscode.nvim'
 Plug 'tomasiser/vim-code-dark'
 Plug 'martinsione/darkplus.nvim'
 Plug 'tjdevries/gruvbuddy.nvim'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+" Plug 'joshdick/onedark.vim'
+Plug 'navarasu/onedark.nvim'
+Plug 'blazkowolf/gruber-darker.nvim'
 
 Plug 'preservim/tagbar'
 
@@ -65,6 +69,12 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'dinhhuy258/git.nvim'
+
+" Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'echasnovski/mini.indentscope'
+Plug 'folke/todo-comments.nvim'
+" TODO: Add the following plugins
 
 call plug#end()
 
