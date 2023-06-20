@@ -4,7 +4,7 @@ augroup TransparentBg
     " autocmd vimenter * hi Comment guifg=#74985D
     "autocmd vimenter * hi netrwDir guifg=#5eacd3
     """"""" transparent bg
-    " autocmd vimenter * hi Normal guibg=#2f2f2f ctermbg=NONE
+    autocmd vimenter * hi Normal guibg=#111111 ctermbg=NONE
     " autocmd vimenter * hi Normal guibg=#1e1e1e ctermbg=NONE
     """""""For Vim<8, replace EndOfBuffer by NonText
     " autocmd vimenter * hi EndOfBuffer guibg=NONE ctermbg=NONE

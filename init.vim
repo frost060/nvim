@@ -20,8 +20,8 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'ollykel/v-vim'
 
 Plug 'neovim/nvim-lspconfig'             " Required
-Plug 'williamboman/mason.nvim'           " Optional
-Plug 'williamboman/mason-lspconfig.nvim' " Optional
+Plug 'williamboman/mason.nvim', { 'do': ':MasonUpdate' }
+Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 
 " Autocompletion Engine
@@ -58,8 +58,8 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'martinsione/darkplus.nvim'
 Plug 'tjdevries/gruvbuddy.nvim'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-" Plug 'joshdick/onedark.vim'
-Plug 'navarasu/onedark.nvim'
+Plug 'joshdick/onedark.vim'
+" Plug 'navarasu/onedark.nvim'
 Plug 'blazkowolf/gruber-darker.nvim'
 
 Plug 'preservim/tagbar'
@@ -70,8 +70,8 @@ Plug 'akinsho/bufferline.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'dinhhuy258/git.nvim'
 
-Plug 'nvim-tree/nvim-web-devicons'
-Plug 'lukas-reineke/indent-blankline.nvim'
+" Plug 'nvim-tree/nvim-web-devicons'
+" Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'echasnovski/mini.indentscope'
 Plug 'folke/todo-comments.nvim'
