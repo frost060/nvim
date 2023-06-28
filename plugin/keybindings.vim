@@ -1,3 +1,5 @@
+let mapleader = ","
+
 " Map jk to <Esc>
 inoremap jk <Esc>
 
@@ -17,47 +19,19 @@ nnoremap <Leader>gs :G<CR>
 noremap <Leader>gf :diffget //2<CR>
 noremap <Leader>gh :diffget //3<CR>
 
-nnoremap <Leader>nh :nohlsearch<CR>
+nnoremap mm :nohlsearch<CR>
 
-" Telescope
-nmap <silent> <Leader>l <cmd>lua require('barometer.telescope').find_files()<CR>
-nmap <silent> <Leader>gg <cmd>lua require('barometer.telescope').git_files()<CR>
-nmap <silent> <Leader>ff <cmd>lua require('barometer.telescope').live_grep()<CR>
-nmap <silent> <Leader>fa <cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>
-nmap <silent> <Leader>ss <cmd>lua require('barometer.telescope').curr_buffer()<CR>
-nmap <silent> <Leader>b <cmd>lua require('barometer.telescope').buffers()<CR>
-nmap <silent> <Leader>tr <cmd>lua require('barometer.telescope').find_current_file()<CR>
-nmap <silent> <Leader>ds <cmd>lua require('barometer.telescope').document_symbols()<CR>
-nmap <silent> <Leader>dd <cmd>lua require('barometer.telescope').diagnostics()<CR>
-nmap <silent> <Leader>sc <cmd>lua require('barometer.telescope').list_colorschemes()<CR>
-nmap <silent> <Leader>aa <cmd>lua require('barometer.telescope').anime_selector()<CR>
-nmap <silent> <Leader>aw <cmd>lua require('barometer.telescope').wallpaper()<CR>
-nmap <silent> <Leader>gb <cmd>lua require('barometer.telescope').git_branches()<CR>
-nnoremap gr <cmd>lua require('barometer.telescope').lsp_references()<CR>
-nnoremap gi <cmd>lua require('barometer.telescope').lsp_implementations()<CR>
-nmap <silent> <Leader>h <cmd>Telescope help_tags<CR>
-nmap <silent> <Leader>t <cmd>Telescope<CR>
+xmap <Leader>c  <Plug>Commentary
+nmap <Leader>c  <Plug>Commentary
+map <Leader>c  <Plug>Commentary
+nmap <Leader>cc <Plug>CommentaryLine
 
-" LSP
-nnoremap <Leader>wd :lua vim.lsp.buf.signature_help()<CR>
-nnoremap <Leader>rn :lua vim.lsp.buf.rename()<CR>
-nnoremap <Leader>ac :lua vim.lsp.buf.code_action()<CR>
-nnoremap <Leader>ww :lua vim.lsp.buf.hover()<CR>
-nnoremap <Leader>wo :lua vim.diagnostic.open_float()<CR>
-nnoremap <Leader>wn :lua vim.diagnostic.goto_next()<CR>
-nnoremap <Leader>wp :lua vim.diagnostic.goto_prev()<CR>
-nnoremap gd <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap gt <cmd>lua vim.lsp.buf.type_definition()<CR>
+" filename [Help][-][RO]
+set statusline=\ \ \ %<%f\ %h%m%r
+" Line, col
+set statusline+=%=%(%l,%c%V%)
 
-" Split Join
-nnoremap <Leader>sp :SplitjoinSplit<CR>
-nnoremap <Leader>sj :SplitjoinJoin<CR>
-
-" Lir
-nmap <silent> <Leader>rr <cmd> lua require('lir.float').toggle()<CR>
-
-nnoremap <Leader>q <C-w>w
-
+" Keybindings
 function! ToggleQuickFix()
     if empty(filter(getwininfo(), 'v:val.quickfix'))
         copen
@@ -65,13 +39,38 @@ function! ToggleQuickFix()
         cclose
     endif
 endfunction
+nnoremap <Leader>qq :call ToggleQuickFix()<cr>
 
-nnoremap <Leader>qq :call ToggleQuickFix()<CR>
+" LSP
+nnoremap <Leader>rn :lua vim.lsp.buf.rename()<CR>
+nnoremap <Leader>ac :lua vim.lsp.buf.code_action()<CR>
+nnoremap gd :lua vim.lsp.buf.definition()<CR>
+nnoremap gr :lua require('barometer.telescope').lsp_references()<CR>
+nnoremap gi :lua require('barometer.telescope').lsp_implementations()<CR>
+nnoremap <Leader>aa :lua require('barometer.telescope').anime_selector()<CR>
+nnoremap <Leader>ww :lua vim.lsp.buf.hover()<CR>
+nnoremap <Leader>ds :lua require('barometer.telescope').document_symbols()<CR>
+nnoremap <Leader>dd :lua require('barometer.telescope').diagnostics()<CR>
+nnoremap <Leader>xx <cmd>lua vim.diagnostic.open_float()<CR>
+nnoremap <silent> <Leader>l :lua require('barometer.telescope').find_files()<CR>
+nnoremap <silent> <Leader>gg :lua require('barometer.telescope').git_files()<CR>
+nnoremap <silent> <Leader>ff :lua require('barometer.telescope').live_grep()<CR>
+nnoremap <silent> <Leader>b :lua require('barometer.telescope').buffers()<CR>
+nnoremap <silent> <Leader>ss :lua require('barometer.telescope').curr_buffer()<CR>
+nnoremap <silent> <Leader>sc :lua require('barometer.telescope').list_colorschemes()<CR>
 
-xmap <Leader>c  <Plug>Commentary
-nmap <Leader>c  <Plug>Commentary
-omap <Leader>c  <Plug>Commentary
-nmap <Leader>cc <Plug>CommentaryLine
+nnoremap <C-j> :cnext<CR>;
+nnoremap <C-k> :cprevious<CR>
+
+nnoremap <Leader>gs :G<CR>
+noremap <Leader>gf :diffget //2<CR>
+noremap <Leader>gh :diffget //3<CR>
+
+nnoremap mm :nohlsearch<CR>
+
+nnoremap <Leader>t :TagbarToggle<CR>
+" Create new file in current directory
+nnoremap <Leader>cs :e %:h/
 
 " Float term
 let g:floaterm_keymap_toggle = '<Leader>ft'
@@ -80,14 +79,34 @@ let g:floaterm_height=0.7
 let g:floaterm_autoclose=2
 tmap <Leader>e exit<CR>
 
-" nvim tree
-" nmap <C-n> :NvimTreeToggle<CR>
-" nmap <Leader>fr :NvimTreeFindFile<CR>
-" nmap <Leader>fc :NvimTreeCollapse<CR> 
+let g:zig_fmt_autosave = 1
 
-nmap mm :nohl<CR>
+" let $FZF_DEFAULT_COMMAND='find . \( -name node_modules -o -name .git -o -name dist -o -name build \) -prune -o -print'
+" https://gist.github.com/sajoku/c3e12d06f5dcb6bca85402dbc46837ab
+" https://dev.to/matrixersp/how-to-use-fzf-with-ripgrep-to-selectively-ignore-vcs-files-4e27
+let $FZF_DEFAULT_COMMAND='rg --files --hidden --follow --no-ignore-vcs -g "!{node_modules,target,.git,.idea,dist,build,tags,*.iml,*.lock,*-lock.json}" '
 
-nmap <Leader>vv :DiffviewOpen<CR>
-nmap <Leader>vc :DiffviewClose<CR>
+let g:fzf_layout = { 'down': '~30%' }
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
 
-nnoremap <Leader>zz :ZenMode<CR>
+nnoremap - :Ex<CR>
+
+vnoremap <silent> * :call VisualSelection('f')<CR>
+vnoremap <silent> # :call VisualSelection('b')<CR>
+
+lua require('barometer')
+
+" Split Join
+nnoremap <Leader>sp :TSJToggle<CR>
+
+" https://stackoverflow.com/questions/3702581/how-do-i-indent-a-single-line-multiple-times-in-vi-or-vim
+" vnoremap < <gv
+" vnoremap > >gv
+
+" https://stackoverflow.com/questions/290465/how-to-paste-over-without-overwriting-registero
+xnoremap p "_dP

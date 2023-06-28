@@ -1,66 +1,61 @@
-require("nvim-treesitter.configs").setup {
-  ensure_installed = {
-    "c",
-    "lua",
-    "rust",
-    "cmake",
-    "cpp",
-    "css",
-    "comment",
-    "bash",
-    "dockerfile",
-    "dot",
-    "elixir",
-    "erlang",
-    "go",
-    "gomod",
-    "gowork",
-    "graphql",
-    "hcl",
-    "html",
-    "http",
-    "java",
-    "javascript",
-    "jsdoc",
-    "json",
-    "json5",
-    "lua",
-    "ninja",
-    "ocaml",
-    "ocamllex",
-    "prisma",
-    "python",
-    "ruby",
-    "scala",
-    "scss",
-    "svelte",
-    "toml",
-    "typescript",
-    "tsx",
-    "vim",
-    "vue",
-    "yaml",
-    "zig",
-  },
-  highlight = {
-    enable = true, -- false will disable the whole extension
-  },
-  indent = {
-    enable = false,
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "vin",
-      node_incremental = "vni",
-      scope_incremental = "vsi",
-      node_decremental = "vnd",
-    },
-  },
+require("nvim-treesitter.configs").setup({
+	-- A list of parser names, or "all"
+	ensure_installed = {
+		"javascript",
+		"typescript",
+		"c",
+		"lua",
+		"rust",
+		"toml",
+		"fish",
+		"php",
+		"json",
+		"yaml",
+		"swift",
+		"css",
+		"html",
+	},
 
-  textobjects = {
-    move = {
-      enable = true,
-    },
-  },
-}
+	-- Install parsers synchronously (only applied to `ensure_installed`)
+	sync_install = false,
+
+	-- Automatically install missing parsers when entering buffer
+	-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+	auto_install = true,
+
+	indent = {
+		enable = true,
+		disable = {},
+	},
+
+	highlight = {
+		-- `false` will disable the whole extension
+		enable = true,
+		-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+		-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+		-- Using this option may slow down your editor, and you may see some duplicate highlights.
+		-- Instead of true it can also be a list of languages
+		additional_vim_regex_highlighting = false,
+	},
+})
+
+require("nvim-treesitter.configs").setup({
+	playground = {
+		enable = true,
+		disable = {},
+		updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+		persist_queries = false, -- Whether the query persists across vim sessions
+		keybindings = {
+			toggle_query_editor = "o",
+			toggle_hl_groups = "i",
+			toggle_injected_languages = "t",
+			toggle_anonymous_nodes = "a",
+			toggle_language_display = "I",
+			focus_language = "f",
+			unfocus_language = "F",
+			update = "R",
+			goto_node = "<cr>",
+			show_help = "?",
+		},
+	},
+})

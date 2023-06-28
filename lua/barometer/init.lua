@@ -2,18 +2,10 @@ require "barometer.plugins"
 require "barometer.treesitter"
 require "barometer.telescope"
 require "barometer.lsp"
-require "barometer.stylua"
-require "barometer.treesitter-context"
-require "barometer.lualine"
 require "barometer.color"
--- require "barometer.nvimtree"
+require "barometer.set"
+-- require "barometer.lualine"
+require "barometer.statusline"
 
 require("which-key").setup {}
-require("gitsigns").setup()
 require("nvim-autopairs").setup {}
-
-vim.cmd [[
-  augroup StyluaAuto
-    autocmd BufWritePre *.lua :lua require("barometer.stylua").format()
-  augroup END
-]]
