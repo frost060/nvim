@@ -17,7 +17,7 @@ vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undodir = os.getenv "HOME" .. "/.vim/undodir"
 vim.opt.undofile = true
 
 vim.opt.hlsearch = false
@@ -27,15 +27,15 @@ vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "no"
-vim.opt.isfname:append("@-@")
+vim.opt.isfname:append "@-@"
 
 vim.opt.updatetime = 50
 vim.opt.laststatus = 3
 vim.opt.cmdheight = 1
 
 -- move winbar text to the center
--- vim.opt.winbar = "%=%{expand('%:p:h:t')}/%t%="
--- vim.opt.winbar = "%=%f%="
+vim.opt.winbar = "%=%{expand('%:p:h:t')}/%t%="
+vim.opt.winbar = "%=%f%="
 
 -- vim.cmd [[
 --     set listchars=tab:⭲\ ,trail:~,extends:>,precedes:<,space:·
@@ -43,3 +43,8 @@ vim.opt.cmdheight = 1
 --     hi Whitespace guifg=#505050
 --     hi NonText guifg=#505050
 -- ]]
+
+vim.cmd [[
+    set list
+    set listchars+=eol:↲
+]]

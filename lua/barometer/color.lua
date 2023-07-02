@@ -28,4 +28,27 @@ vim.opt.background = "dark"
 -- vim.cmd("hi @punctuation guifg=#e5c07b")
 -- vim.cmd("hi @storageclass guifg=#e5c07b")
 
-require('colorbuddy').colorscheme('gruvbuddy')
+require("colorbuddy").colorscheme "gruvbuddy"
+
+local Color = require("colorbuddy").Color
+Color.new("gray0", "#151515")
+
+-- vim.cmd "colorscheme catppuccin_mocha"
+-- vim.cmd "colorscheme rose-pine"
+
+-- local h = require("rose-pine.util").highlight
+-- local p = require "rose-pine.palette"
+
+-- -- hide `~`s at end of buffer
+-- h("EndOfBuffer", { fg = p.base })
+
+-- -- subtle indentation guides
+-- h("IndentBlankline", { fg = p.highlight_low, nocombine = true })
+
+-- -- telescope
+-- h("TelescopePromptBorder", { fg = p.highlight_high, bg = p.base })
+-- h("TelescopePromptNormal", { fg = p.highlight_high, bg = p.base })
+-- h("TelescopePreviewBorder", { fg = p.highlight_high, bg = p.base })
+-- h("TelescopePreviewNormal", { fg = p.highlight_high, bg = p.base })
+-- h("TelescopeResultsBorder", { fg = p.highlight_high, bg = p.base })
+-- h("TelescopeResultsNormal", { fg = p.highlight_high, bg = p.base })
