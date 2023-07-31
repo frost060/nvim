@@ -9,3 +9,4 @@ require "barometer.set"
 require("which-key").setup {}
 require("nvim-autopairs").setup {}
 require("nvim-web-devicons").setup {}
+require("nvim-nonicons").setup {}

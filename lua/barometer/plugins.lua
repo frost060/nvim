@@ -117,5 +117,9 @@ require("packer").startup(function()
     use "Alligator/accent.vim"
 
     use "catppuccin/vim"
-    use "nvim-tree/nvim-web-devicons"
+
+    use {
+        "yamatsum/nvim-nonicons",
+        requires = { "kyazdani42/nvim-web-devicons" },
+    }
 end)
