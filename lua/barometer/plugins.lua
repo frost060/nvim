@@ -48,6 +48,7 @@ require("packer").startup(function()
     -- use "tamago324/lir-git-status.nvim"
 
     use "sbdchd/neoformat"
+    use "mhartington/formatter.nvim"
 
     use "github/copilot.vim"
 
@@ -121,5 +122,13 @@ require("packer").startup(function()
     use {
         "yamatsum/nvim-nonicons",
         requires = { "kyazdani42/nvim-web-devicons" },
+    }
+
+    use { "rose-pine/neovim", as = "rose-pine" }
+    use "norcalli/nvim-colorizer.lua"
+
+    use {
+        "nvim-telescope/telescope-file-browser.nvim",
+        requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
     }
 end)

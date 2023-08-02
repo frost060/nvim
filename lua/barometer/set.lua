@@ -44,7 +44,7 @@ vim.opt.winbar = "%=%f%="
 --     hi NonText guifg=#505050
 -- ]]
 
-vim.cmd [[
-    set list
-    set listchars+=eol:↲
-]]
+-- vim.cmd [[
+--     set list
+--     set listchars+=eol:↲
+-- ]]

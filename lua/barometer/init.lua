@@ -3,8 +3,9 @@ require "barometer.treesitter"
 require "barometer.telescope"
 require "barometer.lsp"
 require "barometer.color"
+require "barometer.colorscheme"
 require "barometer.set"
--- require "barometer.lualine"
+require "barometer.formatter"
 
 require("which-key").setup {}
 require("nvim-autopairs").setup {}

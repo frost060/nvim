@@ -1,13 +1,13 @@
-local lsp = require("lsp-zero")
+local lsp = require "lsp-zero"
 
-lsp.preset("recommended")
-lsp.ensure_installed({
+lsp.preset "recommended"
+lsp.ensure_installed {
     "tsserver",
     "rust_analyzer",
     "pyright",
     "gopls",
     "sqlls",
-})
+}
 
 vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", { expr = true })
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", { expr = true })
@@ -25,24 +25,24 @@ lsp.configure("lua_ls", {
     },
 })
 
-local cmp = require("cmp")
+local cmp = require "cmp"
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
+local cmp_mappings = lsp.defaults.cmp_mappings {
     ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
     ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-    ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+    ["<C-y>"] = cmp.mapping.confirm { select = true },
     ["<C-Space>"] = cmp.mapping.complete(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true })
-})
+    ["<CR>"] = cmp.mapping.confirm { select = true },
+}
 
 cmp_mappings["<Tab>"] = nil
 cmp_mappings["<S-Tab>"] = nil
 
-lsp.setup_nvim_cmp({
+lsp.setup_nvim_cmp {
     mapping = cmp_mappings,
-})
+}
 
-lsp.set_preferences({
+lsp.set_preferences {
     suggest_lsp_servers = false,
     sign = false,
     sign_icons = {
@@ -51,7 +51,7 @@ lsp.set_preferences({
         hint = "H",
         info = "I",
     },
-})
+}
 
 lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
@@ -84,14 +84,14 @@ end)
 
 lsp.setup()
 
-vim.diagnostic.config({
-    virtual_text = false,
-    sign = false,
-})
+vim.diagnostic.config {
+    virtual_text = true,
+    sign = true,
+}
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-local null_ls = require("null-ls")
-null_ls.setup({
+local null_ls = require "null-ls"
+null_ls.setup {
     sources = {
         null_ls.builtins.formatting.reorder_python_imports,
         null_ls.builtins.formatting.black,
@@ -101,15 +101,15 @@ null_ls.setup({
         null_ls.builtins.completion.spell,
     },
     on_attach = function(client, bufnr)
-        if client.supports_method("textDocument/formatting") then
-            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        if client.supports_method "textDocument/formatting" then
+            vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
             vim.api.nvim_create_autocmd("BufWritePre", {
                 group = augroup,
                 buffer = bufnr,
                 callback = function()
-                    vim.lsp.buf.format({ bufnr = bufnr })
+                    vim.lsp.buf.format { bufnr = bufnr }
                 end,
             })
         end
     end,
-})
+}

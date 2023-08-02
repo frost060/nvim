@@ -54,7 +54,9 @@ nnoremap <Leader>dd :lua require('barometer.telescope').diagnostics()<CR>
 nnoremap <Leader>xx <cmd>lua vim.diagnostic.open_float()<CR>
 nnoremap <silent> <Leader>l :lua require('barometer.telescope').find_files()<CR>
 nnoremap <silent> <Leader>gg :lua require('barometer.telescope').git_files()<CR>
+nnoremap <silent> <Leader>gs :lua require('barometer.telescope').git_status()<CR>
 nnoremap <silent> <Leader>ff :lua require('barometer.telescope').live_grep()<CR>
+nnoremap <silent> <Leader>fb :lua require('barometer.telescope').file_browser()<CR>
 nnoremap <silent> <Leader>b :lua require('barometer.telescope').buffers()<CR>
 nnoremap <silent> <Leader>ss :lua require('barometer.telescope').curr_buffer()<CR>
 nnoremap <silent> <Leader>sc :lua require('barometer.telescope').list_colorschemes()<CR>
@@ -62,7 +64,7 @@ nnoremap <silent> <Leader>sc :lua require('barometer.telescope').list_colorschem
 nnoremap <C-j> :cnext<CR>;
 nnoremap <C-k> :cprevious<CR>
 
-nnoremap <Leader>gs :G<CR>
+" nnoremap <Leader>gs :G<CR>
 noremap <Leader>gf :diffget //2<CR>
 noremap <Leader>gh :diffget //3<CR>
 
@@ -110,3 +112,6 @@ nnoremap <Leader>sp :TSJToggle<CR>
 
 " https://stackoverflow.com/questions/290465/how-to-paste-over-without-overwriting-registero
 xnoremap p "_dP
+
+nnoremap <silent> <leader>fr :Format<CR>
+
