@@ -31,6 +31,7 @@ require("packer").startup(function()
         tag = "0.1.1",
         requires = { { "nvim-lua/plenary.nvim" } },
     }
+    use "nvim-treesitter/playground"
 
     use "hrsh7th/nvim-cmp"
     use "hrsh7th/cmp-nvim-lsp"
@@ -91,22 +92,18 @@ require("packer").startup(function()
             }
         end,
     }
-    use {
-        "nvim-lualine/lualine.nvim",
-        disable = true,
-    }
 
     use "navarasu/onedark.nvim"
     use "cocopon/iceberg.vim"
     -- use "monsonjeremy/onedark.nvim"
 
-    use {
-        "tjdevries/express_line.nvim",
-        requires = {
-            "j-hui/fidget.nvim",
-            tag = "legacy",
-        },
-    }
+    -- use {
+    --     "tjdevries/express_line.nvim",
+    --     requires = {
+    --         "j-hui/fidget.nvim",
+    --         tag = "legacy",
+    --     },
+    -- }
 
     use {
         "tjdevries/gruvbuddy.nvim",
@@ -119,10 +116,10 @@ require("packer").startup(function()
 
     use "catppuccin/vim"
 
-    use {
-        "yamatsum/nvim-nonicons",
-        requires = { "kyazdani42/nvim-web-devicons" },
-    }
+    -- use {
+    --     "yamatsum/nvim-nonicons",
+    --     requires = { "kyazdani42/nvim-web-devicons" },
+    -- }
 
     use { "rose-pine/neovim", as = "rose-pine" }
     use "norcalli/nvim-colorizer.lua"
@@ -131,4 +128,43 @@ require("packer").startup(function()
         "nvim-telescope/telescope-file-browser.nvim",
         requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
     }
+
+    -- use "lewis6991/gitsigns.nvim"
+
+    use "gruvbox-community/gruvbox"
+
+    use "Shatur/neovim-ayu"
+
+    use "pwntester/octo.nvim"
+    use {
+        "mcchrish/zenbones.nvim",
+        -- Optionally install Lush. Allows for more configuration or extending the colorscheme
+        -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
+        -- In Vim, compat mode is turned on as Lush only works in Neovim.
+        requires = "rktjmp/lush.nvim",
+    }
+
+    use "drsooch/gruber-darker-vim"
+
+    use { "zbirenbaum/copilot.lua" }
+    use "lewis6991/gitsigns.nvim"
+    use "catppuccin/nvim"
+
+    use {
+        "yamatsum/nvim-nonicons",
+        requires = { "kyazdani42/nvim-web-devicons" },
+    }
+
+    use { "tjdevries/express_line.nvim", requires = { "j-hui/fidget.nvim", tag = "legacy" } }
+
+    use "bluz71/vim-nightfly-guicolors"
+
+    use "folke/tokyonight.nvim"
+
+    use "romgrk/barbar.nvim"
+
+    use "b0o/incline.nvim"
+    use "nvim-lualine/lualine.nvim"
+
+        use "folke/neodev.nvim"
 end)

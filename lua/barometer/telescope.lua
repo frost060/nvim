@@ -200,6 +200,10 @@ M.list_colorschemes = function()
     require("telescope.builtin").colorscheme(opts)
 end
 
+M.references = function()
+    require("telescope.builtin").lsp_references({})
+end
+
 M.curr_buffer = function()
     require("telescope.builtin").current_buffer_fuzzy_find(themes.get_ivy())
 end
@@ -213,7 +217,7 @@ M.git_files = function()
         prompt_prefix = "🔍 ",
         find_command = { "rg", "--hidden", "--files" },
     }
-    require("telescope.builtin").git_files(themes.get_ivy(opts))
+    require("telescope.builtin").git_files(opts)
 end
 
 M.buffers = function()
@@ -224,15 +228,6 @@ M.buffers = function()
         previewer = false,
     }
     require("telescope.builtin").buffers(opts)
-end
-
-M.lsp_references = function()
-    local opts = themes.get_ivy {
-        layout_config = {
-            height = 20,
-        },
-    }
-    require("telescope.builtin").lsp_references(opts)
 end
 
 M.lsp_implementations = function()
@@ -325,6 +320,49 @@ M.file_browser = function()
     require("telescope").extensions.file_browser.file_browser(opts)
 end
 
+M.current_file = function()
+    local opts
+
+    opts = {
+        sorting_strategy = "ascending",
+        scroll_strategy = "cycle",
+        layout_config = {
+            prompt_position = "top",
+        },
+
+        attach_mappings = function(prompt_bufnr, map)
+            local current_picker = action_state.get_current_picker(prompt_bufnr)
+
+            local modify_cwd = function(new_cwd)
+                local finder = current_picker.finder
+
+                finder.path = new_cwd
+                finder.files = true
+                current_picker:refresh(false, { reset_prompt = true })
+            end
+
+            map("i", "-", function()
+                modify_cwd(current_picker.cwd .. "/..")
+            end)
+
+            map("i", "~", function()
+                modify_cwd(vim.fn.expand "~")
+            end)
+
+            map("n", "yy", function()
+                local entry = action_state.get_selected_entry()
+                vim.fn.setreg("+", entry.value)
+            end)
+
+            return true
+        end,
+
+        path = "%:p:h",
+    }
+
+    require("telescope").extensions.file_browser.file_browser(opts)
+end
+
 function M.git_status()
     require("telescope.builtin").git_status {}
 end
@@ -383,7 +421,7 @@ local function image_selector(prompt, cwd)
     end
 end
 
-M.anime_selector = image_selector("< Anime Bobs > ", "~/dev/anime-wallpapers")
+M.anime_selector = image_selector("< Anime Bobs > ", "~/anime-wallpapers")
 M.wallpaper = image_selector("< Wallpaper > ", "~/Pictures")
 
 return M

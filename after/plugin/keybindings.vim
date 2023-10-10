@@ -45,7 +45,7 @@ nnoremap <Leader>qq :call ToggleQuickFix()<cr>
 nnoremap <Leader>rn :lua vim.lsp.buf.rename()<CR>
 nnoremap <Leader>ac :lua vim.lsp.buf.code_action()<CR>
 nnoremap gd :lua vim.lsp.buf.definition()<CR>
-nnoremap gr :lua require('barometer.telescope').lsp_references()<CR>
+nnoremap gr :lua require('barometer.telescope').references()<CR>
 nnoremap gi :lua require('barometer.telescope').lsp_implementations()<CR>
 nnoremap <Leader>aa :lua require('barometer.telescope').anime_selector()<CR>
 nnoremap <Leader>ww :lua vim.lsp.buf.hover()<CR>
@@ -57,6 +57,7 @@ nnoremap <silent> <Leader>gg :lua require('barometer.telescope').git_files()<CR>
 nnoremap <silent> <Leader>gs :lua require('barometer.telescope').git_status()<CR>
 nnoremap <silent> <Leader>ff :lua require('barometer.telescope').live_grep()<CR>
 nnoremap <silent> <Leader>fb :lua require('barometer.telescope').file_browser()<CR>
+nnoremap <silent> <Leader>fr :lua require('barometer.telescope').current_file()<CR>
 nnoremap <silent> <Leader>b :lua require('barometer.telescope').buffers()<CR>
 nnoremap <silent> <Leader>ss :lua require('barometer.telescope').curr_buffer()<CR>
 nnoremap <silent> <Leader>sc :lua require('barometer.telescope').list_colorschemes()<CR>

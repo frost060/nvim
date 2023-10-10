@@ -1,8 +1,8 @@
 vim.opt.guicursor = ""
 
-vim.opt.nu = false
+vim.opt.nu = true
 vim.opt.relativenumber = true
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -34,14 +34,19 @@ vim.opt.laststatus = 3
 vim.opt.cmdheight = 1
 
 -- move winbar text to the center
-vim.opt.winbar = "%=%{expand('%:p:h:t')}/%t%="
-vim.opt.winbar = "%=%f%="
+-- vim.opt.winbar = "%=%{expand('%:p:h:t')}/%t%="
+-- vim.opt.winbar = "%=%f%="
 
 -- vim.cmd [[
 --     set listchars=tab:⭲\ ,trail:~,extends:>,precedes:<,space:·
 --     set list
 --     hi Whitespace guifg=#505050
 --     hi NonText guifg=#505050
+-- ]]
+
+-- vim.cmd [[
+--     set list
+--     set listchars=tab:▸\ ,eol:↲,extends:❯,precedes:❮
 -- ]]
 
 -- vim.cmd [[
