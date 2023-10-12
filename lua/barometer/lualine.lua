@@ -1,3 +1,12 @@
+-- require('lualine').setup {
+--     options = {
+--         icons_enabled = false,
+--         theme = 'nord',
+--         component_separators = '|',
+--         section_separators = '',
+--     },
+-- }
+
 local function truncate_branch_name(branch)
     if not branch or branch == "" then
         return ""

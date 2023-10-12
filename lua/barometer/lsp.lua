@@ -1,5 +1,7 @@
 local lsp = require "lsp-zero"
 local cmp = require "cmp"
+local uv = vim.loop
+local handle
 
 -- Load snippets
 require("luasnip.loaders.from_vscode").lazy_load()
@@ -105,6 +107,15 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "gr", function()
         require("barometer.telescope").references()
     end, opts)
+
+    local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+
+    -- autocmd BufWritePre * silent !reorder-python-imports %
+    if filetype == "python" then
+        vim.cmd [[]]
+    elseif filetype == "javascript" or filetype == "typescript" or filetype == "json" then
+        vim.cmd [[autocmd BufWritePost * silent !prettier --tab-width 4 --write %]]
+    end
 end)
 
 lsp.setup()
@@ -154,5 +165,3 @@ function _G.workspace_diagnostics_status()
 
     return table.concat(status, " | ")
 end
-
-vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]

@@ -4,13 +4,15 @@ require "barometer.telescope"
 require "barometer.lsp"
 require "barometer.set"
 require "barometer.formatter"
-require "barometer.barbar"
+-- require "barometer.barbar"
 require "barometer.incline"
-require "barometer.lualine"
+-- require "barometer.lualine"
 
 require("which-key").setup {}
 require("nvim-autopairs").setup {}
 require("nvim-nonicons").setup {}
+
+-- vim.cmd.colorscheme 'onedark'
 
 require("tokyonight").setup {
     style = "moon",
@@ -45,3 +47,8 @@ require("tokyonight").setup {
     end,
 }
 vim.cmd [[colorscheme tokyonight]]
+
+-- require('colorbuddy').colorscheme('gruvbuddy')
+-- local Color = require("colorbuddy").Color
+-- Color.new("gray0", "#151515")
+

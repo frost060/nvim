@@ -84,11 +84,6 @@ _G.packer_plugins = {
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/accent.vim",
     url = "https://github.com/Alligator/accent.vim"
   },
-  ["barbar.nvim"] = {
-    loaded = true,
-    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/barbar.nvim",
-    url = "https://github.com/romgrk/barbar.nvim"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -179,6 +174,21 @@ _G.packer_plugins = {
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/incline.nvim",
     url = "https://github.com/b0o/incline.nvim"
   },
+  ["indent-blankline.nvim"] = {
+    loaded = true,
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
+    url = "https://github.com/lukas-reineke/indent-blankline.nvim"
+  },
+  ["kanagawa.nvim"] = {
+    loaded = true,
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/kanagawa.nvim",
+    url = "https://github.com/rebelot/kanagawa.nvim"
+  },
+  ["lir.nvim"] = {
+    loaded = true,
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/lir.nvim",
+    url = "https://github.com/tamago324/lir.nvim"
+  },
   ["lsp-zero.nvim"] = {
     loaded = true,
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
@@ -218,6 +228,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/neovim-ayu",
     url = "https://github.com/Shatur/neovim-ayu"
+  },
+  ["nord.nvim"] = {
+    loaded = true,
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/nord.nvim",
+    url = "https://github.com/shaunsingh/nord.nvim"
   },
   ["null-ls.nvim"] = {
     loaded = true,
@@ -311,6 +326,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/telescope-file-browser.nvim",
     url = "https://github.com/nvim-telescope/telescope-file-browser.nvim"
+  },
+  ["telescope-fzf-native.nvim"] = {
+    loaded = true,
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
+    url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,

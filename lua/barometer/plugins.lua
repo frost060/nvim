@@ -17,7 +17,7 @@ local use = require("packer").use
 
 require("packer").startup(function()
     use "wbthomason/packer.nvim" -- Package manager
-    use "tpope/vim-fugitive" -- Git commands in nvim
+    use "tpope/vim-fugitive"     -- Git commands in nvim
     use "tpope/vim-commentary"
     use "tpope/vim-surround"
     use "windwp/nvim-autopairs"
@@ -26,9 +26,9 @@ require("packer").startup(function()
 
     -- Highlight, edit, and navigate code using a fast incremental parsing library
     use "nvim-treesitter/nvim-treesitter"
+    use "nvim-telescope/telescope-fzf-native.nvim"
     use {
         "nvim-telescope/telescope.nvim",
-        tag = "0.1.1",
         requires = { { "nvim-lua/plenary.nvim" } },
     }
     use "nvim-treesitter/playground"
@@ -63,7 +63,7 @@ require("packer").startup(function()
         requires = {
             -- LSP Support
             { "neovim/nvim-lspconfig" }, -- Required
-            { -- Optional
+            {                            -- Optional
                 "williamboman/mason.nvim",
                 run = function()
                     pcall(vim.cmd, "MasonUpdate")
@@ -72,9 +72,9 @@ require("packer").startup(function()
             { "williamboman/mason-lspconfig.nvim" }, -- Optional
 
             -- Autocompletion
-            { "hrsh7th/nvim-cmp" }, -- Required
+            { "hrsh7th/nvim-cmp" },     -- Required
             { "hrsh7th/cmp-nvim-lsp" }, -- Required
-            { "L3MON4D3/LuaSnip" }, -- Required
+            { "L3MON4D3/LuaSnip" },     -- Required
         },
     }
 
@@ -161,10 +161,15 @@ require("packer").startup(function()
 
     use "folke/tokyonight.nvim"
 
-    use "romgrk/barbar.nvim"
+    use {"romgrk/barbar.nvim", disable = true}
 
     use "b0o/incline.nvim"
     use "nvim-lualine/lualine.nvim"
 
-        use "folke/neodev.nvim"
+    use "folke/neodev.nvim"
+    use "lukas-reineke/indent-blankline.nvim"
+    use "shaunsingh/nord.nvim"
+    use "rebelot/kanagawa.nvim"
+    use "tamago324/lir.nvim"
+    use "tamago324/lir-git-status.nvim"
 end)
