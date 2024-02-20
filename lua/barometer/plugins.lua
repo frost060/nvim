@@ -17,7 +17,7 @@ local use = require("packer").use
 
 require("packer").startup(function()
     use "wbthomason/packer.nvim" -- Package manager
-    use "tpope/vim-fugitive"     -- Git commands in nvim
+    use "tpope/vim-fugitive" -- Git commands in nvim
     use "tpope/vim-commentary"
     use "tpope/vim-surround"
     use "windwp/nvim-autopairs"
@@ -44,6 +44,7 @@ require("packer").startup(function()
 
     use "L3MON4D3/LuaSnip"
     use "rafamadriz/friendly-snippets"
+    use "gruvbox-community/gruvbox"
 
     -- use "tamago324/lir.nvim"
     -- use "tamago324/lir-git-status.nvim"
@@ -63,7 +64,7 @@ require("packer").startup(function()
         requires = {
             -- LSP Support
             { "neovim/nvim-lspconfig" }, -- Required
-            {                            -- Optional
+            { -- Optional
                 "williamboman/mason.nvim",
                 run = function()
                     pcall(vim.cmd, "MasonUpdate")
@@ -72,9 +73,9 @@ require("packer").startup(function()
             { "williamboman/mason-lspconfig.nvim" }, -- Optional
 
             -- Autocompletion
-            { "hrsh7th/nvim-cmp" },     -- Required
+            { "hrsh7th/nvim-cmp" }, -- Required
             { "hrsh7th/cmp-nvim-lsp" }, -- Required
-            { "L3MON4D3/LuaSnip" },     -- Required
+            { "L3MON4D3/LuaSnip" }, -- Required
         },
     }
 
@@ -97,13 +98,13 @@ require("packer").startup(function()
     use "cocopon/iceberg.vim"
     -- use "monsonjeremy/onedark.nvim"
 
-    -- use {
-    --     "tjdevries/express_line.nvim",
-    --     requires = {
-    --         "j-hui/fidget.nvim",
-    --         tag = "legacy",
-    --     },
-    -- }
+    use {
+        "tjdevries/express_line.nvim",
+        requires = {
+            "j-hui/fidget.nvim",
+            tag = "legacy",
+        },
+    }
 
     use {
         "tjdevries/gruvbuddy.nvim",
@@ -116,11 +117,6 @@ require("packer").startup(function()
 
     use "catppuccin/vim"
 
-    -- use {
-    --     "yamatsum/nvim-nonicons",
-    --     requires = { "kyazdani42/nvim-web-devicons" },
-    -- }
-
     use { "rose-pine/neovim", as = "rose-pine" }
     use "norcalli/nvim-colorizer.lua"
 
@@ -131,45 +127,31 @@ require("packer").startup(function()
 
     -- use "lewis6991/gitsigns.nvim"
 
-    use "gruvbox-community/gruvbox"
-
-    use "Shatur/neovim-ayu"
-
     use "pwntester/octo.nvim"
-    use {
-        "mcchrish/zenbones.nvim",
-        -- Optionally install Lush. Allows for more configuration or extending the colorscheme
-        -- If you don't want to install lush, make sure to set g:zenbones_compat = 1
-        -- In Vim, compat mode is turned on as Lush only works in Neovim.
-        requires = "rktjmp/lush.nvim",
-    }
-
-    use "drsooch/gruber-darker-vim"
-
     use { "zbirenbaum/copilot.lua" }
-    use "lewis6991/gitsigns.nvim"
-    use "catppuccin/nvim"
 
     use {
         "yamatsum/nvim-nonicons",
         requires = { "kyazdani42/nvim-web-devicons" },
+        disable = false,
     }
 
-    use { "tjdevries/express_line.nvim", requires = { "j-hui/fidget.nvim", tag = "legacy" } }
-
-    use "bluz71/vim-nightfly-guicolors"
-
-    use "folke/tokyonight.nvim"
-
-    use {"romgrk/barbar.nvim", disable = true}
-
-    use "b0o/incline.nvim"
-    use "nvim-lualine/lualine.nvim"
-
-    use "folke/neodev.nvim"
-    use "lukas-reineke/indent-blankline.nvim"
-    use "shaunsingh/nord.nvim"
-    use "rebelot/kanagawa.nvim"
     use "tamago324/lir.nvim"
     use "tamago324/lir-git-status.nvim"
+
+    use "eemed/sitruuna.vim"
+
+    use "stevearc/conform.nvim"
+
+    use {
+        "folke/trouble.nvim",
+        config = function()
+            require("trouble").setup {
+                icons = false,
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end,
+    }
 end)

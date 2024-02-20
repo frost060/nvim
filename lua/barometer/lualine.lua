@@ -33,8 +33,8 @@ end
 
 require("lualine").setup {
     options = {
-        theme = "catppuccin",
         globalstatus = true,
+        theme = "catppuccin",
     },
     sections = {
         lualine_b = {

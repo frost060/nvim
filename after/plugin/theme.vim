@@ -1,9 +1,18 @@
-augroup Transparent " transparent background
-    autocmd vimenter * hi clear TelescopeNormal
-    autocmd vimenter * hi clear TelescopeBorder
-    autocmd vimenter * hi clear TelescopePromptNormal
-    autocmd vimenter * hi clear TelescopePromptBorder
-    autocmd vimenter * hi clear StatusLine
-    autocmd vimenter hi CursorLine guibg=None
-    autocmd BufEnter hi CursorLine guibg=Nonethe
-augroup END
+let g:gruvbox_contrast_dark = "hard"
+colorscheme rose-pine
+
+highlight DiagnosticUnderlineError cterm=undercurl gui=undercurl
+highlight DiagnosticUnderlineWarn cterm=undercurl gui=undercurl
+highlight DiagnosticUnderlineInfo cterm=undercurl gui=undercurl
+highlight DiagnosticUnderlineHint cterm=undercurl gui=undercurl
+
+hi! link LspReferenceRead DiffChange
+hi! link LspReferenceText DiffChange
+hi! link LspReferenceWrite DiffChange
+hi! link LspSignatureActiveParameter GruvboxOrange
+
+" hi! link TelescopeBorder GruvboxYellowBold
+" hi! link TelescopePromptBorder Normal
+" hi! link TelescopeResultsBorder FloatBorder
+" hi! link TelescopePreviewBorder FloatBorder
+
