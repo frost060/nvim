@@ -1,5 +1,5 @@
 let g:gruvbox_contrast_dark = "hard"
-colorscheme rose-pine
+colorscheme monochrome
 
 highlight DiagnosticUnderlineError cterm=undercurl gui=undercurl
 highlight DiagnosticUnderlineWarn cterm=undercurl gui=undercurl
@@ -16,3 +16,7 @@ hi! link LspSignatureActiveParameter GruvboxOrange
 " hi! link TelescopeResultsBorder FloatBorder
 " hi! link TelescopePreviewBorder FloatBorder
 
+augroup TransparentBackground
+  autocmd VimEnter * hi clear StatusLine
+  " autocmd VimEnter * hi clear LineNr
+augroup END

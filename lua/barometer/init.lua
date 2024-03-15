@@ -7,7 +7,7 @@ require "barometer.formatter"
 
 require("which-key").setup {}
 require("nvim-autopairs").setup {}
-require("nvim-nonicons").setup {}
+-- require("nvim-nonicons").setup {}
 
 require("conform").setup {
     formatters_by_ft = {

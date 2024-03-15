@@ -232,20 +232,10 @@ _G.packer_plugins = {
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
-  ["nvim-nonicons"] = {
-    loaded = true,
-    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/nvim-nonicons",
-    url = "https://github.com/yamatsum/nvim-nonicons"
-  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
-  },
-  ["nvim-web-devicons"] = {
-    loaded = true,
-    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
-    url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["octo.nvim"] = {
     loaded = true,
@@ -282,6 +272,11 @@ _G.packer_plugins = {
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/sitruuna.vim",
     url = "https://github.com/eemed/sitruuna.vim"
   },
+  ["solarized.nvim"] = {
+    loaded = true,
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/solarized.nvim",
+    url = "https://github.com/shaunsingh/solarized.nvim"
+  },
   ["telescope-file-browser.nvim"] = {
     loaded = true,
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/telescope-file-browser.nvim",
@@ -296,6 +291,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "/Users/barometer/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    url = "https://github.com/folke/tokyonight.nvim"
   },
   treesj = {
     config = { "\27LJ\2\n8\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\vtreesj\frequire\0" },

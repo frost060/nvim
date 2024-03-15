@@ -133,7 +133,7 @@ require("packer").startup(function()
     use {
         "yamatsum/nvim-nonicons",
         requires = { "kyazdani42/nvim-web-devicons" },
-        disable = false,
+        disable = true,
     }
 
     use "tamago324/lir.nvim"
@@ -154,4 +154,9 @@ require("packer").startup(function()
             }
         end,
     }
+
+    use "shaunsingh/solarized.nvim"
+
+    use "folke/tokyonight.nvim"
+    use "fxn/vim-monochrome"
 end)
