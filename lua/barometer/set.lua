@@ -28,6 +28,9 @@ vim.o.smartcase = true
 
 vim.opt.termguicolors = true
 
+vim.opt.foldenable = false
+vim.opt.foldmethod = "indent"
+
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "no"
 vim.opt.isfname:append "@-@"

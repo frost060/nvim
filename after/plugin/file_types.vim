@@ -71,3 +71,9 @@ augroup ft_quickfix
     autocmd FileType qf call AdjustWindowHeight(3, 10)
 augroup END
 
+augroup ft_json
+  au!
+  au BufEnter,BufNewFile,BufRead *.json setlocal
+        \ tabstop=4 shiftwidth=2 softtabstop=2 colorcolumn=0
+augroup END
+

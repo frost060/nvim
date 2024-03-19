@@ -3,7 +3,7 @@ require "barometer.treesitter"
 require "barometer.telescope"
 require "barometer.lsp"
 require "barometer.set"
-require "barometer.formatter"
+-- require "barometer.formatter"
 
 require("which-key").setup {}
 require("nvim-autopairs").setup {}
@@ -13,9 +13,13 @@ require("conform").setup {
     formatters_by_ft = {
         lua = { "stylua" },
         -- Conform will run multiple formatters sequentially
-        python = { "reorder-python-imports", "black" },
+        python = { "ruff" },
         -- Use a sub-list to run only the first available formatter
         javascript = { { "prettierd", "prettier" } },
+
+        json = { { "prettier", "yq" } },
+
+        sql = { { "sql_formatter" } },
     },
     format_on_save = {
         -- These options will be passed to conform.format()

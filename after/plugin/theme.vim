@@ -1,5 +1,6 @@
 let g:gruvbox_contrast_dark = "hard"
-colorscheme monochrome
+colorscheme quiet
+" PhoenixYellow
 
 highlight DiagnosticUnderlineError cterm=undercurl gui=undercurl
 highlight DiagnosticUnderlineWarn cterm=undercurl gui=undercurl

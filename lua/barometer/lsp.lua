@@ -54,7 +54,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings {
     ["<C-y>"] = cmp.mapping.confirm { select = true },
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<CR>"] = cmp.mapping.confirm { select = true },
-    ["<C-u>"] = cmp.mapping.scroll_docs(4),  -- scroll up preview
+    ["<C-u>"] = cmp.mapping.scroll_docs(4), -- scroll up preview
     ["<C-d>"] = cmp.mapping.scroll_docs(-4), -- scroll down preview
 }
 
@@ -106,7 +106,6 @@ lsp.on_attach(function(client, bufnr)
 
     local filetype = vim.api.nvim_buf_get_option(0, "filetype")
 
-    -- autocmd BufWritePre * silent !reorder-python-imports %
     if filetype == "python" then
         vim.cmd [[]]
     elseif filetype == "javascript" or filetype == "typescript" or filetype == "json" then

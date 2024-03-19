@@ -155,8 +155,8 @@ require("packer").startup(function()
         end,
     }
 
-    use "shaunsingh/solarized.nvim"
-
     use "folke/tokyonight.nvim"
     use "fxn/vim-monochrome"
+    use "widatama/vim-phoenix"
+    use "maxmx03/solarized.nvim"
 end)
