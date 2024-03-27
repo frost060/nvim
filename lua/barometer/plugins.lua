@@ -17,7 +17,7 @@ local use = require("packer").use
 
 require("packer").startup(function()
     use "wbthomason/packer.nvim" -- Package manager
-    use "tpope/vim-fugitive" -- Git commands in nvim
+    use "tpope/vim-fugitive"     -- Git commands in nvim
     use "tpope/vim-commentary"
     use "tpope/vim-surround"
     use "windwp/nvim-autopairs"
@@ -64,7 +64,7 @@ require("packer").startup(function()
         requires = {
             -- LSP Support
             { "neovim/nvim-lspconfig" }, -- Required
-            { -- Optional
+            {                            -- Optional
                 "williamboman/mason.nvim",
                 run = function()
                     pcall(vim.cmd, "MasonUpdate")
@@ -73,9 +73,9 @@ require("packer").startup(function()
             { "williamboman/mason-lspconfig.nvim" }, -- Optional
 
             -- Autocompletion
-            { "hrsh7th/nvim-cmp" }, -- Required
+            { "hrsh7th/nvim-cmp" },     -- Required
             { "hrsh7th/cmp-nvim-lsp" }, -- Required
-            { "L3MON4D3/LuaSnip" }, -- Required
+            { "L3MON4D3/LuaSnip" },     -- Required
         },
     }
 
@@ -141,7 +141,12 @@ require("packer").startup(function()
 
     use "eemed/sitruuna.vim"
 
-    use "stevearc/conform.nvim"
+    use({
+        "stevearc/conform.nvim",
+        config = function()
+            require("conform").setup()
+        end,
+    })
 
     use {
         "folke/trouble.nvim",

@@ -17,7 +17,7 @@ require("conform").setup {
         -- Use a sub-list to run only the first available formatter
         javascript = { { "prettierd", "prettier" } },
 
-        json = { { "prettier", "yq" } },
+        json = { { "prettierd", "prettier" } },
 
         sql = { { "sql_formatter" } },
     },
